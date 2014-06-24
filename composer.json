@@ -1,0 +1,39 @@
+{
+    "name": "pugx/poser",
+    "description": "Poser, add badges on your readme, such as downloads number or latest version.",
+    "keywords": ["composer", "packagist", "badge", "pin"],
+    "homepage": "https://github.com/PUGX",
+    "type": "lib",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Giulio De Donato",
+            "email": "liuggio@gmail.com"
+        },
+        {
+            "name": "PUGX Community",
+            "homepage": "https://github.com/PUGX/badge-poser/contributors"
+        },
+        {
+            "name": "Shields Community",
+            "homepage": "https://github.com/badges/poser/contributors"
+        }
+    ],
+    "autoload": {
+        "psr-4": { "PUGX\\Badge\\Poser": "src/" }
+    },
+    "require": {
+    },
+    "require-dev": {
+        "phpunit/phpunit": "@stable"
+    },
+    "config": {
+        "bin-dir": "bin"
+    },
+    "minimum-stability": "stable",
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0.x-dev"
+        }
+    }
+}
