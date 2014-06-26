@@ -1,6 +1,6 @@
 {
-    "name": "pugx/poser",
-    "description": "Poser, add badges on your readme, such as downloads number or latest version.",
+    "name": "badges/poser",
+    "description": "Poser, add badges on your readme..",
     "keywords": ["composer", "packagist", "badge", "pin"],
     "homepage": "https://github.com/PUGX",
     "type": "lib",
@@ -20,17 +20,20 @@
         }
     ],
     "autoload": {
-        "psr-4": { "PUGX\\Badge\\Poser": "src/" }
+        "psr-4": { "PUGX\\Poser\\": "src/" }
     },
     "require": {
+        "symfony/console": "dev-master"
     },
     "require-dev": {
-        "phpunit/phpunit": "@stable"
+        "phpspec/phpspec": "dev-master",
+        "behat/behat": "dev-master"
     },
     "config": {
         "bin-dir": "bin"
     },
-    "minimum-stability": "stable",
+    "bin": ["bin/poser"],
+    "minimum-stability": "dev",
     "extra": {
         "branch-alias": {
             "dev-master": "1.0.x-dev"

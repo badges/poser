@@ -6,9 +6,6 @@ php:
   - 5.5
   - hhvm
 
-services:
-  - redis-server
-
 matrix:
   allow_failures:
     - php: hhvm
@@ -17,7 +14,8 @@ before_script:
     - COMPOSER_ROOT_VERSION=dev-master composer --prefer-source --dev --no-interaction install
 
 script:
-  - bin/phpunit -v
+  - bin/phpspec run --format=pretty
+  - bin/behat
   
 notifications:
   email:
