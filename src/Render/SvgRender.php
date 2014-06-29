@@ -14,7 +14,7 @@ namespace PUGX\Poser\Render;
 use PUGX\Poser\Badge;
 use PUGX\Poser\Calculator\TextSizeCalculatorInterface;
 use PUGX\Poser\Calculator\GDTextSizeCalculator;
-
+use PUGX\Poser\Image;
 /**
  * Class SvgGenerator
  *
@@ -24,9 +24,9 @@ use PUGX\Poser\Calculator\GDTextSizeCalculator;
 class SvgRender implements RenderInterface
 {
     const VENDOR_COLOR            = '#555';
-
     private $textSizeCalculator;
-    private static $template = '<svg xmlns="http://www.w3.org/2000/svg" width="{{ totalWidth }}" height="18">
+    private static $template  = <<<EOF
+<svg xmlns="http://www.w3.org/2000/svg" width="{{ totalWidth }}" height="18">
     <linearGradient id="smooth" x2="0" y2="100%">
         <stop offset="0"  stop-color="#fff" stop-opacity=".7"/>
         <stop offset=".1" stop-color="#aaa" stop-opacity=".1"/>
@@ -43,7 +43,8 @@ class SvgRender implements RenderInterface
         <text x="{{ valueStartPosition }}" y="13" fill="#010101" fill-opacity=".3">{{ value }}</text>
         <text x="{{ valueStartPosition }}" y="12">{{ value }}</text>
     </g>
-</svg>';
+</svg>
+EOF;
 
     /**
      * Constructor.
@@ -78,15 +79,13 @@ class SvgRender implements RenderInterface
         $parameters['vendorStartPosition'] = round($parameters['vendorWidth'] / 2, 1) + 1;
         $parameters['valueStartPosition']  = $parameters['vendorWidth'] + round($parameters['valueWidth'] / 2, 1) - 1;
 
-        return $this->renderSvg(self::$template, $parameters);
+        return $this->renderSvg(self::$template, $parameters, $badge->getFormat());
     }
 
     /**
-     * Render a badge.
+     * A list of all supported formats.
      *
-     * @param Badge $badge
-     *
-     * @return string
+     * @return array
      */
     public function supportedFormats()
     {
@@ -98,12 +97,12 @@ class SvgRender implements RenderInterface
         return $this->textSizeCalculator->calculateWidth($text);
     }
 
-    private function renderSvg($render, $parameters)
+    private function renderSvg($render, $parameters, $format)
     {
         foreach ($parameters as $key => $variable) {
             $render = str_replace(sprintf('{{ %s }}', $key), $variable, $render);
         }
 
-        return $render;
+        return Image::createFromString($render, $format);
     }
 }

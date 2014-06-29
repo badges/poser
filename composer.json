@@ -23,7 +23,7 @@
         "psr-4": { "PUGX\\Poser\\": "src/" }
     },
     "require": {
-        "symfony/console": "dev-master"
+        "symfony/console": "~2"
     },
     "require-dev": {
         "phpspec/phpspec": "dev-master",

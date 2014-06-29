@@ -46,6 +46,10 @@ Flush an image
     echo $poser->generate('license', 'MIT', '428F7E', 'svg');
     // or
     echo $poser->generateFromURI('license-MIT-428F7E.svg');
+    // or
+    $image = $poser->generate('license', 'MIT', '428F7E', 'svg');
+
+    echo $image->getFormat();
 ```
 
 ## Encoding

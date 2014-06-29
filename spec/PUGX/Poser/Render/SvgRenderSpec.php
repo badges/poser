@@ -30,15 +30,8 @@ class SvgRenderSpec extends ObjectBehavior
                     $regex = '/^<svg.*width="((.|\n)*)<\/svg>$/';
                     $matches = array();
 
-                    return preg_match($regex, $subject, $matches, PREG_OFFSET_CAPTURE, 0);
-                },
-            'beAValidSVGImageContaining' => function($object, $subject, $status) {
-
-                    $regex = '/^<svg.*width="((.|\n)*)'.$subject.'((.|\n)*)'.$status.'((.|\n)*)<\/svg>$/';
-                    $matches = array();
-
-                    return preg_match($regex, $object, $matches, PREG_OFFSET_CAPTURE, 0);
-                },
+                    return preg_match($regex, (string) $subject, $matches, PREG_OFFSET_CAPTURE, 0);
+            }
         );
     }
 } 

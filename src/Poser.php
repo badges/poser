@@ -33,7 +33,7 @@ class Poser
      * @param $color
      * @param $format
      *
-     * @return string
+     * @return Image
      */
     public function generate($subject, $status, $color, $format)
     {
@@ -47,7 +47,7 @@ class Poser
      * eg license-MIT-blue.svg or I_m-liuggio-yellow.svg.
      *
      * @param $string
-     * @return mixed
+     * @return Image
      */
     public function generateFromURI($string)
     {
