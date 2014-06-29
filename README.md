@@ -4,7 +4,10 @@ PHP badges poser
 This is a php library that creates badges like ![badge-poser](badge-poser.svg) and ![I'm a badge](i_m-badge.svg) and ![dark](today-dark.svg),
 according to [Shields specification](https://github.com/badges/shields#specification).
 
-This library is used by https://poser.pugx.org.
+This library is used by https://poser.pugx.org
+
+[![Latest Stable Version](https://poser.pugx.org/badges/poser/version.svg)](https://packagist.org/packages/badges/poser) [![Latest Unstable Version](https://poser.pugx.org/badges/poser/v/unstable.svg)](//packagist.org/packages/badges/poser) [![Total Downloads](https://poser.pugx.org/badges/poser/downloads.svg)](https://packagist.org/packages/badges/poser)
+
 
 ## Use as command
 
@@ -90,3 +93,8 @@ composer install
 ``` bash
 ./bin/behat run
 ```
+
+## License
+
+[![License](https://poser.pugx.org/badges/poser/license.svg)](./LICENSE)
+
