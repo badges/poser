@@ -24,7 +24,7 @@ class SvgRenderSpec extends ObjectBehavior
 
     public function getMatchers()
     {
-        return [
+        return array(
             'beAValidSVGImage' => function($subject) {
 
                     $regex = '/^<svg.*width="((.|\n)*)<\/svg>$/';
@@ -39,6 +39,6 @@ class SvgRenderSpec extends ObjectBehavior
 
                     return preg_match($regex, $object, $matches, PREG_OFFSET_CAPTURE, 0);
                 },
-        ];
+        );
     }
 } 

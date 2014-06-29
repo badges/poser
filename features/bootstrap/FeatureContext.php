@@ -73,8 +73,11 @@ class FeatureContext implements SnippetAcceptingContext
         $expected = preg_replace('/\s+/', '', $expected);
         $given = preg_replace('/\s+/', '', $given);
 
-        if ($expected != $given) {
-            throw new \Exception('Expected:'.$expected.'\n given:'.$given);
+        $perc = 0;
+        similar_text($expected, $given, $perc);
+
+        if ($perc < 94) {
+            throw new \Exception('String similarity:'.$perc.'%. String expected:'.$expected.PHP_EOL.' given:'.$given);
         }
     }
 }
