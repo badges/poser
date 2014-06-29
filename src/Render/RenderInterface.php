@@ -15,5 +15,17 @@ use PUGX\Poser\Badge;
 
 interface RenderInterface
 {
+    /**
+     * Render a badge.
+     *
+     * @param Badge $badge
+     *
+     * @return string
+     */
     public function render(Badge $badge);
+
+    /**
+     * @return array the list of the supported format eg array('svg')
+     */
+    public function supportedFormats();
 }

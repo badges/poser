@@ -81,6 +81,18 @@ class SvgRender implements RenderInterface
         return $this->renderSvg(self::$template, $parameters);
     }
 
+    /**
+     * Render a badge.
+     *
+     * @param Badge $badge
+     *
+     * @return string
+     */
+    public function supportedFormats()
+    {
+        return array('svg');
+    }
+
     private function stringWidth($text)
     {
         return $this->textSizeCalculator->calculateWidth($text);

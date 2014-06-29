@@ -16,9 +16,12 @@ class Poser
     public function __construct($renders)
     {
         $this->renders = array();
+        if (!is_array($renders)) {
+            $renders = array($renders);
+        }
 
-        foreach ($renders as $format => $render) {
-            $this->addFormatRender($format, $render);
+        foreach ($renders as $render) {
+            $this->addFormatRender($render);
         }
     }
 
@@ -63,9 +66,11 @@ class Poser
         return array_keys($this->renders);
     }
 
-    private function addFormatRender($format, RenderInterface $render)
+    private function addFormatRender(RenderInterface $render)
     {
-        $this->renders[$format] = $render;
+        foreach ($render->supportedFormats() as $format) {
+            $this->renders[$format] = $render;
+        }
     }
 
     private function getRenderFor($format)

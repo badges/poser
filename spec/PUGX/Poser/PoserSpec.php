@@ -11,7 +11,7 @@ class PoserSpec extends ObjectBehavior
     function let()
     {
         $render = new SvgRender();
-        $this->beConstructedWith(array('svg' => $render));
+        $this->beConstructedWith(array($render));
     }
 
     function it_is_initializable()

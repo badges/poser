@@ -1,20 +1,29 @@
 PHP badges poser
 ================
 
-This is a php library that creates badges,
+This is a php library that creates badges like ![badge-poser](badge-poser.svg) and ![I'm a badge](i_m-badge.svg) and ![dark](today-dark.svg),
 according to [Shields specification](https://github.com/badges/shields#specification).
 
-``` bash
-                   ________________
-  |_  _  _| _  _   |  _  _  _ _  _  |
-  |_)(_|(_|(_|(/_  | |_)(_)_\(/_|   |
-            _|     |_|______________|
+This library is used by https://poser.pugx.org.
 
+## Use as command
+
+#### 1. Create a project
+
+``` bash
+$ composer create-project badges/poser ~0.1
+$ ln -s poser/bin/poser /usr/local/bin/poser
 ```
 
-This library create this: ![badge-poser](badge-poser.svg) and ![I'm a badge](i_m-badge.svg) and ![dark](today-dark.svg)...
+#### 2. lunch the command
 
-This library is used by the most used badge creator in php https://poser.pugx.org/
+Create an image
+
+`$ poser license MIT blue -p "license.svg"`
+
+Flush an image
+
+`$ poser license MIT blue`
 
 ## Usage as library
 
@@ -29,36 +38,12 @@ This library is used by the most used badge creator in php https://poser.pugx.or
     use PUGX\Poser\Poser;
 
     $render = new SvgRender();
-    $poser = new Poser(array('svg' => $render));
+    $poser = new Poser(array($render));
 
     echo $poser->generate('license', 'MIT', '428F7E', 'svg');
     // or
     echo $poser->generateFromURI('license-MIT-428F7E.svg');
 ```
-
-## Use in your project as command
-
-#### 1. Add to composer
-
-`$ composer require badges/poser ~0.1`
-
-or create a project
-
-`$ composer create-project badges/poser ~0.1`
-
-and make the link
-
-`$ ln -s poser/bin/poser /usr/local/bin/poser`
-
-#### 2. lunch the command
-
-Creating an image
-
-`$ poser license MIT blue -p "license.svg"`
-
-Flushing the image
-
-`$ poser license MIT blue`
 
 ## Encoding
 
