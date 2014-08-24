@@ -20,3 +20,6 @@ script:
 notifications:
   email:
     - liuggio@gmail.com
+
+git:
+  depth: 10
