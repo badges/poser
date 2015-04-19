@@ -4,13 +4,13 @@ namespace spec\PUGX\Poser;
 
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
-use PUGX\Poser\Render\SvgRender;
+use PUGX\Poser\Render\SvgFlatRender;
 
 class PoserSpec extends ObjectBehavior
 {
     function let()
     {
-        $render = new SvgRender();
+        $render = new SvgFlatRender();
         $this->beConstructedWith(array($render));
     }
 

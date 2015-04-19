@@ -16,32 +16,34 @@ use PUGX\Poser\Calculator\TextSizeCalculatorInterface;
 use PUGX\Poser\Calculator\GDTextSizeCalculator;
 use PUGX\Poser\Image;
 /**
- * Class SvgGenerator
+ * Class SvgFlatGenerator
  *
- * @author Claudio D'Alicandro <claudio.dalicandro@gmail.com>
  * @author Giulio De Donato <liuggio@gmail.com>
  */
-class SvgRender implements RenderInterface
+class SvgFlatRender implements RenderInterface
 {
     const VENDOR_COLOR            = '#555';
     private $textSizeCalculator;
-    private static $template  = <<<EOF
-<svg xmlns="http://www.w3.org/2000/svg" width="{{ totalWidth }}" height="18">
-    <linearGradient id="smooth" x2="0" y2="100%">
-        <stop offset="0"  stop-color="#fff" stop-opacity=".7"/>
-        <stop offset=".1" stop-color="#aaa" stop-opacity=".1"/>
-        <stop offset=".9" stop-color="#000" stop-opacity=".3"/>
-        <stop offset="1"  stop-color="#000" stop-opacity=".5"/>
+
+ private static $template  = <<<EOF
+<svg xmlns="http://www.w3.org/2000/svg" width="{{ totalWidth }}" height="20">
+    <linearGradient id="b" x2="0" y2="100%">
+        <stop offset="0" stop-color="#bbb" stop-opacity=".1"/>
+        <stop offset="1" stop-opacity=".1"/>
     </linearGradient>
-    <rect rx="4" width="{{ totalWidth }}" height="18" fill="{{ vendorColor }}"/>
-    <rect rx="4" x="{{ vendorWidth }}" width="{{ valueWidth }}" height="18" fill="{{ valueColor }}"/>
-    <rect x="{{ vendorWidth }}" width="4" height="18" fill="{{ valueColor }}"/>
-    <rect rx="4" width="{{ totalWidth }}" height="18" fill="url(#smooth)"/>
+    <mask id="a">
+        <rect width="{{ totalWidth }}" height="20" rx="3" fill="#fff"/>
+    </mask>
+    <g mask="url(#a)">
+        <path fill="#555" d="M0 0h{{ vendorWidth }}v20H0z"/>
+        <path fill="#007ec6" d="M{{ vendorWidth }} 0h31v20H{{ vendorWidth }}z"/>
+        <path fill="url(#b)" d="M0 0h{{ totalWidth }}v20H0z"/>
+    </g>
     <g fill="#fff" text-anchor="middle" font-family="DejaVu Sans,Verdana,Geneva,sans-serif" font-size="11">
-        <text x="{{ vendorStartPosition }}" y="13" fill="#010101" fill-opacity=".3">{{ vendor }}</text>
-        <text x="{{ vendorStartPosition }}" y="12">{{ vendor }}</text>
-        <text x="{{ valueStartPosition }}" y="13" fill="#010101" fill-opacity=".3">{{ value }}</text>
-        <text x="{{ valueStartPosition }}" y="12">{{ value }}</text>
+        <text x="25.5" y="15" fill="#010101" fill-opacity=".3">{{ vendor }}</text>
+        <text x="25.5" y="14">{{ vendor }}</text>
+        <text x="63.5" y="15" fill="#010101" fill-opacity=".3">{{ value }}</text>
+        <text x="63.5" y="14">{{ value }}</text>
     </g>
 </svg>
 EOF;
@@ -89,7 +91,7 @@ EOF;
      */
     public function supportedFormats()
     {
-        return array('plastic');
+        return array('flat', 'svg');
     }
 
     private function stringWidth($text)
