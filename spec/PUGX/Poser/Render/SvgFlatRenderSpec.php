@@ -11,9 +11,9 @@ use PUGX\Poser\Calculator\TextSizeCalculatorInterface;
 
 class SvgFlatRenderSpec extends ObjectBehavior
 {
-    function let()
+    function let(TextSizeCalculatorInterface $calculator)
     {
-        $calculator = new GDTextSizeCalculator();
+        $calculator->calculateWidth(Argument::any())->willReturn(20);
         $this->beConstructedWith($calculator);
     }
 
@@ -39,18 +39,18 @@ class SvgFlatRenderSpec extends ObjectBehavior
     function it_should_render_a_license_mit_exactly_like_this_svg()
     {
         $template  = <<<EOF
-<svg xmlns="http://www.w3.org/2000/svg" width="81" height="20">
+<svg xmlns="http://www.w3.org/2000/svg" width="40" height="20">
     <linearGradient id="b" x2="0" y2="100%">
         <stop offset="0" stop-color="#bbb" stop-opacity=".1"/>
         <stop offset="1" stop-opacity=".1"/>
     </linearGradient>
     <mask id="a">
-        <rect width="81" height="20" rx="3" fill="#fff"/>
+        <rect width="40" height="20" rx="3" fill="#fff"/>
     </mask>
     <g mask="url(#a)">
-        <path fill="#555" d="M0 0h50v20H0z"/>
-        <path fill="#007ec6" d="M50 0h31v20H50z"/>
-        <path fill="url(#b)" d="M0 0h81v20H0z"/>
+        <path fill="#555" d="M0 0h20v20H0z"/>
+        <path fill="#007ec6" d="M20 0h31v20H20z"/>
+        <path fill="url(#b)" d="M0 0h40v20H0z"/>
     </g>
     <g fill="#fff" text-anchor="middle" font-family="DejaVu Sans,Verdana,Geneva,sans-serif" font-size="11">
         <text x="25.5" y="15" fill="#010101" fill-opacity=".3">license</text>
