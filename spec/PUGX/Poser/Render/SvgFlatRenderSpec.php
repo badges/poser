@@ -41,22 +41,22 @@ class SvgFlatRenderSpec extends ObjectBehavior
         $template  = <<<EOF
 <svg xmlns="http://www.w3.org/2000/svg" width="40" height="20">
     <linearGradient id="b" x2="0" y2="100%">
-        <stop offset="0" stop-color="#bbb" stop-opacity=".1"/>
-        <stop offset="1" stop-opacity=".1"/>
+    <stop offset="0" stop-color="#bbb" stop-opacity=".1"/>
+    <stop offset="1" stop-opacity=".1"/>
     </linearGradient>
     <mask id="a">
-        <rect width="40" height="20" rx="3" fill="#fff"/>
+    <rect width="40" height="20" rx="3" fill="#fff"/>
     </mask>
     <g mask="url(#a)">
-        <path fill="#555" d="M0 0h20v20H0z"/>
-        <path fill="#007ec6" d="M20 0h31v20H20z"/>
-        <path fill="url(#b)" d="M0 0h40v20H0z"/>
+    <rect width="20" height="20" fill="#555"/>
+    <rect x="20" width="20" height="20" fill="#007ec6"/>
+    <rect width="40" height="20" fill="url(#b)"/>
     </g>
     <g fill="#fff" text-anchor="middle" font-family="DejaVu Sans,Verdana,Geneva,sans-serif" font-size="11">
-        <text x="25.5" y="15" fill="#010101" fill-opacity=".3">license</text>
-        <text x="25.5" y="14">license</text>
-        <text x="63.5" y="15" fill="#010101" fill-opacity=".3">MIT</text>
-        <text x="63.5" y="14">MIT</text>
+    <text x="11" y="15" fill="#010101" fill-opacity=".3">license</text>
+    <text x="11" y="14">license</text>
+    <text x="29" y="15" fill="#010101" fill-opacity=".3">MIT</text>
+    <text x="29" y="14">MIT</text>
     </g>
 </svg>
 EOF;
