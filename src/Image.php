@@ -43,7 +43,7 @@ class Image
      */
     public function __toString()
     {
-        return $this->content;
+        return (string) $this->content;
     }
 
     /**
@@ -66,4 +66,5 @@ class Image
     {
         return $this->format;
     }
+
 }

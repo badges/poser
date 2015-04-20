@@ -2,6 +2,7 @@
 
 namespace PUGX\Poser\UI;
 
+use PUGX\Poser\Render\SvgFlatRender;
 use Symfony\Component\Console\Command\Command as BaseCommand;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -26,8 +27,8 @@ class Command extends BaseCommand
 
     private function init()
     {
-        $this->poser = new Poser(array('svg' => new SvgRender()));
-        $this->format = 'svg';
+        $this->poser = new Poser(array(new SvgRender(), new SvgFlatRender()));
+        $this->format = 'flat';
         $this->header = self::HEADER;
     }
 
@@ -95,14 +96,18 @@ class Command extends BaseCommand
 
     protected function flushImage(InputInterface $input, OutputInterface $output, $imageContent)
     {
-        $output->write($imageContent);
+        $output->write((string) $imageContent);
         $this->header = '';
     }
 
     protected function storeImage(InputInterface $input, OutputInterface $output, $path, $imageContent)
     {
         $this->printHeaderOnce($output);
-        $fp = fopen($path,"x"); // if file already exists warning is raised
+        try {
+            $fp = @fopen($path, "x");
+        } catch (\Exception $e) {
+            $fp = false;
+        }
 
         if (false == $fp) {
            throw new \Exception("Error on creating the file maybe file [$path] already exists?");
@@ -111,7 +116,7 @@ class Command extends BaseCommand
         if ($written <1 || $written != strlen($imageContent)) {
             throw new \Exception('Error on writing to file.');
         }
-        fclose($fp);
+        @fclose($fp);
 
         $output->write(sprintf('Image created at %s', $path));
     }

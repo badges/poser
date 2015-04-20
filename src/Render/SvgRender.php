@@ -89,7 +89,7 @@ EOF;
      */
     public function supportedFormats()
     {
-        return array('svg');
+        return array('plastic');
     }
 
     private function stringWidth($text)

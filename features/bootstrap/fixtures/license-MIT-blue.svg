@@ -1,18 +1,20 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="81" height="18">
-  <linearGradient id="smooth" x2="0" y2="100%">
-      <stop offset="0"  stop-color="#fff" stop-opacity=".7"/>
-      <stop offset=".1" stop-color="#aaa" stop-opacity=".1"/>
-      <stop offset=".9" stop-color="#000" stop-opacity=".3"/>
-      <stop offset="1"  stop-color="#000" stop-opacity=".5"/>
-  </linearGradient>
-  <rect rx="4" width="81" height="18" fill="#555"/>
-  <rect rx="4" x="50" width="31" height="18" fill="#007ec6"/>
-  <rect x="50" width="4" height="18" fill="#007ec6"/>
-  <rect rx="4" width="81" height="18" fill="url(#smooth)"/>
-  <g fill="#fff" text-anchor="middle" font-family="DejaVu Sans,Verdana,Geneva,sans-serif" font-size="11">
-      <text x="26" y="13" fill="#010101" fill-opacity=".3">license</text>
-      <text x="26" y="12">license</text>
-      <text x="64.5" y="13" fill="#010101" fill-opacity=".3">MIT</text>
-      <text x="64.5" y="12">MIT</text>
-  </g>
+<svg xmlns="http://www.w3.org/2000/svg" width="81" height="20">
+    <linearGradient id="b" x2="0" y2="100%">
+        <stop offset="0" stop-color="#bbb" stop-opacity=".1"/>
+        <stop offset="1" stop-opacity=".1"/>
+    </linearGradient>
+    <mask id="a">
+        <rect width="81" height="20" rx="3" fill="#fff"/>
+    </mask>
+    <g mask="url(#a)">
+        <path fill="#555" d="M0 0h50v20H0z"/>
+        <path fill="#007ec6" d="M50 0h31v20H50z"/>
+        <path fill="url(#b)" d="M0 0h81v20H0z"/>
+    </g>
+    <g fill="#fff" text-anchor="middle" font-family="DejaVu Sans,Verdana,Geneva,sans-serif" font-size="11">
+        <text x="25.5" y="15" fill="#010101" fill-opacity=".3">license</text>
+        <text x="25.5" y="14">license</text>
+        <text x="63.5" y="15" fill="#010101" fill-opacity=".3">MIT</text>
+        <text x="63.5" y="14">MIT</text>
+    </g>
 </svg>
