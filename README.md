@@ -43,11 +43,11 @@ Flush an image
     $render = new SvgRender();
     $poser = new Poser(array($render));
 
-    echo $poser->generate('license', 'MIT', '428F7E', 'svg');
+    echo $poser->generate('license', 'MIT', '428F7E', 'plastic');
     // or
-    echo $poser->generateFromURI('license-MIT-428F7E.svg');
+    echo $poser->generateFromURI('license-MIT-428F7E.plastic');
     // or
-    $image = $poser->generate('license', 'MIT', '428F7E', 'svg');
+    $image = $poser->generate('license', 'MIT', '428F7E', 'plastic');
 
     echo $image->getFormat();
 ```
