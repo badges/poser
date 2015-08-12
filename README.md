@@ -32,7 +32,7 @@ Flush an image
 
 #### 1. Add to composer
 
-`composer require badge/poser ~0.1`
+`composer require badges/poser ~0.1`
 
 #### 2. Use in your project as lib
 
