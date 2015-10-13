@@ -1,7 +1,7 @@
 PHP badges poser
 ================
 
-This is a php library that creates badges like ![badge-poser](badge-poser.svg) and ![I'm a badge](i_m-badge.svg) and ![dark](today-dark.svg),
+This is a php library that creates badges like ![Badge Poser](https://cdn.rawgit.com/badges/poser/master/badge-poser.svg) and ![I'm a badge](https://cdn.rawgit.com/badges/poser/master/i_m-badge.svg) and ![dark](https://cdn.rawgit.com/badges/poser/master/today-dark.svg),
 according to [Shields specification](https://github.com/badges/shields#specification).
 
 This library is used by https://poser.pugx.org
@@ -18,7 +18,7 @@ $ composer create-project badges/poser ~0.1
 $ ln -s poser/bin/poser /usr/local/bin/poser
 ```
 
-#### 2. lunch the command
+#### 2. Launch the command
 
 Create an image
 
