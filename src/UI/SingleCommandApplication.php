@@ -2,9 +2,9 @@
 
 namespace PUGX\Poser\UI;
 
+use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Application;
 
 /**
  * Application providing access to just one command.
@@ -26,7 +26,8 @@ use Symfony\Component\Console\Application;
 class SingleCommandApplication extends Application
 {
     /**
-     * Name of the single accessible command of this application
+     * Name of the single accessible command of this application.
+     *
      * @var string
      */
     private $commandName;
@@ -71,15 +72,15 @@ class SingleCommandApplication extends Application
      *
      * @param Command $command A Command object
      *
-     * @return Command The registered command
-     *
      * @throws \LogicException
+     *
+     * @return Command The registered command
      */
     public function add(Command $command)
     {
         // Fail if we already set up the single accessible command.
         if ($this->commandName) {
-            throw new \LogicException("You should not add additional commands to a SingleCommandApplication instance.");
+            throw new \LogicException('You should not add additional commands to a SingleCommandApplication instance.');
         }
 
         return parent::add($command);

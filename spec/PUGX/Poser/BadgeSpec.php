@@ -4,19 +4,18 @@ namespace spec\PUGX\Poser;
 
 use PhpSpec\Exception\Exception;
 use PhpSpec\ObjectBehavior;
-use Prophecy\Argument;
 
 class BadgeSpec extends ObjectBehavior
 {
-    function it_is_initializable()
+    public function it_is_initializable()
     {
-        $this->beConstructedWith('a','b','97CA00', 'svg');
+        $this->beConstructedWith('a', 'b', '97CA00', 'svg');
         $this->shouldHaveType('Pugx\Poser\Badge');
     }
 
-    function it_should_be_constructed_by_fromURI_factory_method()
+    public function it_should_be_constructed_by_fromURI_factory_method()
     {
-        $this->beConstructedWith('a','b','97CA00', 'svg');
+        $this->beConstructedWith('a', 'b', '97CA00', 'svg');
         $assert = 'version-stable-97CA00.svg';
         $it = \PUGX\Poser\Badge::fromURI($assert);
 
@@ -25,9 +24,9 @@ class BadgeSpec extends ObjectBehavior
         }
     }
 
-    function it_should_be_constructed_by_fromURI_factory_method_escaping_correctly_underscores()
+    public function it_should_be_constructed_by_fromURI_factory_method_escaping_correctly_underscores()
     {
-        $this->beConstructedWith('a','b','97CA00', 'svg');
+        $this->beConstructedWith('a', 'b', '97CA00', 'svg');
         $input = 'I__m__liugg__io-b-97CA00.svg';
         $assertInput = 'I_m_liugg_io-b-97CA00.svg';
         $it = \PUGX\Poser\Badge::fromURI($input);
@@ -37,9 +36,9 @@ class BadgeSpec extends ObjectBehavior
         }
     }
 
-    function it_should_be_constructed_by_fromURI_factory_method_escaping_correctly_with_single_underscore()
+    public function it_should_be_constructed_by_fromURI_factory_method_escaping_correctly_with_single_underscore()
     {
-        $this->beConstructedWith('a','b','97CA00', 'svg');
+        $this->beConstructedWith('a', 'b', '97CA00', 'svg');
         $input = 'I_m_liuggio-b-97CA00.svg';
         $assertInput = 'I m liuggio-b-97CA00.svg';
         $it = \PUGX\Poser\Badge::fromURI($input);
@@ -49,9 +48,9 @@ class BadgeSpec extends ObjectBehavior
         }
     }
 
-    function it_should_be_constructed_by_fromURI_factory_method_escaping_correctly_with_dashes()
+    public function it_should_be_constructed_by_fromURI_factory_method_escaping_correctly_with_dashes()
     {
-        $this->beConstructedWith('a','b','97CA00', 'svg');
+        $this->beConstructedWith('a', 'b', '97CA00', 'svg');
         $input = 'I--m--liuggio-b-97CA00.svg';
         $assertInput = 'I-m-liuggio-b-97CA00.svg';
         $it = \PUGX\Poser\Badge::fromURI($input);

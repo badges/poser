@@ -12,20 +12,21 @@
 namespace PUGX\Poser\Render;
 
 use PUGX\Poser\Badge;
-use PUGX\Poser\Calculator\TextSizeCalculatorInterface;
 use PUGX\Poser\Calculator\GDTextSizeCalculator;
+use PUGX\Poser\Calculator\TextSizeCalculatorInterface;
 use PUGX\Poser\Image;
+
 /**
- * Class SvgGenerator
+ * Class SvgGenerator.
  *
  * @author Claudio D'Alicandro <claudio.dalicandro@gmail.com>
  * @author Giulio De Donato <liuggio@gmail.com>
  */
 class SvgRender implements RenderInterface
 {
-    const VENDOR_COLOR            = '#555';
+    const VENDOR_COLOR = '#555';
     private $textSizeCalculator;
-    private static $template  = <<<EOF
+    private static $template = <<<'EOF'
 <svg xmlns="http://www.w3.org/2000/svg" width="{{ totalWidth }}" height="18">
     <linearGradient id="smooth" x2="0" y2="100%">
         <stop offset="0"  stop-color="#fff" stop-opacity=".7"/>
@@ -67,17 +68,17 @@ EOF;
      */
     public function render(Badge $badge)
     {
-        $parameters = array();
+        $parameters = [];
 
-        $parameters['vendorWidth']         = $this->stringWidth($badge->getSubject());
-        $parameters['valueWidth']          = $this->stringWidth($badge->getStatus());
-        $parameters['totalWidth']          = $parameters['valueWidth'] + $parameters['vendorWidth'];
-        $parameters['vendorColor']         = self::VENDOR_COLOR;
-        $parameters['valueColor']          = $badge->getHexColor();
-        $parameters['vendor']              = $badge->getSubject();
-        $parameters['value']               = $badge->getStatus();
+        $parameters['vendorWidth'] = $this->stringWidth($badge->getSubject());
+        $parameters['valueWidth'] = $this->stringWidth($badge->getStatus());
+        $parameters['totalWidth'] = $parameters['valueWidth'] + $parameters['vendorWidth'];
+        $parameters['vendorColor'] = self::VENDOR_COLOR;
+        $parameters['valueColor'] = $badge->getHexColor();
+        $parameters['vendor'] = $badge->getSubject();
+        $parameters['value'] = $badge->getStatus();
         $parameters['vendorStartPosition'] = round($parameters['vendorWidth'] / 2, 1) + 1;
-        $parameters['valueStartPosition']  = $parameters['vendorWidth'] + round($parameters['valueWidth'] / 2, 1) - 1;
+        $parameters['valueStartPosition'] = $parameters['vendorWidth'] + round($parameters['valueWidth'] / 2, 1) - 1;
 
         return $this->renderSvg(self::$template, $parameters, $badge->getFormat());
     }
@@ -89,7 +90,7 @@ EOF;
      */
     public function supportedFormats()
     {
-        return array('plastic');
+        return ['plastic'];
     }
 
     private function stringWidth($text)

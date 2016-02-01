@@ -1,8 +1,6 @@
 <?php
 
 use Behat\Behat\Context\SnippetAcceptingContext;
-use Behat\Gherkin\Node\PyStringNode;
-use Behat\Gherkin\Node\TableNode;
 
 /**
  * Behat context class.
@@ -17,7 +15,7 @@ class FeatureContext implements SnippetAcceptingContext
      */
     public function __construct()
     {
-        $this->binFolder = __DIR__ . '/../../bin/';
+        $this->binFolder = __DIR__.'/../../bin/';
         $this->output = '';
     }
 
@@ -26,7 +24,7 @@ class FeatureContext implements SnippetAcceptingContext
      */
     public function iRun($command)
     {
-        $poser = $this->binFolder . $command;
+        $poser = $this->binFolder.$command;
         $this->return = -1;
         ob_start();
         passthru("cd {$this->binFolder};php $command", $this->return);
@@ -43,6 +41,7 @@ class FeatureContext implements SnippetAcceptingContext
 
         $this->assertEquals($content, $this->output);
     }
+
     /**
      * @Then it should pass
      */

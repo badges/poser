@@ -13,7 +13,7 @@ namespace PUGX\Poser\Calculator;
 
 interface TextSizeCalculatorInterface
 {
-    const TEXT_SIZE               = 11;
+    const TEXT_SIZE = 11;
     const SHIELD_PADDING_EXTERNAL = 6;
     const SHIELD_PADDING_INTERNAL = 4;
 
