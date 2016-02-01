@@ -2,20 +2,19 @@
 
 namespace PUGX\Poser\UI;
 
+use PUGX\Poser\Badge;
+use PUGX\Poser\Poser;
 use PUGX\Poser\Render\SvgFlatRender;
+use PUGX\Poser\Render\SvgRender;
 use Symfony\Component\Console\Command\Command as BaseCommand;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
-use PUGX\Poser\Badge;
-use PUGX\Poser\Poser;
-use PUGX\Poser\Render\SvgRender;
 
 class Command extends BaseCommand
 {
-
-    CONST HEADER = "                   ________________
+    const HEADER = "                   ________________
  <bg=black;options=reverse> |_  _  _| _  _   </bg=black;options=reverse>  _  _  _ _  _  |
  <bg=black;options=reverse> |_)(_|(_|(_|(/_  </bg=black;options=reverse> |_)(_)_\(/_|   |
  <bg=black;options=reverse>           _|     </bg=black;options=reverse>_|______________|
@@ -27,7 +26,7 @@ class Command extends BaseCommand
 
     private function init()
     {
-        $this->poser = new Poser(array(new SvgRender(), new SvgFlatRender()));
+        $this->poser = new Poser([new SvgRender(), new SvgFlatRender()]);
         $this->format = 'flat';
         $this->header = self::HEADER;
     }
@@ -52,13 +51,13 @@ class Command extends BaseCommand
             ->addArgument(
                 'color',
                 InputArgument::OPTIONAL,
-                'The hexadecimal color eg. `97CA00` or the name ['.join(', ', Badge::getColorNamesAvailable()).']'
+                'The hexadecimal color eg. `97CA00` or the name ['.implode(', ', Badge::getColorNamesAvailable()).']'
             )
             ->addOption(
                 'format',
                 'f',
                 InputOption::VALUE_REQUIRED,
-                'The format of the image eg. `svg`, formats available ['.join(', ', $this->poser->validFormats()).']'
+                'The format of the image eg. `svg`, formats available ['.implode(', ', $this->poser->validFormats()).']'
             )
             ->addOption(
                 'path',
@@ -70,7 +69,6 @@ class Command extends BaseCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-
         $subject = $input->getArgument('subject');
         $status = $input->getArgument('status');
         $color = $input->getArgument('color');
@@ -87,7 +85,6 @@ class Command extends BaseCommand
             } else {
                 $this->flushImage($input, $output, $imageContent);
             }
-
         } catch (\Exception $e) {
             $this->printHeaderOnce($output);
             throw $e;
@@ -104,16 +101,16 @@ class Command extends BaseCommand
     {
         $this->printHeaderOnce($output);
         try {
-            $fp = @fopen($path, "x");
+            $fp = @fopen($path, 'x');
         } catch (\Exception $e) {
             $fp = false;
         }
 
         if (false == $fp) {
-           throw new \Exception("Error on creating the file maybe file [$path] already exists?");
+            throw new \Exception("Error on creating the file maybe file [$path] already exists?");
         }
         $written = @fwrite($fp, $imageContent);
-        if ($written <1 || $written != strlen($imageContent)) {
+        if ($written < 1 || $written != strlen($imageContent)) {
             throw new \Exception('Error on writing to file.');
         }
         @fclose($fp);
@@ -129,5 +126,4 @@ class Command extends BaseCommand
 
         $this->header = '';
     }
-
 }

@@ -2,22 +2,20 @@
 
 namespace spec\PUGX\Poser\Render;
 
-use PhpSpec\Exception\Exception;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 use PUGX\Poser\Badge;
-use PUGX\Poser\Calculator\GDTextSizeCalculator;
 use PUGX\Poser\Calculator\TextSizeCalculatorInterface;
 
 class SvgFlatRenderSpec extends ObjectBehavior
 {
-    function let(TextSizeCalculatorInterface $calculator)
+    public function let(TextSizeCalculatorInterface $calculator)
     {
         $calculator->calculateWidth(Argument::any())->willReturn(20);
         $this->beConstructedWith($calculator);
     }
 
-    function it_should_render_a_svg()
+    public function it_should_render_a_svg()
     {
         $badge = Badge::fromURI('version-stable-97CA00.svg');
         $this->render($badge)->shouldBeAValidSVGImage();
@@ -25,20 +23,20 @@ class SvgFlatRenderSpec extends ObjectBehavior
 
     public function getMatchers()
     {
-        return array(
-            'beAValidSVGImage' => function($subject) {
+        return [
+            'beAValidSVGImage' => function ($subject) {
 
                 $regex = '/^<svg.*width="((.|\n)*)<\/svg>$/';
-                $matches = array();
+                $matches = [];
 
                 return preg_match($regex, (string) $subject, $matches, PREG_OFFSET_CAPTURE, 0);
-            }
-        );
+            },
+        ];
     }
 
-    function it_should_render_a_license_mit_exactly_like_this_svg()
+    public function it_should_render_a_license_mit_exactly_like_this_svg()
     {
-        $template  = <<<EOF
+        $template = <<<'EOF'
 <svg xmlns="http://www.w3.org/2000/svg" width="40" height="20">
     <linearGradient id="b" x2="0" y2="100%">
     <stop offset="0" stop-color="#bbb" stop-opacity=".1"/>
@@ -64,6 +62,4 @@ EOF;
         $badge = Badge::fromURI('license-MIT-blue.svg');
         $this->render($badge)->__toString()->shouldBeLike($template);
     }
-
-
-} 
+}

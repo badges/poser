@@ -12,7 +12,7 @@
 namespace PUGX\Poser;
 
 /**
- * Class Image, an Image value Object
+ * Class Image, an Image value Object.
  *
  * @author Claudio D'Alicandro <claudio.dalicandro@gmail.com>
  * @author Giulio De Donato <liuggio@gmail.com>
@@ -20,11 +20,11 @@ namespace PUGX\Poser;
 class Image
 {
     /**
-     * @var string $content
+     * @var string
      */
     private $content;
     /**
-     * @var string $format
+     * @var string
      */
     private $format;
 
@@ -39,7 +39,7 @@ class Image
     }
 
     /**
-     * Returns the image content as binary string
+     * Returns the image content as binary string.
      */
     public function __toString()
     {
@@ -47,7 +47,7 @@ class Image
     }
 
     /**
-     * Factory method
+     * Factory method.
      *
      * @param string $content
      * @param string $format
@@ -66,5 +66,4 @@ class Image
     {
         return $this->format;
     }
-
 }
