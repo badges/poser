@@ -3,6 +3,7 @@
 namespace PUGX\Poser\UI;
 
 use PUGX\Poser\Render\SvgFlatRender;
+use PUGX\Poser\Render\SvgFlatSquareRender;
 use Symfony\Component\Console\Command\Command as BaseCommand;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -27,7 +28,11 @@ class Command extends BaseCommand
 
     private function init()
     {
-        $this->poser = new Poser(array(new SvgRender(), new SvgFlatRender()));
+        $this->poser = new Poser(array(
+            new SvgRender(),
+            new SvgFlatRender(),
+            new SvgFlatSquareRender()
+        ));
         $this->format = 'flat';
         $this->header = self::HEADER;
     }
