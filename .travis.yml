@@ -4,14 +4,19 @@ php:
   - 5.3
   - 5.4
   - 5.5
+  - 5.6
+  - 7.0
   - hhvm
 
 matrix:
   allow_failures:
+    - php: 7.0
     - php: hhvm
 
 before_script:
-    - COMPOSER_ROOT_VERSION=dev-master composer --prefer-source --dev --no-interaction install
+  - phpenv config-rm xdebug.ini
+  - composer selfupdate
+  - COMPOSER_ROOT_VERSION=dev-master composer --prefer-source --no-interaction install
 
 script:
   - bin/phpspec run --format=pretty
