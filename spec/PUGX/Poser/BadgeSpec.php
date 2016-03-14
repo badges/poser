@@ -60,4 +60,14 @@ class BadgeSpec extends ObjectBehavior
             throw new Exception(sprintf("from[%s] wants[%s] having[%s]\n", $input, $assertInput, (string) $it));
         }
     }
+
+    function it_should_validate_available_color_schemes()
+    {
+        $colorSchemes = \PUGX\Poser\Badge::getColorNamesAvailable();
+
+        foreach ($colorSchemes as $colorScheme) {
+            $this->beConstructedWith('a', 'b', $colorScheme, 'svg');
+            $this->getHexColor()->shouldBeString();
+        }
+    }
 }
