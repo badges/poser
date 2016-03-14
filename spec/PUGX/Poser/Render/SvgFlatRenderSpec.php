@@ -9,8 +9,9 @@ use PUGX\Poser\Calculator\TextSizeCalculatorInterface;
 
 class SvgFlatRenderSpec extends ObjectBehavior
 {
-    function let(TextSizeCalculatorInterface $calculator)
+    function let($calculator)
     {
+        $calculator->beADoubleOf('\PUGX\Poser\Calculator\TextSizeCalculatorInterface');
         $calculator->calculateWidth(Argument::any())->willReturn(20);
         $this->beConstructedWith($calculator);
     }

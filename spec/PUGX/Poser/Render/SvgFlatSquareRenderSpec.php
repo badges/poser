@@ -5,15 +5,14 @@ namespace spec\PUGX\Poser\Render;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 use PUGX\Poser\Badge;
-use PUGX\Poser\Calculator\TextSizeCalculatorInterface;
 
 class SvgFlatSquareRenderSpec extends ObjectBehavior
 {
-    function let(TextSizeCalculatorInterface $calculator)
+    function let($calculator)
     {
+        $calculator->beADoubleOf('\PUGX\Poser\Calculator\TextSizeCalculatorInterface');
         $calculator->calculateWidth(Argument::any())->willReturn(20);
-        $realCalculator = $calculator->getWrappedObject();
-        $this->beConstructedWith($realCalculator);
+        $this->beConstructedWith($calculator);
     }
 
     function it_should_render_a_svg()

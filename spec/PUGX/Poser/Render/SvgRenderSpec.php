@@ -5,12 +5,12 @@ namespace spec\PUGX\Poser\Render;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 use PUGX\Poser\Badge;
-use PUGX\Poser\Calculator\TextSizeCalculatorInterface;
 
 class SvgRenderSpec extends ObjectBehavior
 {
-    function let(TextSizeCalculatorInterface $calculator)
+    function let($calculator)
     {
+        $calculator->beADoubleOf('\PUGX\Poser\Calculator\TextSizeCalculatorInterface');
         $calculator->calculateWidth(Argument::any())->willReturn(20);
         $this->beConstructedWith($calculator);
     }
