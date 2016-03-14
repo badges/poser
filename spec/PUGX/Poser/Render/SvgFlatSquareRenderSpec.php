@@ -2,11 +2,9 @@
 
 namespace spec\PUGX\Poser\Render;
 
-use PhpSpec\Exception\Exception;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 use PUGX\Poser\Badge;
-use PUGX\Poser\Calculator\GDTextSizeCalculator;
 use PUGX\Poser\Calculator\TextSizeCalculatorInterface;
 
 class SvgFlatSquareRenderSpec extends ObjectBehavior
@@ -14,7 +12,8 @@ class SvgFlatSquareRenderSpec extends ObjectBehavior
     function let(TextSizeCalculatorInterface $calculator)
     {
         $calculator->calculateWidth(Argument::any())->willReturn(20);
-        $this->beConstructedWith($calculator);
+        $realCalculator = $calculator->getWrappedObject();
+        $this->beConstructedWith($realCalculator);
     }
 
     function it_should_render_a_svg()
@@ -64,6 +63,4 @@ EOF;
         $badge = Badge::fromURI('license-MIT-blue.svg');
         $this->render($badge)->__toString()->shouldBeLike($template);
     }
-
-
 }

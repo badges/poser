@@ -2,11 +2,9 @@
 
 namespace spec\PUGX\Poser\Render;
 
-use PhpSpec\Exception\Exception;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 use PUGX\Poser\Badge;
-use PUGX\Poser\Calculator\GDTextSizeCalculator;
 use PUGX\Poser\Calculator\TextSizeCalculatorInterface;
 
 class SvgFlatRenderSpec extends ObjectBehavior

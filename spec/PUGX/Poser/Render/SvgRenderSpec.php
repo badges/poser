@@ -2,7 +2,6 @@
 
 namespace spec\PUGX\Poser\Render;
 
-use PhpSpec\Exception\Exception;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 use PUGX\Poser\Badge;
