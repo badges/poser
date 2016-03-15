@@ -18,12 +18,12 @@ before_install:
   - composer selfupdate
 
 install:
-  - COMPOSER_ROOT_VERSION=dev-master composer --prefer-source --no-interaction install
+  - composer --prefer-source --no-interaction update
 
 script:
   - bin/phpspec run --format=pretty
   - bin/behat
-  
+
 notifications:
   email:
     - liuggio@gmail.com
