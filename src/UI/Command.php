@@ -141,5 +141,4 @@ class Command extends BaseCommand
 
         $this->header = '';
     }
-
 }
