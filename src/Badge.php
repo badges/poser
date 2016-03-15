@@ -6,14 +6,14 @@ class Badge
 {
     CONST DEFAULT_FORMAT = 'svg';
     private static $colorScheme = array(
-        "brightgreen" => "4c1",
+        "brightgreen" => "44cc11",
         "green"       => "97CA00",
         "yellow"      => "dfb317",
         "yellowgreen" => "a4a61d",
         "orange"      => "fe7d37",
         "red"         => "e05d44",
         "blue"        => "007ec6",
-        "grey"        => "555",
+        "grey"        => "555555",
         "lightgray"   => "9f9f9f"
     );
 

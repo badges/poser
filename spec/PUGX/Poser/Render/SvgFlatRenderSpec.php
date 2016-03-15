@@ -2,17 +2,16 @@
 
 namespace spec\PUGX\Poser\Render;
 
-use PhpSpec\Exception\Exception;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 use PUGX\Poser\Badge;
-use PUGX\Poser\Calculator\GDTextSizeCalculator;
 use PUGX\Poser\Calculator\TextSizeCalculatorInterface;
 
 class SvgFlatRenderSpec extends ObjectBehavior
 {
-    function let(TextSizeCalculatorInterface $calculator)
+    function let($calculator)
     {
+        $calculator->beADoubleOf('\PUGX\Poser\Calculator\TextSizeCalculatorInterface');
         $calculator->calculateWidth(Argument::any())->willReturn(20);
         $this->beConstructedWith($calculator);
     }
