@@ -73,6 +73,11 @@ class Poser
         }
     }
 
+    /**
+     * @param $format
+     *
+     * @return RenderInterface
+     */
     private function getRenderFor($format)
     {
         if (!isset($this->renders[$format])) {
