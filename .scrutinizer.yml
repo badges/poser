@@ -1,0 +1,17 @@
+checks:
+    php:
+        code_rating: true
+        duplication: true
+
+filter:
+    paths:
+        - src/*
+
+build:
+  tests:
+    override:
+      -
+        command: 'bin/phpspec run -f progress -c phpspec-ci.yml'
+        coverage:
+          file: 'coverage.clover'
+          format: 'php-clover'
