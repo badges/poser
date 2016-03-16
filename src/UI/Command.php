@@ -24,7 +24,14 @@ class Command extends BaseCommand
  http://poser.pug.org
 ";
 
+    /** @var Poser */
     private $poser;
+
+    /** @var string */
+    protected $format;
+
+    /** @var string */
+    protected $header;
 
     private function init()
     {
@@ -88,9 +95,9 @@ class Command extends BaseCommand
             $imageContent = $this->poser->generate($subject, $status, $color, $this->format);
 
             if ($input->getOption('path')) {
-                $this->storeImage($input, $output, $input->getOption('path'), $imageContent);
+                $this->storeImage($output, $input->getOption('path'), $imageContent);
             } else {
-                $this->flushImage($input, $output, $imageContent);
+                $this->flushImage($output, $imageContent);
             }
 
         } catch (\Exception $e) {
@@ -99,13 +106,13 @@ class Command extends BaseCommand
         }
     }
 
-    protected function flushImage(InputInterface $input, OutputInterface $output, $imageContent)
+    protected function flushImage(OutputInterface $output, $imageContent)
     {
         $output->write((string) $imageContent);
         $this->header = '';
     }
 
-    protected function storeImage(InputInterface $input, OutputInterface $output, $path, $imageContent)
+    protected function storeImage(OutputInterface $output, $path, $imageContent)
     {
         $this->printHeaderOnce($output);
         try {
@@ -134,5 +141,4 @@ class Command extends BaseCommand
 
         $this->header = '';
     }
-
 }

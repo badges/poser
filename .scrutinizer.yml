@@ -1,0 +1,23 @@
+checks:
+    php:
+        code_rating: true
+        duplication: true
+
+filter:
+    paths:
+        - src/*
+
+build:
+    dependencies:
+        before:
+            - composer require "henrikbjorn/phpspec-code-coverage" "~0.2"
+    environment:
+        php:
+            version: 5.6
+    tests:
+        override:
+            -
+                command: 'bin/phpspec run -f progress -c phpspec-scrutinizer.yml'
+                coverage:
+                    file: 'coverage.clover'
+                    format: 'php-clover'

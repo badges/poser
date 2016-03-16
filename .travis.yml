@@ -10,7 +10,6 @@ php:
 
 matrix:
   allow_failures:
-    - php: 7.0
     - php: hhvm
 
 before_install:
@@ -18,12 +17,12 @@ before_install:
   - composer selfupdate
 
 install:
-  - COMPOSER_ROOT_VERSION=dev-master composer --prefer-source --no-interaction install
+  - composer --prefer-dist --no-interaction update
 
 script:
   - bin/phpspec run --format=pretty
   - bin/behat
-  
+
 notifications:
   email:
     - liuggio@gmail.com

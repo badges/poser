@@ -1,0 +1,8 @@
+extensions:
+  - Coduo\PhpSpec\DataProvider\DataProviderExtension
+  - PhpSpec\Extension\CodeCoverageExtension
+code_coverage:
+  format:
+    - clover
+  output:
+    clover: coverage.clover
