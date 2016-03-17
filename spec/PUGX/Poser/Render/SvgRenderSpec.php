@@ -24,12 +24,12 @@ class SvgRenderSpec extends ObjectBehavior
     public function getMatchers()
     {
         return array(
-            'beAValidSVGImage' => function($subject) {
+            'beAValidSVGImage' => function ($subject) {
 
-                    $regex = '/^<svg.*width="((.|\n)*)<\/svg>$/';
-                    $matches = array();
+                $regex = '/^<svg.*width="((.|\n)*)<\/svg>$/';
+                $matches = array();
 
-                    return preg_match($regex, (string) $subject, $matches, PREG_OFFSET_CAPTURE, 0);
+                return preg_match($regex, (string) $subject, $matches, PREG_OFFSET_CAPTURE, 0);
             }
         );
     }
