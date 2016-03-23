@@ -66,7 +66,7 @@ abstract class LocalSvgRenderer implements RenderInterface
      *
      * @return string SVG content of the template
      */
-    protected function getTemplate($format)
+    private function getTemplate($format)
     {
         $templatesDirectory = __DIR__ . '/../Resources/templates';
         $filepath           = sprintf('%s/%s.svg', $templatesDirectory, $format);
@@ -83,7 +83,7 @@ abstract class LocalSvgRenderer implements RenderInterface
      *
      * @return float
      */
-    protected function stringWidth($text)
+    private function stringWidth($text)
     {
         return $this->textSizeCalculator->calculateWidth($text);
     }
@@ -95,7 +95,7 @@ abstract class LocalSvgRenderer implements RenderInterface
      *
      * @return Image
      */
-    protected function renderSvg($render, $parameters, $format)
+    private function renderSvg($render, $parameters, $format)
     {
         foreach ($parameters as $key => $variable) {
             $render = str_replace(sprintf('{{ %s }}', $key), $variable, $render);
