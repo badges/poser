@@ -29,16 +29,9 @@ abstract class LocalSvgRenderer implements RenderInterface
     /**
      * @var TextSizeCalculatorInterface
      */
-    protected $textSizeCalculator;
+    private $textSizeCalculator;
 
     /**
-     * @var string
-     */
-    protected $templateName;
-
-    /**
-     * Constructor.
-     *
      * @param TextSizeCalculatorInterface $textSizeCalculator
      */
     public function __construct(TextSizeCalculatorInterface $textSizeCalculator = null)
@@ -57,11 +50,16 @@ abstract class LocalSvgRenderer implements RenderInterface
      */
     public function render(Badge $badge)
     {
-        $template   = $this->getTemplate($this->templateName);
+        $template   = $this->getTemplate($this->getTemplateName());
         $parameters = $this->buildParameters($badge);
 
         return $this->renderSvg($template, $parameters, $badge->getFormat());
     }
+
+    /**
+     * @return string
+     */
+    abstract protected function getTemplateName();
 
     /**
      * @param $format
@@ -103,6 +101,13 @@ abstract class LocalSvgRenderer implements RenderInterface
             $render = str_replace(sprintf('{{ %s }}', $key), $variable, $render);
         }
 
+        // validate svg
+        libxml_use_internal_errors(true);
+        $xml = simplexml_load_string($render);
+        if (false === $xml) {
+            throw new \RuntimeException('Generated string is not a valid SVG');
+        }
+
         return Image::createFromString($render, $format);
     }
 
@@ -111,7 +116,7 @@ abstract class LocalSvgRenderer implements RenderInterface
      *
      * @return array
      */
-    protected function buildParameters(Badge $badge)
+    private function buildParameters(Badge $badge)
     {
         $parameters = array();
 

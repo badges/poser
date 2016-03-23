@@ -18,8 +18,6 @@ namespace PUGX\Poser\Render;
  */
 class SvgFlatRender extends LocalSvgRenderer
 {
-    protected $templateName = 'flat';
-
     /**
      * A list of all supported formats.
      *
@@ -28,5 +26,10 @@ class SvgFlatRender extends LocalSvgRenderer
     public function supportedFormats()
     {
         return array('flat', 'svg');
+    }
+
+    protected function getTemplateName()
+    {
+        return 'flat';
     }
 }

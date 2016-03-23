@@ -18,8 +18,6 @@ namespace PUGX\Poser\Render;
  */
 class SvgFlatSquareRender extends LocalSvgRenderer
 {
-    protected $templateName = 'flat-square';
-
     /**
      * A list of all supported formats.
      *
@@ -28,5 +26,10 @@ class SvgFlatSquareRender extends LocalSvgRenderer
     public function supportedFormats()
     {
         return array('flat-square');
+    }
+
+    protected function getTemplateName()
+    {
+        return 'flat-square';
     }
 }

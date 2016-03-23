@@ -21,8 +21,6 @@ use PUGX\Poser\Badge;
  */
 class SvgRender extends LocalSvgRenderer
 {
-    protected $templateName = 'plastic';
-
     /**
      * A list of all supported formats.
      *
@@ -31,5 +29,10 @@ class SvgRender extends LocalSvgRenderer
     public function supportedFormats()
     {
         return array('plastic');
+    }
+
+    protected function getTemplateName()
+    {
+        return 'plastic';
     }
 }
