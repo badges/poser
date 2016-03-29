@@ -14,7 +14,7 @@ This library is used by https://poser.pugx.org
 #### 1. Create a project
 
 ``` bash
-$ composer create-project badges/poser ~0.1
+$ composer create-project badges/poser ~1.2
 $ ln -s poser/bin/poser /usr/local/bin/poser
 ```
 
@@ -32,7 +32,7 @@ Flush an image
 
 #### 1. Add to composer
 
-`composer require badges/poser ~0.1`
+`composer require badges/poser ~1.2`
 
 #### 2. Use in your project as lib
 
