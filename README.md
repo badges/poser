@@ -9,6 +9,11 @@ This library is used by https://poser.pugx.org
 [![Latest Stable Version](https://poser.pugx.org/badges/poser/version.svg)](https://packagist.org/packages/badges/poser) [![Latest Unstable Version](https://poser.pugx.org/badges/poser/v/unstable.svg)](//packagist.org/packages/badges/poser) [![Total Downloads](https://poser.pugx.org/badges/poser/downloads.svg)](https://packagist.org/packages/badges/poser)
 [![Build Status](https://travis-ci.org/badges/poser.svg?branch=master)](https://travis-ci.org/badges/poser)
 
+## Dependencies
+
+* PHP 5.3 or higher
+* GD extension
+
 ## Use as command
 
 #### 1. Create a project
