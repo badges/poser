@@ -24,6 +24,7 @@
     },
     "require": {
         "php": ">=5.3",
+        "ext-gd": "*",
         "symfony/console": "~2.0|~3.0",
         "coduo/phpspec-data-provider-extension": "^1.0"
     },
