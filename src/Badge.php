@@ -4,7 +4,7 @@ namespace PUGX\Poser;
 
 class Badge
 {
-    CONST DEFAULT_FORMAT = 'svg';
+    const DEFAULT_FORMAT = 'svg';
     private static $colorScheme = array(
         "brightgreen" => "44cc11",
         "green"       => "97CA00",

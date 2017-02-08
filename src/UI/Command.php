@@ -15,8 +15,7 @@ use PUGX\Poser\Render\SvgRender;
 
 class Command extends BaseCommand
 {
-
-    CONST HEADER = "                   ________________
+    const HEADER = "                   ________________
  <bg=black;options=reverse> |_  _  _| _  _   </bg=black;options=reverse>  _  _  _ _  _  |
  <bg=black;options=reverse> |_)(_|(_|(_|(/_  </bg=black;options=reverse> |_)(_)_\(/_|   |
  <bg=black;options=reverse>           _|     </bg=black;options=reverse>_|______________|
@@ -82,7 +81,6 @@ class Command extends BaseCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-
         $subject = $input->getArgument('subject');
         $status = $input->getArgument('status');
         $color = $input->getArgument('color');
@@ -99,7 +97,6 @@ class Command extends BaseCommand
             } else {
                 $this->flushImage($output, $imageContent);
             }
-
         } catch (\Exception $e) {
             $this->printHeaderOnce($output);
             throw $e;
@@ -122,7 +119,7 @@ class Command extends BaseCommand
         }
 
         if (false == $fp) {
-           throw new \Exception("Error on creating the file maybe file [$path] already exists?");
+            throw new \Exception("Error on creating the file maybe file [$path] already exists?");
         }
         $written = @fwrite($fp, $imageContent);
         if ($written <1 || $written != strlen($imageContent)) {

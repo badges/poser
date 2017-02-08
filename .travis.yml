@@ -22,6 +22,8 @@ install:
 script:
   - bin/phpspec run --format=pretty
   - bin/behat
+  - bin/php-cs-fixer --dry-run -v fix src --rules=@PSR2
+
 
 notifications:
   email:

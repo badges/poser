@@ -50,7 +50,7 @@ abstract class LocalSvgRenderer implements RenderInterface
 
         $this->templatesDirectory = $templatesDirectory;
         if (null === $this->templatesDirectory) {
-            $this->templatesDirectory = __DIR__ . '/../Resources/templates';;
+            $this->templatesDirectory = __DIR__ . '/../Resources/templates';
         }
     }
 
