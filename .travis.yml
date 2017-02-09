@@ -13,6 +13,10 @@ matrix:
   allow_failures:
     - php: hhvm
 
+cache:
+  directories:
+    - $HOME/.composer/cache
+
 before_install:
   - phpenv config-rm xdebug.ini || echo "xdebug not available for PHP $TRAVIS_PHP_VERSION"
 
