@@ -30,7 +30,8 @@
     },
     "require-dev": {
         "phpspec/phpspec": "2.*",
-        "behat/behat": "3.*"
+        "behat/behat": "3.*",
+        "friendsofphp/php-cs-fixer": "@stable"
     },
     "config": {
         "bin-dir": "bin"

@@ -66,5 +66,4 @@ class Image
     {
         return $this->format;
     }
-
 }

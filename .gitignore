@@ -1,3 +1,4 @@
 /bin/behat
+/bin/php-cs-fixer
 /bin/phpspec
 /vendor

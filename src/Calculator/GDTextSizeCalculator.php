@@ -35,7 +35,7 @@ class GDTextSizeCalculator implements TextSizeCalculatorInterface
         $size = $this->convertToPt($size);
         $box  = imagettfbbox($size, 0, $this->fontPath, $text);
 
-        return round(abs($box[2] - $box[0]) + self::SHIELD_PADDING_EXTERNAL + self::SHIELD_PADDING_INTERNAL,  1);
+        return round(abs($box[2] - $box[0]) + self::SHIELD_PADDING_EXTERNAL + self::SHIELD_PADDING_INTERNAL, 1);
     }
 
     private function convertToPt($pixels)
