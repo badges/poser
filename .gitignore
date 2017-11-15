@@ -2,3 +2,4 @@
 /bin/php-cs-fixer
 /bin/phpspec
 /vendor
+docker-compose.yml
