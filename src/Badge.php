@@ -104,7 +104,8 @@ class Badge
 
     public function __toString()
     {
-        return sprintf("%s-%s-%s.%s",
+        return sprintf(
+            "%s-%s-%s.%s",
             $this->subject,
             $this->status,
             $this->color,
