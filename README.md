@@ -100,8 +100,24 @@ composer install
 - Then run behat:
 
 ``` bash
-./bin/behat run
+./bin/behat
 ```
+
+## Using Docker
+
+We provide a `docker-compose.yml.dist` file to allow you to run tests in a Docker container.
+
+```bash
+cp docker-compose.yml.dist docker-compose.yml
+docker-compose up -d
+docker-compose exec fpm composer update
+docker-compose exec fpm bin/phpspec run --format=pretty
+docker-compose exec fpm bin/behat
+```
+
+The provided Docker compose file is for a PHP 7.1 environment, but you can modifiy it to use PHP 5.6.
+
+See https://store.docker.com/community/images/jmleroux/fpm/tags
 
 ## License
 
