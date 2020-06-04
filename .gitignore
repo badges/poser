@@ -2,4 +2,5 @@
 /bin/php-cs-fixer
 /bin/phpspec
 /vendor
+composer.lock
 docker-compose.yml

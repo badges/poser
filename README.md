@@ -110,7 +110,7 @@ We provide a `docker-compose.yml.dist` file to allow you to run tests in a Docke
 ```bash
 cp docker-compose.yml.dist docker-compose.yml
 docker-compose up -d
-docker-compose exec fpm composer update
+docker-compose exec fpm composer install
 docker-compose exec fpm bin/phpspec run --format=pretty
 docker-compose exec fpm bin/behat
 ```
