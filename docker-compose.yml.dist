@@ -2,7 +2,7 @@ version: '2'
 
 services:
   fpm:
-    image: jmleroux/fpm:php-latest
+    image: jmleroux/fpm:php-7.1
     environment:
       COMPOSER_HOME: /home/docker/.composer
       PHP_IDE_CONFIG: 'serverName=jmleroux-cli'
