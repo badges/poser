@@ -37,15 +37,15 @@ class PoserSpec extends ObjectBehavior
     }
 
 
-    public function getMatchers()
+    public function getMatchers(): array
     {
-        return array(
+        return [
             'beAValidSVGImageContaining' => function($object, $subject, $status) {
                     $regex = '/^<svg.*width="((.|\n)*)'.$subject.'((.|\n)*)'.$status.'((.|\n)*)<\/svg>$/';
                     $matches = array();
 
                     return preg_match($regex, $object, $matches, PREG_OFFSET_CAPTURE, 0);
              },
-        );
+        ];
     }
 }

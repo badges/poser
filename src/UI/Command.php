@@ -101,6 +101,8 @@ class Command extends BaseCommand
             $this->printHeaderOnce($output);
             throw $e;
         }
+
+        return 0;
     }
 
     protected function flushImage(OutputInterface $output, $imageContent)

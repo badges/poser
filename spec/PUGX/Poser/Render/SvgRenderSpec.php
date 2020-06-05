@@ -37,9 +37,9 @@ class SvgRenderSpec extends ObjectBehavior
         $this->shouldThrow(new \RuntimeException('Generated xml is not a SVG'))->duringRender($badge);
     }
 
-    public function getMatchers()
+    public function getMatchers(): array
     {
-        return array(
+        return [
             'beAValidSVGImage' => function ($subject) {
 
                 $regex = '/^<svg.*width="((.|\n)*)<\/svg>$/';
@@ -47,6 +47,6 @@ class SvgRenderSpec extends ObjectBehavior
 
                 return preg_match($regex, (string) $subject, $matches, PREG_OFFSET_CAPTURE, 0);
             }
-        );
+        ];
     }
-} 
+}

@@ -21,9 +21,9 @@ class SvgFlatSquareRenderSpec extends ObjectBehavior
         $this->render($badge)->shouldBeAValidSVGImage();
     }
 
-    public function getMatchers()
+    public function getMatchers(): array
     {
-        return array(
+        return [
             'beAValidSVGImage' => function ($subject) {
 
                 $regex = '/^<svg.*width="((.|\n)*)<\/svg>$/';
@@ -31,7 +31,7 @@ class SvgFlatSquareRenderSpec extends ObjectBehavior
 
                 return preg_match($regex, (string) $subject, $matches, PREG_OFFSET_CAPTURE, 0);
             }
-        );
+        ];
     }
 
     function it_should_render_a_license_mit_exactly_like_this_svg()
