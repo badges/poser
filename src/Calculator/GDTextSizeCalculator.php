@@ -8,11 +8,12 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace PUGX\Poser\Calculator;
 
 class GDTextSizeCalculator implements TextSizeCalculatorInterface
 {
-    const TEXT_FONT             = '/Font/DejaVuSans.ttf';
+    const TEXT_FONT = '/Font/DejaVuSans.ttf';
 
     /** @var string */
     protected $fontPath;
@@ -33,13 +34,13 @@ class GDTextSizeCalculator implements TextSizeCalculatorInterface
     public function calculateWidth($text, $size = self::TEXT_SIZE)
     {
         $size = $this->convertToPt($size);
-        $box  = imagettfbbox($size, 0, $this->fontPath, $text);
+        $box = \imagettfbbox($size, 0, $this->fontPath, $text);
 
-        return round(abs($box[2] - $box[0]) + self::SHIELD_PADDING_EXTERNAL + self::SHIELD_PADDING_INTERNAL, 1);
+        return \round(\abs($box[2] - $box[0]) + self::SHIELD_PADDING_EXTERNAL + self::SHIELD_PADDING_INTERNAL, 1);
     }
 
     private function convertToPt($pixels)
     {
-        return round($pixels * 0.75, 1);
+        return \round($pixels * 0.75, 1);
     }
 }

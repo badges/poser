@@ -15,9 +15,9 @@ class Poser
      */
     public function __construct($renders)
     {
-        $this->renders = array();
-        if (!is_array($renders)) {
-            $renders = array($renders);
+        $this->renders = [];
+        if (!\is_array($renders)) {
+            $renders = [$renders];
         }
 
         foreach ($renders as $render) {
@@ -47,6 +47,7 @@ class Poser
      * eg license-MIT-blue.svg or I_m-liuggio-yellow.svg.
      *
      * @param $string
+     *
      * @return Image
      */
     public function generateFromURI($string)
@@ -63,10 +64,10 @@ class Poser
      */
     public function validFormats()
     {
-        return array_keys($this->renders);
+        return \array_keys($this->renders);
     }
 
-    private function addFormatRender(RenderInterface $render)
+    private function addFormatRender(RenderInterface $render): void
     {
         foreach ($render->supportedFormats() as $format) {
             $this->renders[$format] = $render;
@@ -81,7 +82,7 @@ class Poser
     private function getRenderFor($format)
     {
         if (!isset($this->renders[$format])) {
-            throw new \InvalidArgumentException(sprintf('No render founds for this format [%s]', $format));
+            throw new \InvalidArgumentException(\sprintf('No render founds for this format [%s]', $format));
         }
 
         return $this->renders[$format];
