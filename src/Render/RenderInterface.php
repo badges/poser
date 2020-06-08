@@ -18,8 +18,6 @@ interface RenderInterface
     /**
      * Render a badge.
      *
-     * @param Badge $badge
-     *
      * @return \PUGX\Poser\Image
      */
     public function render(Badge $badge);

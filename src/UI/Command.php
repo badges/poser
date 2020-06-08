@@ -2,16 +2,16 @@
 
 namespace PUGX\Poser\UI;
 
+use PUGX\Poser\Badge;
+use PUGX\Poser\Poser;
 use PUGX\Poser\Render\SvgFlatRender;
 use PUGX\Poser\Render\SvgFlatSquareRender;
+use PUGX\Poser\Render\SvgRender;
 use Symfony\Component\Console\Command\Command as BaseCommand;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
-use PUGX\Poser\Badge;
-use PUGX\Poser\Poser;
-use PUGX\Poser\Render\SvgRender;
 
 class Command extends BaseCommand
 {
@@ -32,18 +32,18 @@ class Command extends BaseCommand
     /** @var string */
     protected $header;
 
-    private function init()
+    private function init(): void
     {
-        $this->poser = new Poser(array(
+        $this->poser = new Poser([
             new SvgRender(),
             new SvgFlatRender(),
-            new SvgFlatSquareRender()
-        ));
+            new SvgFlatSquareRender(),
+        ]);
         $this->format = 'flat';
         $this->header = self::HEADER;
     }
 
-    protected function configure()
+    protected function configure(): void
     {
         $this->init();
 
@@ -63,13 +63,13 @@ class Command extends BaseCommand
             ->addArgument(
                 'color',
                 InputArgument::OPTIONAL,
-                'The hexadecimal color eg. `97CA00` or the name ['.join(', ', Badge::getColorNamesAvailable()).']'
+                'The hexadecimal color eg. `97CA00` or the name [' . \implode(', ', Badge::getColorNamesAvailable()) . ']'
             )
             ->addOption(
                 'format',
                 'f',
                 InputOption::VALUE_REQUIRED,
-                'The format of the image eg. `svg`, formats available ['.join(', ', $this->poser->validFormats()).']'
+                'The format of the image eg. `svg`, formats available [' . \implode(', ', $this->poser->validFormats()) . ']'
             )
             ->addOption(
                 'path',
@@ -105,17 +105,17 @@ class Command extends BaseCommand
         return 0;
     }
 
-    protected function flushImage(OutputInterface $output, $imageContent)
+    protected function flushImage(OutputInterface $output, $imageContent): void
     {
         $output->write((string) $imageContent);
         $this->header = '';
     }
 
-    protected function storeImage(OutputInterface $output, $path, $imageContent)
+    protected function storeImage(OutputInterface $output, $path, $imageContent): void
     {
         $this->printHeaderOnce($output);
         try {
-            $fp = @fopen($path, "x");
+            $fp = @\fopen($path, 'x');
         } catch (\Exception $e) {
             $fp = false;
         }
@@ -123,16 +123,16 @@ class Command extends BaseCommand
         if (false == $fp) {
             throw new \Exception("Error on creating the file maybe file [$path] already exists?");
         }
-        $written = @fwrite($fp, $imageContent);
-        if ($written <1 || $written != strlen($imageContent)) {
+        $written = @\fwrite($fp, $imageContent);
+        if ($written < 1 || $written != \strlen($imageContent)) {
             throw new \Exception('Error on writing to file.');
         }
-        @fclose($fp);
+        @\fclose($fp);
 
-        $output->write(sprintf('Image created at %s', $path));
+        $output->write(\sprintf('Image created at %s', $path));
     }
 
-    protected function printHeaderOnce(OutputInterface $output)
+    protected function printHeaderOnce(OutputInterface $output): void
     {
         if (!empty($this->header)) {
             $output->write($this->header);

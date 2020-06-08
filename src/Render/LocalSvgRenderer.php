@@ -39,7 +39,7 @@ abstract class LocalSvgRenderer implements RenderInterface
 
     /**
      * @param TextSizeCalculatorInterface $textSizeCalculator
-     * @param null|string $templatesDirectory
+     * @param string|null                 $templatesDirectory
      */
     public function __construct(TextSizeCalculatorInterface $textSizeCalculator = null, $templatesDirectory = null)
     {
@@ -55,8 +55,6 @@ abstract class LocalSvgRenderer implements RenderInterface
     }
 
     /**
-     * @param Badge $badge
-     *
      * @return mixed
      */
     public function render(Badge $badge)
@@ -79,13 +77,13 @@ abstract class LocalSvgRenderer implements RenderInterface
      */
     private function getTemplate($format)
     {
-        $filepath = sprintf('%s/%s.svg', $this->templatesDirectory, $format);
+        $filepath = \sprintf('%s/%s.svg', $this->templatesDirectory, $format);
 
-        if (!file_exists($filepath)) {
-            throw new \InvalidArgumentException(sprintf('No template for format %s', $format));
+        if (!\file_exists($filepath)) {
+            throw new \InvalidArgumentException(\sprintf('No template for format %s', $format));
         }
 
-        return file_get_contents($filepath);
+        return \file_get_contents($filepath);
     }
 
     /**
@@ -100,7 +98,7 @@ abstract class LocalSvgRenderer implements RenderInterface
 
     /**
      * @param string $render
-     * @param array $parameters
+     * @param array  $parameters
      * @param string $format
      *
      * @return Image
@@ -108,7 +106,7 @@ abstract class LocalSvgRenderer implements RenderInterface
     private function renderSvg($render, $parameters, $format)
     {
         foreach ($parameters as $key => $variable) {
-            $render = str_replace(sprintf('{{ %s }}', $key), $variable, $render);
+            $render = \str_replace(\sprintf('{{ %s }}', $key), $variable, $render);
         }
 
         try {
@@ -124,13 +122,11 @@ abstract class LocalSvgRenderer implements RenderInterface
     }
 
     /**
-     * @param Badge $badge
-     *
      * @return array
      */
     private function buildParameters(Badge $badge)
     {
-        $parameters = array();
+        $parameters = [];
 
         $parameters['vendorWidth'] = $this->stringWidth($badge->getSubject());
         $parameters['valueWidth'] = $this->stringWidth($badge->getStatus());
@@ -139,8 +135,8 @@ abstract class LocalSvgRenderer implements RenderInterface
         $parameters['valueColor'] = $badge->getHexColor();
         $parameters['vendor'] = $badge->getSubject();
         $parameters['value'] = $badge->getStatus();
-        $parameters['vendorStartPosition'] = round($parameters['vendorWidth'] / 2, 1) + 1;
-        $parameters['valueStartPosition'] = $parameters['vendorWidth'] + round($parameters['valueWidth'] / 2, 1) - 1;
+        $parameters['vendorStartPosition'] = \round($parameters['vendorWidth'] / 2, 1) + 1;
+        $parameters['valueStartPosition'] = $parameters['vendorWidth'] + \round($parameters['valueWidth'] / 2, 1) - 1;
 
         return $parameters;
     }

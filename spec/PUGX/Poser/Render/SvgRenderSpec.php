@@ -8,20 +8,20 @@ use PUGX\Poser\Badge;
 
 class SvgRenderSpec extends ObjectBehavior
 {
-    function let($calculator)
+    public function let($calculator): void
     {
         $calculator->beADoubleOf('\PUGX\Poser\Calculator\TextSizeCalculatorInterface');
         $calculator->calculateWidth(Argument::any())->willReturn(20);
         $this->beConstructedWith($calculator);
     }
 
-    function it_should_render_a_svg()
+    public function it_should_render_a_svg(): void
     {
         $badge = Badge::fromURI('version-stable-97CA00.svg');
         $this->render($badge)->shouldBeAValidSVGImage();
     }
 
-    function it_should_not_render_an_invalid_svg($calculator)
+    public function it_should_not_render_an_invalid_svg($calculator): void
     {
         $templatesDir = __DIR__ . '/../../../Fixtures/invalid_template';
         $this->beConstructedWith($calculator, $templatesDir);
@@ -29,7 +29,7 @@ class SvgRenderSpec extends ObjectBehavior
         $this->shouldThrow(new \RuntimeException('Generated string is not a valid XML'))->duringRender($badge);
     }
 
-    function it_should_not_render_non_svg_xml($calculator)
+    public function it_should_not_render_non_svg_xml($calculator): void
     {
         $templatesDir = __DIR__ . '/../../../Fixtures/xml_template';
         $this->beConstructedWith($calculator, $templatesDir);
@@ -41,12 +41,11 @@ class SvgRenderSpec extends ObjectBehavior
     {
         return [
             'beAValidSVGImage' => function ($subject) {
-
                 $regex = '/^<svg.*width="((.|\n)*)<\/svg>$/';
-                $matches = array();
+                $matches = [];
 
-                return preg_match($regex, (string) $subject, $matches, PREG_OFFSET_CAPTURE, 0);
-            }
+                return \preg_match($regex, (string) $subject, $matches, PREG_OFFSET_CAPTURE, 0);
+            },
         ];
     }
 }

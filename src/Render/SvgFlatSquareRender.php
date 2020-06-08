@@ -12,7 +12,7 @@
 namespace PUGX\Poser\Render;
 
 /**
- * Class SvgFlatGenerator
+ * Class SvgFlatGenerator.
  *
  * @author Giulio De Donato <liuggio@gmail.com>
  */
@@ -25,7 +25,7 @@ class SvgFlatSquareRender extends LocalSvgRenderer
      */
     public function supportedFormats()
     {
-        return array('flat-square');
+        return ['flat-square'];
     }
 
     protected function getTemplateName()
