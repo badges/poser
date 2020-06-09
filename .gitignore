@@ -1,6 +1,7 @@
 /bin/behat
 /bin/php-cs-fixer
 /bin/phpspec
+/coverage
 /vendor
 .php_cs.cache
 composer.lock

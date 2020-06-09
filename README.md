@@ -1,5 +1,4 @@
-PHP badges poser
-================
+# PHP badges poser [![CircleCI](https://circleci.com/gh/badges/poser/tree/release%2Fv2.svg?style=svg)](https://circleci.com/gh/badges/poser/tree/release%2Fv2)
 
 This is a php library that creates badges like ![Badge Poser](https://cdn.rawgit.com/badges/poser/master/badge-poser.svg) and ![I'm a badge](https://cdn.rawgit.com/badges/poser/master/i_m-badge.svg) and ![dark](https://cdn.rawgit.com/badges/poser/master/today-dark.svg),
 according to [Shields specification](https://github.com/badges/shields#specification).
@@ -111,8 +110,8 @@ We provide a `docker-compose.yml.dist` file to allow you to run tests in a Docke
 cp docker-compose.yml.dist docker-compose.yml
 docker-compose up -d
 docker-compose exec fpm composer install
-docker-compose exec fpm bin/phpspec run --format=pretty
-docker-compose exec fpm bin/behat
+docker-compose exec fpm composer phpspec
+docker-compose exec fpm composer behat
 ```
 
 The provided Docker compose file is for a PHP 7.1 environment, but you can modifiy it to use PHP 5.6.
