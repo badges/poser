@@ -38,16 +38,19 @@
         "phpspec/phpspec": "^6.1",
         "behat/behat": "^3.7",
         "friendsofphp/php-cs-fixer": "^2.16",
-        "moave/phpspec-data-provider-extension": "dev-master"
+        "moave/phpspec-data-provider-extension": "dev-master",
+        "friends-of-phpspec/phpspec-code-coverage": "^4.3"
     },
     "config": {
         "bin-dir": "bin"
     },
     "bin": ["bin/poser"],
     "scripts": {
-        "php-cs-fixer": [
-            "bin/php-cs-fixer fix -v"
-        ]
+        "php-cs-fixer-dry-run": "bin/php-cs-fixer fix --verbose --diff --dry-run --ansi",
+        "php-cs-fixer": "bin/php-cs-fixer fix -v --ansi",
+        "phpspec": "bin/phpspec run --format=pretty --ansi",
+        "phpspec-coverage": "bin/phpspec run -f progress -c phpspec-coverage.yml --ansi",
+        "behat": "bin/behat"
     },
     "extra": {
         "branch-alias": {

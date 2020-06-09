@@ -1,0 +1,83 @@
+version: 2.1
+
+executors:
+  poser_executor: # declares a reusable executor
+    docker:
+      - image: pugx/poser:2.0
+    working_directory: ~/app
+
+jobs:
+  checkout_code:
+    executor: poser_executor
+    steps:
+      - checkout
+      - save_cache:
+          key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
+          paths:
+            - ~/app
+
+  php_dependencies:
+    executor: poser_executor
+    steps:
+      - restore_cache:
+          keys:
+            - v1-repo-{{ .Environment.CIRCLE_SHA1 }}
+      - run:
+          name: install project dependencies
+          command: composer install -n --no-progress --no-suggest
+      - save_cache:
+          paths:
+            - ~/app/bin
+            - ~/app/vendor
+          key: v1-php-dependencies-{{ .Environment.CIRCLE_SHA1 }}
+
+  lint_checks:
+    executor: poser_executor
+    steps:
+      - restore_cache:
+          keys:
+            - v1-repo-{{ .Environment.CIRCLE_SHA1 }}
+      - restore_cache:
+          name: Restore PHP Dependencies Cache
+          keys:
+            - v1-php-dependencies-{{ .Environment.CIRCLE_SHA1 }}
+      - run:
+          name: run php-cs-fixer checks
+          command: bin/php-cs-fixer fix --verbose --diff --dry-run
+
+  phpspec_and_behat:
+    executor: poser_executor
+    steps:
+      - restore_cache:
+          keys:
+            - v1-repo-{{ .Environment.CIRCLE_SHA1 }}
+      - restore_cache:
+          name: Restore PHP Dependencies Cache
+          keys:
+            - v1-php-dependencies-{{ .Environment.CIRCLE_SHA1 }}
+      - run:
+          name: run phpspec tests
+          command: bin/phpspec run --format=pretty
+      - run:
+          name: run phpspec coverage tests
+          command: bin/phpspec run -f progress -c phpspec-coverage.yml
+      - store_artifacts:
+          path: coverage
+      - run:
+          name: run behat checks
+          command: bin/behat
+
+workflows:
+  version: 2
+  build-and-test:
+    jobs:
+      - checkout_code
+      - php_dependencies:
+          requires:
+            - checkout_code
+      - lint_checks:
+          requires:
+            - php_dependencies
+      - phpspec_and_behat:
+          requires:
+            - php_dependencies
