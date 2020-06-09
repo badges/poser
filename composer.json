@@ -22,6 +22,12 @@
     "autoload": {
         "psr-4": { "PUGX\\Poser\\": "src/" }
     },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/madisoft/phpspec-data-provider-extension"
+        }
+    ],
     "require": {
         "php": ">=7.4",
         "ext-gd": "*",
@@ -31,7 +37,8 @@
     "require-dev": {
         "phpspec/phpspec": "^6.1",
         "behat/behat": "^3.7",
-        "friendsofphp/php-cs-fixer": "^2.16"
+        "friendsofphp/php-cs-fixer": "^2.16",
+        "moave/phpspec-data-provider-extension": "dev-master"
     },
     "config": {
         "bin-dir": "bin"
