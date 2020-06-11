@@ -13,17 +13,12 @@ namespace PUGX\Poser\Calculator;
 
 interface TextSizeCalculatorInterface
 {
-    const TEXT_SIZE = 11;
-    const SHIELD_PADDING_EXTERNAL = 6;
-    const SHIELD_PADDING_INTERNAL = 4;
+    public const TEXT_SIZE               = 11;
+    public const SHIELD_PADDING_EXTERNAL = 6;
+    public const SHIELD_PADDING_INTERNAL = 4;
 
     /**
      * Calculate the width of the text box.
-     *
-     * @param string $text
-     * @param int    $size
-     *
-     * @return float
      */
-    public function calculateWidth($text, $size = self::TEXT_SIZE);
+    public function calculateWidth(string $text, int $size = self::TEXT_SIZE): float;
 }

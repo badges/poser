@@ -19,50 +19,33 @@ namespace PUGX\Poser;
  */
 class Image
 {
-    /**
-     * @var string
-     */
-    private $content;
-    /**
-     * @var string
-     */
-    private $format;
+    private string $content;
 
-    /**
-     * @param string $content
-     * @param string $format
-     */
-    private function __construct($content, $format)
+    private string $format;
+
+    private function __construct(string $content, string $format)
     {
         $this->content = $content;
-        $this->format = $format;
+        $this->format  = $format;
     }
 
     /**
      * Returns the image content as binary string.
      */
-    public function __toString()
+    public function __toString(): string
     {
         return (string) $this->content;
     }
 
     /**
      * Factory method.
-     *
-     * @param string $content
-     * @param string $format
-     *
-     * @return Image
      */
-    public static function createFromString($content, $format)
+    public static function createFromString(string $content, string $format): self
     {
         return new self($content, $format);
     }
 
-    /**
-     * @return string
-     */
-    public function getFormat()
+    public function getFormat(): string
     {
         return $this->format;
     }

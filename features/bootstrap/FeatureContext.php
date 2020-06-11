@@ -7,6 +7,9 @@ use Behat\Behat\Context\SnippetAcceptingContext;
  */
 class FeatureContext implements SnippetAcceptingContext
 {
+    private string $binFolder;
+    private string $output;
+
     /**
      * Initializes context.
      *
@@ -16,7 +19,7 @@ class FeatureContext implements SnippetAcceptingContext
     public function __construct()
     {
         $this->binFolder = __DIR__ . '/../../bin/';
-        $this->output = '';
+        $this->output    = '';
     }
 
     /**
@@ -24,7 +27,7 @@ class FeatureContext implements SnippetAcceptingContext
      */
     public function iRun($command): void
     {
-        $poser = $this->binFolder . $command;
+        $poser        = $this->binFolder . $command;
         $this->return = -1;
         \ob_start();
         \passthru("cd {$this->binFolder};php $command", $this->return);
@@ -37,7 +40,7 @@ class FeatureContext implements SnippetAcceptingContext
     public function theSameOutputShouldBeLikeTheContentOf($filePath): void
     {
         $filePath = __DIR__ . '/../' . $filePath;
-        $content = \file_get_contents($filePath);
+        $content  = \file_get_contents($filePath);
 
         $this->assertEquals($content, $this->output);
     }
@@ -58,10 +61,10 @@ class FeatureContext implements SnippetAcceptingContext
     public function theContentOfShouldBeEqualTo($given, $expected): void
     {
         $givenPath = $given;
-        $given = \file_get_contents($givenPath);
+        $given     = \file_get_contents($givenPath);
 
         $expectedPath = __DIR__ . '/../' . $expected;
-        $expected = \file_get_contents($expectedPath);
+        $expected     = \file_get_contents($expectedPath);
         \unlink($givenPath);
 
         $this->assertEquals($given, $expected);
@@ -70,7 +73,7 @@ class FeatureContext implements SnippetAcceptingContext
     private function assertEquals($given, $expected): void
     {
         $expected = \preg_replace('/\s+/', '', $expected);
-        $given = \preg_replace('/\s+/', '', $given);
+        $given    = \preg_replace('/\s+/', '', $given);
 
         $perc = 0;
         \similar_text($expected, $given, $perc);

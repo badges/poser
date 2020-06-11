@@ -27,10 +27,8 @@ class SingleCommandApplication extends Application
 {
     /**
      * Name of the single accessible command of this application.
-     *
-     * @var string
      */
-    private $commandName;
+    private ?string $commandName = null;
 
     /**
      * Constructor to build a "single command" application, given a command.
@@ -40,13 +38,13 @@ class SingleCommandApplication extends Application
      * @param Command $command The single (accessible) command for this application
      * @param string  $version The version of the application
      */
-    public function __construct(Command $command, $version = 'UNKNOWN')
+    public function __construct(Command $command, string $version = 'UNKNOWN')
     {
         parent::__construct($command->getName(), $version);
 
         // Add the given command as single (accessible) command.
         $this->add($command);
-        $this->commandName = $command->getName();
+        $this->commandName = (string) $command->getName();
 
         // Override the Application's definition so that it does not
         // require a command name as first argument.
@@ -56,7 +54,7 @@ class SingleCommandApplication extends Application
     /**
      * {@inheritdoc}
      */
-    protected function getCommandName(InputInterface $input)
+    protected function getCommandName(InputInterface $input): ?string
     {
         return $this->commandName;
     }
@@ -76,7 +74,7 @@ class SingleCommandApplication extends Application
      *
      * @throws \LogicException
      */
-    public function add(Command $command)
+    public function add(Command $command): ?Command
     {
         // Fail if we already set up the single accessible command.
         if ($this->commandName) {

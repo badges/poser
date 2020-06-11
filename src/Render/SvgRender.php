@@ -22,14 +22,14 @@ class SvgRender extends LocalSvgRenderer
     /**
      * A list of all supported formats.
      *
-     * @return array
+     * @return array|string[]
      */
-    public function supportedFormats()
+    public function supportedFormats(): array
     {
         return ['plastic'];
     }
 
-    protected function getTemplateName()
+    protected function getTemplateName(): string
     {
         return 'plastic';
     }

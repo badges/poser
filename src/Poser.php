@@ -6,7 +6,7 @@ use PUGX\Poser\Render\RenderInterface;
 
 class Poser
 {
-    private $renders;
+    private array $renders;
 
     /**
      * Constructor.
@@ -32,10 +32,8 @@ class Poser
      * @param $status
      * @param $color
      * @param $format
-     *
-     * @return Image
      */
-    public function generate($subject, $status, $color, $format)
+    public function generate(string $subject, string $status, string $color, string $format): Image
     {
         $badge = new Badge($subject, $status, $color, $format);
 
@@ -47,10 +45,8 @@ class Poser
      * eg license-MIT-blue.svg or I_m-liuggio-yellow.svg.
      *
      * @param $string
-     *
-     * @return Image
      */
-    public function generateFromURI($string)
+    public function generateFromURI(string $string): Image
     {
         $badge = Badge::fromURI($string);
 
@@ -59,10 +55,8 @@ class Poser
 
     /**
      * All the formats available.
-     *
-     * @return array
      */
-    public function validFormats()
+    public function validFormats(): array
     {
         return \array_keys($this->renders);
     }
@@ -74,12 +68,7 @@ class Poser
         }
     }
 
-    /**
-     * @param $format
-     *
-     * @return RenderInterface
-     */
-    private function getRenderFor($format)
+    private function getRenderFor(string $format): RenderInterface
     {
         if (!isset($this->renders[$format])) {
             throw new \InvalidArgumentException(\sprintf('No render founds for this format [%s]', $format));
