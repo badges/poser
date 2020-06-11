@@ -15,7 +15,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class Command extends BaseCommand
 {
-    const HEADER = "                   ________________
+    public const HEADER = "                   ________________
  <bg=black;options=reverse> |_  _  _| _  _   </bg=black;options=reverse>  _  _  _ _  _  |
  <bg=black;options=reverse> |_)(_|(_|(_|(/_  </bg=black;options=reverse> |_)(_)_\(/_|   |
  <bg=black;options=reverse>           _|     </bg=black;options=reverse>_|______________|
@@ -23,14 +23,11 @@ class Command extends BaseCommand
  http://poser.pug.org
 ";
 
-    /** @var Poser */
-    private $poser;
+    private Poser $poser;
 
-    /** @var string */
-    protected $format;
+    protected string $format;
 
-    /** @var string */
-    protected $header;
+    protected string $header;
 
     private function init(): void
     {
@@ -79,14 +76,17 @@ class Command extends BaseCommand
             );
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output)
+    /**
+     * @throws \Exception
+     */
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $subject = $input->getArgument('subject');
-        $status = $input->getArgument('status');
-        $color = $input->getArgument('color');
+        $status  = $input->getArgument('status');
+        $color   = $input->getArgument('color');
 
         if ($input->getOption('format')) {
-            $this->format = $input->getOption('format');
+            $this->format = (string) $input->getOption('format');
         }
 
         try {
@@ -105,13 +105,16 @@ class Command extends BaseCommand
         return 0;
     }
 
-    protected function flushImage(OutputInterface $output, $imageContent): void
+    protected function flushImage(OutputInterface $output, string $imageContent): void
     {
-        $output->write((string) $imageContent);
+        $output->write($imageContent);
         $this->header = '';
     }
 
-    protected function storeImage(OutputInterface $output, $path, $imageContent): void
+    /**
+     * @throws \Exception
+     */
+    protected function storeImage(OutputInterface $output, string $path, string $imageContent): void
     {
         $this->printHeaderOnce($output);
         try {

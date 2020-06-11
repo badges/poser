@@ -4,30 +4,31 @@ namespace PUGX\Poser;
 
 class Badge
 {
-    const DEFAULT_FORMAT = 'svg';
-    private static $colorScheme = [
+    public const DEFAULT_FORMAT = 'svg';
+
+    private static array $colorScheme = [
         'brightgreen' => '44cc11',
-        'green' => '97CA00',
-        'yellow' => 'dfb317',
+        'green'       => '97CA00',
+        'yellow'      => 'dfb317',
         'yellowgreen' => 'a4a61d',
-        'orange' => 'fe7d37',
-        'red' => 'e05d44',
-        'blue' => '007ec6',
-        'grey' => '555555',
-        'lightgray' => '9f9f9f',
+        'orange'      => 'fe7d37',
+        'red'         => 'e05d44',
+        'blue'        => '007ec6',
+        'grey'        => '555555',
+        'lightgray'   => '9f9f9f',
     ];
 
-    private $subject;
-    private $status;
-    private $color;
-    private $format;
+    private string $subject;
+    private string $status;
+    private string $color;
+    private string $format;
 
-    public function __construct($subject, $status, $color, $format = self::DEFAULT_FORMAT)
+    public function __construct(string $subject, string $status, string $color, string $format = self::DEFAULT_FORMAT)
     {
         $this->subject = $this->escapeValue($subject);
-        $this->status = $this->escapeValue($status);
-        $this->format = $this->escapeValue($format);
-        $this->color = $this->getColorHex($color);
+        $this->status  = $this->escapeValue($status);
+        $this->format  = $this->escapeValue($format);
+        $this->color   = $this->getColorHex($color);
 
         if (!$this->isValidColorHex($this->color)) {
             throw new \InvalidArgumentException(\sprintf('Color not valid %s', $this->color));
@@ -36,10 +37,8 @@ class Badge
 
     /**
      * An array of the color names available.
-     *
-     * @return array
      */
-    public static function getColorNamesAvailable()
+    public static function getColorNamesAvailable(): array
     {
         return \array_keys(self::$colorScheme);
     }
@@ -48,25 +47,21 @@ class Badge
      * Factory method the creates a Badge from an URI
      * eg. I_m-liuggio-yellow.svg.
      *
-     * @param string $URI
-     *
-     * @return Badge
-     *
      * @throws \InvalidArgumentException
      */
-    public static function fromURI($URI)
+    public static function fromURI(string $URI): self
     {
         $regex = '/^(([^-]|--)+)-(([^-]|--)+)-(([^-]|--)+)\.(svg|png|gif|jpg)$/';
         $match = [];
 
-        if (1 != \preg_match($regex, $URI, $match) && (7 != \count($match))) {
+        if (1 !== \preg_match($regex, $URI, $match) && (7 !== \count($match))) {
             throw new \InvalidArgumentException('The URI given is not a valid URI' . $URI);
         }
 
         $subject = $match[1];
-        $status = $match[3];
-        $color = $match[5];
-        $format = $match[7];
+        $status  = $match[3];
+        $color   = $match[5];
+        $format  = $match[7];
 
         return new self($subject, $status, $color, $format);
     }
@@ -74,7 +69,7 @@ class Badge
     /**
      * @return string the Hexadecimal #FFFFFF
      */
-    public function getHexColor()
+    public function getHexColor(): string
     {
         return '#' . $this->color;
     }
@@ -82,28 +77,22 @@ class Badge
     /**
      * @return string the format of the image eg. `svg`.
      */
-    public function getFormat()
+    public function getFormat(): string
     {
         return $this->format;
     }
 
-    /**
-     * @return string
-     */
-    public function getStatus()
+    public function getStatus(): string
     {
         return $this->status;
     }
 
-    /**
-     * @return string
-     */
-    public function getSubject()
+    public function getSubject(): string
     {
         return $this->subject;
     }
 
-    public function __toString()
+    public function __toString(): string
     {
         return \sprintf(
             '%s-%s-%s.%s',
@@ -114,7 +103,7 @@ class Badge
         );
     }
 
-    private function escapeValue($value)
+    private function escapeValue(string $value): string
     {
         $pattern = [
             // '/([^_])_([^_])/g', // damn it global doesn't work in PHP
@@ -137,12 +126,15 @@ class Badge
         return $ret;
     }
 
-    private function getColorHex($color)
+    private function getColorHex(string $color): string
     {
         return \array_key_exists($color, self::$colorScheme) ? self::$colorScheme[$color] : $color;
     }
 
-    private function isValidColorHex($color)
+    /**
+     * @return false|int
+     */
+    private function isValidColorHex(string $color)
     {
         $color = \ltrim($color, '#');
         $regex = '/^[0-9a-fA-F]{6}$/';

@@ -21,14 +21,14 @@ class SvgFlatSquareRender extends LocalSvgRenderer
     /**
      * A list of all supported formats.
      *
-     * @return array
+     * @return array|string[]
      */
-    public function supportedFormats()
+    public function supportedFormats(): array
     {
         return ['flat-square'];
     }
 
-    protected function getTemplateName()
+    protected function getTemplateName(): string
     {
         return 'flat-square';
     }

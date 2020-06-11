@@ -12,18 +12,17 @@
 namespace PUGX\Poser\Render;
 
 use PUGX\Poser\Badge;
+use PUGX\Poser\Image;
 
 interface RenderInterface
 {
     /**
-     * Render a badge.
-     *
-     * @return \PUGX\Poser\Image
+     * Render a badge
      */
-    public function render(Badge $badge);
+    public function render(Badge $badge): Image;
 
     /**
      * @return array the list of the supported format eg array('svg')
      */
-    public function supportedFormats();
+    public function supportedFormats(): array;
 }

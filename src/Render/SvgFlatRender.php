@@ -21,14 +21,14 @@ class SvgFlatRender extends LocalSvgRenderer
     /**
      * A list of all supported formats.
      *
-     * @return array
+     * @return array|string[]
      */
-    public function supportedFormats()
+    public function supportedFormats(): array
     {
         return ['flat', 'svg'];
     }
 
-    protected function getTemplateName()
+    protected function getTemplateName(): string
     {
         return 'flat';
     }

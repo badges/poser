@@ -35,9 +35,9 @@ class SvgFlatRenderSpec extends ObjectBehavior
 
     public function it_should_render_a_license_mit_exactly_like_this_svg(): void
     {
-        $fixture = __DIR__ . '/../../../Fixtures/flat.svg';
+        $fixture  = __DIR__ . '/../../../Fixtures/flat.svg';
         $template = \file_get_contents($fixture);
-        $badge = Badge::fromURI('license-MIT-blue.svg');
+        $badge    = Badge::fromURI('license-MIT-blue.svg');
         $this->render($badge)->__toString()->shouldBeLike($template);
     }
 }

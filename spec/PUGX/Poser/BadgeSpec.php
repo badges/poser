@@ -18,7 +18,7 @@ class BadgeSpec extends ObjectBehavior
     {
         $this->beConstructedWith('a', 'b', '97CA00', 'svg');
         $assert = 'version-stable-97CA00.svg';
-        $it = Badge::fromURI($assert);
+        $it     = Badge::fromURI($assert);
 
         if ((string) $it !== $assert) {
             throw new Exception(\sprintf("from[%s] having[%s]\n", $assert, (string) $it));
@@ -28,9 +28,9 @@ class BadgeSpec extends ObjectBehavior
     public function it_should_be_constructed_by_fromURI_factory_method_escaping_correctly_underscores(): void
     {
         $this->beConstructedWith('a', 'b', '97CA00', 'svg');
-        $input = 'I__m__liugg__io-b-97CA00.svg';
+        $input       = 'I__m__liugg__io-b-97CA00.svg';
         $assertInput = 'I_m_liugg_io-b-97CA00.svg';
-        $it = Badge::fromURI($input);
+        $it          = Badge::fromURI($input);
 
         if ((string) $it !== $assertInput) {
             throw new Exception(\sprintf("from[%s] wants[%s] having[%s]\n", $input, $assertInput, (string) $it));
@@ -40,9 +40,9 @@ class BadgeSpec extends ObjectBehavior
     public function it_should_be_constructed_by_fromURI_factory_method_escaping_correctly_with_single_underscore(): void
     {
         $this->beConstructedWith('a', 'b', '97CA00', 'svg');
-        $input = 'I_m_liuggio-b-97CA00.svg';
+        $input       = 'I_m_liuggio-b-97CA00.svg';
         $assertInput = 'I m liuggio-b-97CA00.svg';
-        $it = Badge::fromURI($input);
+        $it          = Badge::fromURI($input);
 
         if ((string) $it !== $assertInput) {
             throw new Exception(\sprintf("from[%s] wants[%s] having[%s]\n", $input, $assertInput, (string) $it));
@@ -52,9 +52,9 @@ class BadgeSpec extends ObjectBehavior
     public function it_should_be_constructed_by_fromURI_factory_method_escaping_correctly_with_dashes(): void
     {
         $this->beConstructedWith('a', 'b', '97CA00', 'svg');
-        $input = 'I--m--liuggio-b-97CA00.svg';
+        $input       = 'I--m--liuggio-b-97CA00.svg';
         $assertInput = 'I-m-liuggio-b-97CA00.svg';
-        $it = Badge::fromURI($input);
+        $it          = Badge::fromURI($input);
 
         if ((string) $it !== $assertInput) {
             throw new Exception(\sprintf("from[%s] wants[%s] having[%s]\n", $input, $assertInput, (string) $it));

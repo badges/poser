@@ -18,6 +18,12 @@ return PhpCsFixer\Config::create()
         'declare_strict_types' => false,
         'native_function_invocation' => true,
         'concat_space' => ['spacing' => 'one'],
+        'binary_operator_spaces' => ['align_double_arrow' => true, 'align_equals' => true],
+        'single_blank_line_at_eof' => true,
+        'phpdoc_align' => ['align' => 'vertical'],
+        'phpdoc_separation' => true,
+        'phpdoc_summary' => false,
+        'random_api_migration' => true,
     ])
     ->setFinder($finder)
 ;
