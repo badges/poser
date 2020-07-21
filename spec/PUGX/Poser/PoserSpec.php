@@ -23,7 +23,7 @@ class PoserSpec extends ObjectBehavior
         $subject = 'stable';
         $status  = 'v2.0';
         $color   = '97CA00';
-        $format  = 'svg';
+        $format  = 'flat';
 
         $this->generate($subject, $status, $color, $format)->shouldBeAValidSVGImageContaining($subject, $status);
     }
