@@ -66,7 +66,6 @@ class BadgeSpec extends ObjectBehavior
      */
     public function it_should_validate_available_color_schemes($colorName, $expectedValue): void
     {
-        \var_dump($colorName);
         $this->beConstructedWith('a', 'b', $colorName, 'svg');
         $this->getHexColor()->shouldBeString();
     }
