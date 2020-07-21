@@ -22,7 +22,7 @@ interface RenderInterface
     public function render(Badge $badge): Image;
 
     /**
-     * @return array the list of the supported format eg array('svg')
+     * @return array the list of the supported format eg array('flat')
      */
     public function supportedFormats(): array;
 }
