@@ -43,10 +43,10 @@ Flush an image
 #### 2. Use in your project as lib
 
 ```php
-use PUGX\Poser\Render\SvgRender;
+use PUGX\Poser\Render\SvgPlasticRender;
 use PUGX\Poser\Poser;
 
-$render = new SvgRender();
+$render = new SvgPlasticRender();
 $poser = new Poser($render);
 
 echo $poser->generate('license', 'MIT', '428F7E', 'plastic');

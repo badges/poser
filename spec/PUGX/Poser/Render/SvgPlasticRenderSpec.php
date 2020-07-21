@@ -6,7 +6,7 @@ use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 use PUGX\Poser\Badge;
 
-class SvgRenderSpec extends ObjectBehavior
+class SvgPlasticRenderSpec extends ObjectBehavior
 {
     public function let($calculator): void
     {
