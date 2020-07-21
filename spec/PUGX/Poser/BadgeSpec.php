@@ -11,7 +11,7 @@ class BadgeSpec extends ObjectBehavior
     public function it_is_initializable(): void
     {
         $this->beConstructedWith('a', 'b', '97CA00', 'svg');
-        $this->shouldHaveType('Pugx\Poser\Badge');
+        $this->shouldHaveType(Badge::class);
     }
 
     public function it_should_be_constructed_by_fromURI_factory_method(): void
