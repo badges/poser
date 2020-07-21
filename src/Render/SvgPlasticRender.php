@@ -12,12 +12,12 @@
 namespace PUGX\Poser\Render;
 
 /**
- * Class SvgGenerator.
+ * Class SvgPlasticGenerator.
  *
  * @author Claudio D'Alicandro <claudio.dalicandro@gmail.com>
  * @author Giulio De Donato <liuggio@gmail.com>
  */
-class SvgRender extends LocalSvgRenderer
+class SvgPlasticRender extends LocalSvgRenderer
 {
     /**
      * A list of all supported formats.

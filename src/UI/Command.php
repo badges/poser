@@ -6,7 +6,7 @@ use PUGX\Poser\Badge;
 use PUGX\Poser\Poser;
 use PUGX\Poser\Render\SvgFlatRender;
 use PUGX\Poser\Render\SvgFlatSquareRender;
-use PUGX\Poser\Render\SvgRender;
+use PUGX\Poser\Render\SvgPlasticRender;
 use Symfony\Component\Console\Command\Command as BaseCommand;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -32,7 +32,7 @@ class Command extends BaseCommand
     private function init(): void
     {
         $this->poser = new Poser([
-            new SvgRender(),
+            new SvgPlasticRender(),
             new SvgFlatRender(),
             new SvgFlatSquareRender(),
         ]);
