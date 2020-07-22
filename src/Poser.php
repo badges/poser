@@ -21,23 +21,24 @@ class Poser
         }
 
         foreach ($renders as $render) {
-            $this->addFormatRender($render);
+            $this->addStyleRender($render);
         }
     }
 
     /**
-     * Generate and Render a badge according to the format.
+     * Generate and Render a badge according to the style.
      *
      * @param $subject
      * @param $status
      * @param $color
+     * @param $style
      * @param $format
      */
-    public function generate(string $subject, string $status, string $color, string $format): Image
+    public function generate(string $subject, string $status, string $color, string $style, string $format): Image
     {
-        $badge = new Badge($subject, $status, $color, $format);
+        $badge = new Badge($subject, $status, $color, $style, $format);
 
-        return $this->getRenderFor($badge->getFormat())->render($badge);
+        return $this->getRenderFor($badge->getStyle())->render($badge);
     }
 
     /**
@@ -50,30 +51,28 @@ class Poser
     {
         $badge = Badge::fromURI($string);
 
-        return $this->getRenderFor($badge->getFormat())->render($badge);
+        return $this->getRenderFor($badge->getStyle())->render($badge);
     }
 
     /**
-     * All the formats available.
+     * All the styles available.
      */
-    public function validFormats(): array
+    public function validStyles(): array
     {
         return \array_keys($this->renders);
     }
 
-    private function addFormatRender(RenderInterface $render): void
+    private function addStyleRender(RenderInterface $render): void
     {
-        foreach ($render->supportedFormats() as $format) {
-            $this->renders[$format] = $render;
-        }
+        $this->renders[$render->getBadgeStyle()] = $render;
     }
 
-    private function getRenderFor(string $format): RenderInterface
+    private function getRenderFor(string $style): RenderInterface
     {
-        if (!isset($this->renders[$format])) {
-            throw new \InvalidArgumentException(\sprintf('No render founds for this format [%s]', $format));
+        if (!isset($this->renders[$style])) {
+            throw new \InvalidArgumentException(\sprintf('No render founds for this style [%s]', $style));
         }
 
-        return $this->renders[$format];
+        return $this->renders[$style];
     }
 }

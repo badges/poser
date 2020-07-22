@@ -51,14 +51,14 @@ $poser = new Poser($render);
 
 echo $poser->generate('license', 'MIT', '428F7E', 'plastic');
 // or
-echo $poser->generateFromURI('license-MIT-428F7E.plastic');
+echo $poser->generateFromURI('license-MIT-428F7E.svg?style=plastic');
 // or
 $image = $poser->generate('license', 'MIT', '428F7E', 'plastic');
 
-echo $image->getFormat();
+echo $image->getStyle();
 ```
 
-The allowed format are: `plastic`, `flat` and `flat-square`. 
+The allowed styles are: `plastic`, `flat` and `flat-square`.
 
 
 ## Encoding

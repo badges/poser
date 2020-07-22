@@ -10,13 +10,13 @@ class BadgeSpec extends ObjectBehavior
 {
     public function it_is_initializable(): void
     {
-        $this->beConstructedWith('a', 'b', '97CA00', 'svg');
+        $this->beConstructedWith('a', 'b', '97CA00', 'flat');
         $this->shouldHaveType(Badge::class);
     }
 
     public function it_should_be_constructed_by_fromURI_factory_method(): void
     {
-        $this->beConstructedWith('a', 'b', '97CA00', 'svg');
+        $this->beConstructedWith('a', 'b', '97CA00', 'flat');
         $assert = 'version-stable-97CA00.svg';
         $it     = Badge::fromURI($assert);
 
@@ -27,7 +27,7 @@ class BadgeSpec extends ObjectBehavior
 
     public function it_should_be_constructed_by_fromURI_factory_method_escaping_correctly_underscores(): void
     {
-        $this->beConstructedWith('a', 'b', '97CA00', 'svg');
+        $this->beConstructedWith('a', 'b', '97CA00', 'flat');
         $input       = 'I__m__liugg__io-b-97CA00.svg';
         $assertInput = 'I_m_liugg_io-b-97CA00.svg';
         $it          = Badge::fromURI($input);
@@ -39,7 +39,7 @@ class BadgeSpec extends ObjectBehavior
 
     public function it_should_be_constructed_by_fromURI_factory_method_escaping_correctly_with_single_underscore(): void
     {
-        $this->beConstructedWith('a', 'b', '97CA00', 'svg');
+        $this->beConstructedWith('a', 'b', '97CA00', 'flat');
         $input       = 'I_m_liuggio-b-97CA00.svg';
         $assertInput = 'I m liuggio-b-97CA00.svg';
         $it          = Badge::fromURI($input);
@@ -51,7 +51,7 @@ class BadgeSpec extends ObjectBehavior
 
     public function it_should_be_constructed_by_fromURI_factory_method_escaping_correctly_with_dashes(): void
     {
-        $this->beConstructedWith('a', 'b', '97CA00', 'svg');
+        $this->beConstructedWith('a', 'b', '97CA00', 'flat');
         $input       = 'I--m--liuggio-b-97CA00.svg';
         $assertInput = 'I-m-liuggio-b-97CA00.svg';
         $it          = Badge::fromURI($input);
@@ -66,7 +66,7 @@ class BadgeSpec extends ObjectBehavior
      */
     public function it_should_validate_available_color_schemes($colorName, $expectedValue): void
     {
-        $this->beConstructedWith('a', 'b', $colorName, 'svg');
+        $this->beConstructedWith('a', 'b', $colorName, 'flat');
         $this->getHexColor()->shouldBeString();
     }
 

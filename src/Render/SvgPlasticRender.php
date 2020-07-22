@@ -12,25 +12,20 @@
 namespace PUGX\Poser\Render;
 
 /**
- * Class SvgPlasticGenerator.
+ * Class SvgPlasticRender.
  *
  * @author Claudio D'Alicandro <claudio.dalicandro@gmail.com>
  * @author Giulio De Donato <liuggio@gmail.com>
  */
 class SvgPlasticRender extends LocalSvgRenderer
 {
-    /**
-     * A list of all supported formats.
-     *
-     * @return array|string[]
-     */
-    public function supportedFormats(): array
+    public function getBadgeStyle(): string
     {
-        return ['plastic'];
+        return 'plastic';
     }
 
     protected function getTemplateName(): string
     {
-        return 'plastic';
+        return $this->getBadgeStyle();
     }
 }

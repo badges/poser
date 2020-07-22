@@ -49,7 +49,7 @@ abstract class LocalSvgRenderer implements RenderInterface
         $template   = $this->getTemplate($this->getTemplateName());
         $parameters = $this->buildParameters($badge);
 
-        return $this->renderSvg($template, $parameters, $badge->getFormat());
+        return $this->renderSvg($template, $parameters, $badge->getStyle());
     }
 
     abstract protected function getTemplateName(): string;
@@ -57,12 +57,12 @@ abstract class LocalSvgRenderer implements RenderInterface
     /**
      * @return string SVG content of the template
      */
-    private function getTemplate(string $format): string
+    private function getTemplate(string $style): string
     {
-        $filepath = \sprintf('%s/%s.svg', $this->templatesDirectory, $format);
+        $filepath = \sprintf('%s/%s.svg', $this->templatesDirectory, $style);
 
         if (!\file_exists($filepath)) {
-            throw new \InvalidArgumentException(\sprintf('No template for format %s', $format));
+            throw new \InvalidArgumentException(\sprintf('No template for style %s', $style));
         }
 
         return \file_get_contents($filepath);
@@ -73,7 +73,7 @@ abstract class LocalSvgRenderer implements RenderInterface
         return $this->textSizeCalculator->calculateWidth($text);
     }
 
-    private function renderSvg(string $render, array $parameters, string $format): Image
+    private function renderSvg(string $render, array $parameters, string $style): Image
     {
         foreach ($parameters as $key => $variable) {
             $render = \str_replace(\sprintf('{{ %s }}', $key), $variable, $render);
@@ -88,7 +88,7 @@ abstract class LocalSvgRenderer implements RenderInterface
             throw new \RuntimeException('Generated xml is not a SVG');
         }
 
-        return Image::createFromString($render, $format);
+        return Image::createFromString($render, $style);
     }
 
     private function buildParameters(Badge $badge): array

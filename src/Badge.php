@@ -4,6 +4,7 @@ namespace PUGX\Poser;
 
 class Badge
 {
+    public const DEFAULT_STYLE  = 'flat';
     public const DEFAULT_FORMAT = 'svg';
 
     private static array $colorScheme = [
@@ -21,14 +22,16 @@ class Badge
     private string $subject;
     private string $status;
     private string $color;
+    private string $style;
     private string $format;
 
-    public function __construct(string $subject, string $status, string $color, string $format = self::DEFAULT_FORMAT)
+    public function __construct(string $subject, string $status, string $color, string $style = self::DEFAULT_STYLE, string $format = self::DEFAULT_FORMAT)
     {
         $this->subject = $this->escapeValue($subject);
         $this->status  = $this->escapeValue($status);
-        $this->format  = $this->escapeValue($format);
         $this->color   = $this->getColorHex($color);
+        $this->style   = $this->escapeValue($style);
+        $this->format  = $this->escapeValue($format);
 
         if (!$this->isValidColorHex($this->color)) {
             throw new \InvalidArgumentException(\sprintf('Color not valid %s', $this->color));
@@ -51,19 +54,23 @@ class Badge
      */
     public static function fromURI(string $URI): self
     {
-        $regex = '/^(([^-]|--)+)-(([^-]|--)+)-(([^-]|--)+)\.(svg|png|gif|jpg)$/';
+        $parsedURI = \parse_url($URI);
+        $path = $parsedURI['path'];
+        \parse_str($parsedURI['query'] ?? '', $query);
+
+        $regex = '/^(([^-]|--)+)-(([^-]|--)+)-(([^-.]|--)+)(\.(svg|png|gif|jpg))?$/';
         $match = [];
 
-        if (1 !== \preg_match($regex, $URI, $match) && (7 !== \count($match))) {
+        if (1 !== \preg_match($regex, $path, $match) && (6 < \count($match))) {
             throw new \InvalidArgumentException('The URI given is not a valid URI' . $URI);
         }
-
         $subject = $match[1];
         $status  = $match[3];
         $color   = $match[5];
-        $format  = $match[7];
+        $style   = isset($query['style']) && $query['style'] !== '' ? $query['style'] : self::DEFAULT_STYLE;
+        $format  = $match[8] ?? self::DEFAULT_FORMAT;
 
-        return new self($subject, $status, $color, $format);
+        return new self($subject, $status, $color, $style, $format);
     }
 
     /**
@@ -72,6 +79,14 @@ class Badge
     public function getHexColor(): string
     {
         return '#' . $this->color;
+    }
+
+    /**
+     * @return string the style of the image eg. `flat`.
+     */
+    public function getStyle(): string
+    {
+        return $this->style;
     }
 
     /**
