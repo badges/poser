@@ -3,6 +3,7 @@
 namespace spec\PUGX\Poser;
 
 use PhpSpec\ObjectBehavior;
+use PUGX\Poser\Poser;
 use PUGX\Poser\Render\SvgFlatRender;
 
 class PoserSpec extends ObjectBehavior
@@ -15,7 +16,7 @@ class PoserSpec extends ObjectBehavior
 
     public function it_is_initializable(): void
     {
-        $this->shouldHaveType('PUGX\Poser\Poser');
+        $this->shouldHaveType(Poser::class);
     }
 
     public function it_should_be_able_to_generate_an_svg_image(): void
