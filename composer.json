@@ -22,6 +22,9 @@
     "autoload": {
         "psr-4": { "PUGX\\Poser\\": "src/" }
     },
+    "autoload-dev": {
+        "psr-4": { "spec\\PUGX\\": "spec/PUGX/" }
+    },
     "repositories": [
         {
             "type": "vcs",
