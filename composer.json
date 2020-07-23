@@ -42,7 +42,8 @@
         "behat/behat": "^3.7",
         "friendsofphp/php-cs-fixer": "^2.16",
         "moave/phpspec-data-provider-extension": "dev-master",
-        "friends-of-phpspec/phpspec-code-coverage": "^4.3"
+        "friends-of-phpspec/phpspec-code-coverage": "^4.3",
+        "vimeo/psalm": "^3.12"
     },
     "config": {
         "bin-dir": "bin"
