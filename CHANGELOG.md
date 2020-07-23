@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 * add CircleCI for build and tests
 * add changelog
 * configure and run php-cs-fixer with new code style roles
+* add psalm
 
 ### Changed
 * upgrade docker-compose for dev environment with php7.4
