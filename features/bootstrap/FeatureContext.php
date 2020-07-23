@@ -9,6 +9,7 @@ class FeatureContext implements SnippetAcceptingContext
 {
     private string $binFolder;
     private string $output;
+    private int $return;
 
     /**
      * Initializes context.
