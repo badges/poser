@@ -55,7 +55,7 @@ class Badge
     public static function fromURI(string $URI): self
     {
         $parsedURI = \parse_url($URI);
-        $path = $parsedURI['path'];
+        $path      = $parsedURI['path'];
         \parse_str($parsedURI['query'] ?? '', $query);
 
         $regex = '/^(([^-]|--)+)-(([^-]|--)+)-(([^-.]|--)+)(\.(svg|png|gif|jpg))?$/';
@@ -67,7 +67,7 @@ class Badge
         $subject = $match[1];
         $status  = $match[3];
         $color   = $match[5];
-        $style   = isset($query['style']) && $query['style'] !== '' ? $query['style'] : self::DEFAULT_STYLE;
+        $style   = isset($query['style']) && '' !== $query['style'] ? $query['style'] : self::DEFAULT_STYLE;
         $format  = $match[8] ?? self::DEFAULT_FORMAT;
 
         return new self($subject, $status, $color, $style, $format);
