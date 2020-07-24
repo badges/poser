@@ -53,6 +53,8 @@ echo $poser->generate('license', 'MIT', '428F7E', 'plastic');
 // or
 echo $poser->generateFromURI('license-MIT-428F7E.svg?style=plastic');
 // or
+echo $poser->generateFromURI('license-MIT-428F7E?style=plastic');
+// or
 $image = $poser->generate('license', 'MIT', '428F7E', 'plastic');
 
 echo $image->getStyle();
