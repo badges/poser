@@ -21,7 +21,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 * refactoring library to full typed
 * upgrade readme
 * use class notation in tests
-* badge style now separated from file format
+* badge style separated from file format
 
 ### Deprecated
 * this version works only with php version >= 7.4
