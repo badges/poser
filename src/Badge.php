@@ -61,7 +61,7 @@ class Badge
         $regex = '/^(([^-]|--)+)-(([^-]|--)+)-(([^-.]|--)+)(\.(svg|png|gif|jpg))?$/';
         $match = [];
 
-        if (1 !== \preg_match($regex, $path, $match) && (6 < \count($match))) {
+        if (1 !== \preg_match($regex, $path, $match) && (6 > \count($match))) {
             throw new \InvalidArgumentException('The URI given is not a valid URI' . $URI);
         }
         $subject = $match[1];
