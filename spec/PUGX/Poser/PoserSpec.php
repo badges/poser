@@ -75,6 +75,13 @@ class PoserSpec extends ObjectBehavior
         $this->generateFromURI($subject)->shouldBeAValidSVGImageContaining('stable', 'v2.0');
     }
 
+    public function it_should_throw_exception_on_generate_an_svg_image_with_bad_uri(): void
+    {
+        $subject = 'stable-v2.0-';
+
+        $this->shouldThrow(\InvalidArgumentException::class)->during('generateFromURI', [$subject]);
+    }
+
     public function getMatchers(): array
     {
         return [
