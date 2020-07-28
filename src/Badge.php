@@ -9,7 +9,7 @@ class Badge
 
     private static array $colorScheme = [
         'brightgreen'   => '44cc11',
-        'green'         => '97CA00',
+        'green'         => '97ca00',
         'yellowgreen'   => 'a4a61d',
         'yellow'        => 'dfb317',
         'orange'        => 'fe7d37',
@@ -18,7 +18,7 @@ class Badge
         'lightgray'     => '9f9f9f',
         'grey'          => '555555',
         'blueviolet'    => '8a2be2',
-        'success'       => '97CA00',
+        'success'       => '97ca00',
         'important'     => 'fe7d37',
         'critical'      => 'e05d44',
         'informational' => '007ec6',
