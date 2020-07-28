@@ -12,24 +12,19 @@
 namespace PUGX\Poser\Render;
 
 /**
- * Class SvgFlatGenerator.
+ * Class SvgFlatSquareRender.
  *
  * @author Giulio De Donato <liuggio@gmail.com>
  */
 class SvgFlatSquareRender extends LocalSvgRenderer
 {
-    /**
-     * A list of all supported formats.
-     *
-     * @return array|string[]
-     */
-    public function supportedFormats(): array
+    public function getBadgeStyle(): string
     {
-        return ['flat-square'];
+        return 'flat-square';
     }
 
     protected function getTemplateName(): string
     {
-        return 'flat-square';
+        return $this->getBadgeStyle();
     }
 }

@@ -21,12 +21,12 @@ class Image
 {
     private string $content;
 
-    private string $format;
+    private string $style;
 
-    private function __construct(string $content, string $format)
+    private function __construct(string $content, string $style)
     {
         $this->content = $content;
-        $this->format  = $format;
+        $this->style   = $style;
     }
 
     /**
@@ -40,13 +40,13 @@ class Image
     /**
      * Factory method.
      */
-    public static function createFromString(string $content, string $format): self
+    public static function createFromString(string $content, string $style): self
     {
-        return new self($content, $format);
+        return new self($content, $style);
     }
 
-    public function getFormat(): string
+    public function getStyle(): string
     {
-        return $this->format;
+        return $this->style;
     }
 }

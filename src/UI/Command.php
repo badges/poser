@@ -25,8 +25,6 @@ class Command extends BaseCommand
 
     private Poser $poser;
 
-    protected string $format;
-
     protected string $header;
 
     private function init(): void
@@ -36,7 +34,6 @@ class Command extends BaseCommand
             new SvgFlatRender(),
             new SvgFlatSquareRender(),
         ]);
-        $this->format = 'flat';
         $this->header = self::HEADER;
     }
 
@@ -63,10 +60,18 @@ class Command extends BaseCommand
                 'The hexadecimal color eg. `97CA00` or the name [' . \implode(', ', Badge::getColorNamesAvailable()) . ']'
             )
             ->addOption(
+                'style',
+                's',
+                InputOption::VALUE_REQUIRED,
+                'The style of the image eg. `flat`, styles available [' . \implode(', ', $this->poser->validStyles()) . ']',
+                Badge::DEFAULT_STYLE
+            )
+            ->addOption(
                 'format',
                 'f',
                 InputOption::VALUE_REQUIRED,
-                'The format of the image eg. `svg`, formats available [' . \implode(', ', $this->poser->validFormats()) . ']'
+                'The format of the image eg. `svg`, formats available [' . \implode(', ', $this->poser->validStyles()) . ']',
+                Badge::DEFAULT_FORMAT
             )
             ->addOption(
                 'path',
@@ -84,13 +89,11 @@ class Command extends BaseCommand
         $subject = $input->getArgument('subject');
         $status  = $input->getArgument('status');
         $color   = $input->getArgument('color');
-
-        if ($input->getOption('format')) {
-            $this->format = (string) $input->getOption('format');
-        }
+        $style   = (string) $input->getOption('style');
+        $format  = (string) $input->getOption('format');
 
         try {
-            $imageContent = $this->poser->generate($subject, $status, $color, $this->format);
+            $imageContent = $this->poser->generate($subject, $status, $color, $style, $format);
 
             if ($input->getOption('path')) {
                 $this->storeImage($output, $input->getOption('path'), $imageContent);
