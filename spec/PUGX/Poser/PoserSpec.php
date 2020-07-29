@@ -3,49 +3,94 @@
 namespace spec\PUGX\Poser;
 
 use PhpSpec\ObjectBehavior;
-use Prophecy\Argument;
+use PUGX\Poser\Poser;
 use PUGX\Poser\Render\SvgFlatRender;
+use PUGX\Poser\Render\SvgFlatSquareRender;
 
 class PoserSpec extends ObjectBehavior
 {
-    function let()
+    public function let(): void
     {
-        $render = new SvgFlatRender();
-        $this->beConstructedWith(array($render));
+        $this->beConstructedWith([
+            new SvgFlatRender(),
+            new SvgFlatSquareRender(),
+        ]);
     }
 
-    function it_is_initializable()
+    public function it_is_initializable(): void
     {
-        $this->shouldHaveType('PUGX\Poser\Poser');
+        $this->shouldHaveType(Poser::class);
     }
 
-    function it_should_be_able_to_generate_an_svg_image()
+    public function it_should_be_able_to_generate_an_svg_image(): void
     {
         $subject = 'stable';
-        $status = 'v2.0';
-        $color = '97CA00';
-        $format = 'svg';
+        $status  = 'v2.0';
+        $color   = '97CA00';
+        $style   = 'flat';
+        $format  = 'svg';
 
-        $this->generate($subject, $status, $color, $format)->shouldBeAValidSVGImageContaining($subject, $status);
+        $this->generate($subject, $status, $color, $style, $format)->shouldBeAValidSVGImageContaining($subject, $status);
     }
 
-    function it_should_be_able_to_generate_an_svg_image_from_URI()
+    public function it_should_be_able_to_generate_an_svg_image_from_URI(): void
     {
         $subject = 'stable-v2.0-97CA00.svg';
 
         $this->generateFromURI($subject)->shouldBeAValidSVGImageContaining('stable', 'v2.0');
     }
 
-
-    public function getMatchers()
+    public function it_should_be_able_to_generate_an_svg_image_from_URI_without_file_extension(): void
     {
-        return array(
-            'beAValidSVGImageContaining' => function($object, $subject, $status) {
-                    $regex = '/^<svg.*width="((.|\n)*)'.$subject.'((.|\n)*)'.$status.'((.|\n)*)<\/svg>$/';
-                    $matches = array();
+        $subject = 'stable-v2.0-97CA00';
 
-                    return preg_match($regex, $object, $matches, PREG_OFFSET_CAPTURE, 0);
-             },
-        );
+        $this->generateFromURI($subject)->shouldBeAValidSVGImageContaining('stable', 'v2.0');
+    }
+
+    public function it_should_be_able_to_generate_an_svg_image_from_URI_with_style(): void
+    {
+        $subject = 'stable-v2.0-97CA00.svg?style=flat-square';
+
+        $this->generateFromURI($subject)->shouldBeAValidSVGImageContaining('stable', 'v2.0');
+    }
+
+    public function it_should_be_able_to_generate_an_svg_image_from_URI_with_empty_style(): void
+    {
+        $subject = 'stable-v2.0-97CA00.svg?style=';
+
+        $this->generateFromURI($subject)->shouldBeAValidSVGImageContaining('stable', 'v2.0');
+    }
+
+    public function it_should_be_able_to_generate_an_svg_image_from_URI_with_empty_query(): void
+    {
+        $subject = 'stable-v2.0-97CA00.svg?';
+
+        $this->generateFromURI($subject)->shouldBeAValidSVGImageContaining('stable', 'v2.0');
+    }
+
+    public function it_should_be_able_to_generate_an_svg_image_from_URI_without_file_extension_with_style(): void
+    {
+        $subject = 'stable-v2.0-97CA00?style=flat-square';
+
+        $this->generateFromURI($subject)->shouldBeAValidSVGImageContaining('stable', 'v2.0');
+    }
+
+    public function it_should_throw_exception_on_generate_an_svg_image_with_bad_uri(): void
+    {
+        $subject = 'stable-v2.0-';
+
+        $this->shouldThrow(\InvalidArgumentException::class)->during('generateFromURI', [$subject]);
+    }
+
+    public function getMatchers(): array
+    {
+        return [
+            'beAValidSVGImageContaining' => function ($object, $subject, $status) {
+                $regex = '/^<svg.*width="((.|\n)*)' . $subject . '((.|\n)*)' . $status . '((.|\n)*)<\/svg>$/';
+                $matches = [];
+
+                return \preg_match($regex, $object, $matches, PREG_OFFSET_CAPTURE, 0);
+            },
+        ];
     }
 }

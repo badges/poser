@@ -1,0 +1,10 @@
+version: '3.7'
+services:
+
+  fpm:
+    build:
+      context: docker/php-fpm
+      network: host
+    working_dir: /application
+    volumes:
+      - .:/application:cached

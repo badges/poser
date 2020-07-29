@@ -25,23 +25,13 @@ use SimpleXMLElement;
  */
 abstract class LocalSvgRenderer implements RenderInterface
 {
-    const VENDOR_COLOR = '#555';
+    public const VENDOR_COLOR = '#555';
 
-    /**
-     * @var TextSizeCalculatorInterface
-     */
-    private $textSizeCalculator;
+    private ?TextSizeCalculatorInterface $textSizeCalculator = null;
 
-    /**
-     * @var string
-     */
-    private $templatesDirectory;
+    private ?string $templatesDirectory = null;
 
-    /**
-     * @param TextSizeCalculatorInterface $textSizeCalculator
-     * @param null|string $templatesDirectory
-     */
-    public function __construct(TextSizeCalculatorInterface $textSizeCalculator = null, $templatesDirectory = null)
+    public function __construct(?TextSizeCalculatorInterface $textSizeCalculator = null, ?string $templatesDirectory = null)
     {
         $this->textSizeCalculator = $textSizeCalculator;
         if (null === $this->textSizeCalculator) {
@@ -54,61 +44,39 @@ abstract class LocalSvgRenderer implements RenderInterface
         }
     }
 
-    /**
-     * @param Badge $badge
-     *
-     * @return mixed
-     */
-    public function render(Badge $badge)
+    public function render(Badge $badge): Image
     {
-        $template = $this->getTemplate($this->getTemplateName());
+        $template   = $this->getTemplate($this->getTemplateName());
         $parameters = $this->buildParameters($badge);
 
-        return $this->renderSvg($template, $parameters, $badge->getFormat());
+        return $this->renderSvg($template, $parameters, $badge->getStyle());
     }
 
-    /**
-     * @return string
-     */
-    abstract protected function getTemplateName();
+    abstract protected function getTemplateName(): string;
 
     /**
-     * @param $format
-     *
      * @return string SVG content of the template
      */
-    private function getTemplate($format)
+    private function getTemplate(string $style): string
     {
-        $filepath = sprintf('%s/%s.svg', $this->templatesDirectory, $format);
+        $filepath = \sprintf('%s/%s.svg', $this->templatesDirectory, $style);
 
-        if (!file_exists($filepath)) {
-            throw new \InvalidArgumentException(sprintf('No template for format %s', $format));
+        if (!\file_exists($filepath)) {
+            throw new \InvalidArgumentException(\sprintf('No template for style %s', $style));
         }
 
-        return file_get_contents($filepath);
+        return \file_get_contents($filepath);
     }
 
-    /**
-     * @param $text
-     *
-     * @return float
-     */
-    private function stringWidth($text)
+    private function stringWidth(string $text): float
     {
         return $this->textSizeCalculator->calculateWidth($text);
     }
 
-    /**
-     * @param string $render
-     * @param array $parameters
-     * @param string $format
-     *
-     * @return Image
-     */
-    private function renderSvg($render, $parameters, $format)
+    private function renderSvg(string $render, array $parameters, string $style): Image
     {
         foreach ($parameters as $key => $variable) {
-            $render = str_replace(sprintf('{{ %s }}', $key), $variable, $render);
+            $render = \str_replace(\sprintf('{{ %s }}', $key), $variable, $render);
         }
 
         try {
@@ -120,27 +88,22 @@ abstract class LocalSvgRenderer implements RenderInterface
             throw new \RuntimeException('Generated xml is not a SVG');
         }
 
-        return Image::createFromString($render, $format);
+        return Image::createFromString($render, $style);
     }
 
-    /**
-     * @param Badge $badge
-     *
-     * @return array
-     */
-    private function buildParameters(Badge $badge)
+    private function buildParameters(Badge $badge): array
     {
-        $parameters = array();
+        $parameters = [];
 
-        $parameters['vendorWidth'] = $this->stringWidth($badge->getSubject());
-        $parameters['valueWidth'] = $this->stringWidth($badge->getStatus());
-        $parameters['totalWidth'] = $parameters['valueWidth'] + $parameters['vendorWidth'];
-        $parameters['vendorColor'] = static::VENDOR_COLOR;
-        $parameters['valueColor'] = $badge->getHexColor();
-        $parameters['vendor'] = $badge->getSubject();
-        $parameters['value'] = $badge->getStatus();
-        $parameters['vendorStartPosition'] = round($parameters['vendorWidth'] / 2, 1) + 1;
-        $parameters['valueStartPosition'] = $parameters['vendorWidth'] + round($parameters['valueWidth'] / 2, 1) - 1;
+        $parameters['vendorWidth']         = $this->stringWidth($badge->getSubject());
+        $parameters['valueWidth']          = $this->stringWidth($badge->getStatus());
+        $parameters['totalWidth']          = $parameters['valueWidth'] + $parameters['vendorWidth'];
+        $parameters['vendorColor']         = static::VENDOR_COLOR;
+        $parameters['valueColor']          = $badge->getHexColor();
+        $parameters['vendor']              = $badge->getSubject();
+        $parameters['value']               = $badge->getStatus();
+        $parameters['vendorStartPosition'] = \round($parameters['vendorWidth'] / 2, 1) + 1;
+        $parameters['valueStartPosition']  = $parameters['vendorWidth'] + \round($parameters['valueWidth'] / 2, 1) - 1;
 
         return $parameters;
     }

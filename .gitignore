@@ -1,6 +1,8 @@
 /bin/behat
 /bin/php-cs-fixer
 /bin/phpspec
+/bin/yaml-lint
+/coverage
 /vendor
+.php_cs.cache
 composer.lock
-docker-compose.yml

@@ -6,7 +6,7 @@ use PUGX\Poser\Render\RenderInterface;
 
 class Poser
 {
-    private $renders;
+    private array $renders;
 
     /**
      * Constructor.
@@ -15,31 +15,30 @@ class Poser
      */
     public function __construct($renders)
     {
-        $this->renders = array();
-        if (!is_array($renders)) {
-            $renders = array($renders);
+        $this->renders = [];
+        if (!\is_array($renders)) {
+            $renders = [$renders];
         }
 
         foreach ($renders as $render) {
-            $this->addFormatRender($render);
+            $this->addStyleRender($render);
         }
     }
 
     /**
-     * Generate and Render a badge according to the format.
+     * Generate and Render a badge according to the style.
      *
      * @param $subject
      * @param $status
      * @param $color
+     * @param $style
      * @param $format
-     *
-     * @return Image
      */
-    public function generate($subject, $status, $color, $format)
+    public function generate(string $subject, string $status, string $color, string $style, string $format): Image
     {
-        $badge = new Badge($subject, $status, $color, $format);
+        $badge = new Badge($subject, $status, $color, $style, $format);
 
-        return $this->getRenderFor($badge->getFormat())->render($badge);
+        return $this->getRenderFor($badge->getStyle())->render($badge);
     }
 
     /**
@@ -47,43 +46,33 @@ class Poser
      * eg license-MIT-blue.svg or I_m-liuggio-yellow.svg.
      *
      * @param $string
-     * @return Image
      */
-    public function generateFromURI($string)
+    public function generateFromURI(string $string): Image
     {
         $badge = Badge::fromURI($string);
 
-        return $this->getRenderFor($badge->getFormat())->render($badge);
+        return $this->getRenderFor($badge->getStyle())->render($badge);
     }
 
     /**
-     * All the formats available.
-     *
-     * @return array
+     * All the styles available.
      */
-    public function validFormats()
+    public function validStyles(): array
     {
-        return array_keys($this->renders);
+        return \array_keys($this->renders);
     }
 
-    private function addFormatRender(RenderInterface $render)
+    private function addStyleRender(RenderInterface $render): void
     {
-        foreach ($render->supportedFormats() as $format) {
-            $this->renders[$format] = $render;
-        }
+        $this->renders[$render->getBadgeStyle()] = $render;
     }
 
-    /**
-     * @param $format
-     *
-     * @return RenderInterface
-     */
-    private function getRenderFor($format)
+    private function getRenderFor(string $style): RenderInterface
     {
-        if (!isset($this->renders[$format])) {
-            throw new \InvalidArgumentException(sprintf('No render founds for this format [%s]', $format));
+        if (!isset($this->renders[$style])) {
+            throw new \InvalidArgumentException(\sprintf('No render founds for this style [%s]', $style));
         }
 
-        return $this->renders[$format];
+        return $this->renders[$style];
     }
 }

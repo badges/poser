@@ -5,7 +5,7 @@ Feature: Generation of an image by echo-ing the content
   I want to use the poser script
 
   Scenario: Echo the image running a script with plastic format
-    When I run "poser license MIT blue -f plastic"
+    When I run "poser license MIT blue -s plastic"
     Then it should pass
     And the same output should be like the content of "bootstrap/fixtures/license-MIT-blue_plastic.svg"
 

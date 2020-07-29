@@ -12,58 +12,41 @@
 namespace PUGX\Poser;
 
 /**
- * Class Image, an Image value Object
+ * Class Image, an Image value Object.
  *
  * @author Claudio D'Alicandro <claudio.dalicandro@gmail.com>
  * @author Giulio De Donato <liuggio@gmail.com>
  */
 class Image
 {
-    /**
-     * @var string $content
-     */
-    private $content;
-    /**
-     * @var string $format
-     */
-    private $format;
+    private string $content;
 
-    /**
-     * @param string $content
-     * @param string $format
-     */
-    private function __construct($content, $format)
+    private string $style;
+
+    private function __construct(string $content, string $style)
     {
         $this->content = $content;
-        $this->format = $format;
+        $this->style   = $style;
     }
 
     /**
-     * Returns the image content as binary string
+     * Returns the image content as binary string.
      */
-    public function __toString()
+    public function __toString(): string
     {
         return (string) $this->content;
     }
 
     /**
-     * Factory method
-     *
-     * @param string $content
-     * @param string $format
-     *
-     * @return Image
+     * Factory method.
      */
-    public static function createFromString($content, $format)
+    public static function createFromString(string $content, string $style): self
     {
-        return new self($content, $format);
+        return new self($content, $style);
     }
 
-    /**
-     * @return string
-     */
-    public function getFormat()
+    public function getStyle(): string
     {
-        return $this->format;
+        return $this->style;
     }
 }
