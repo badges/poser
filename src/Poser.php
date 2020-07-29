@@ -34,7 +34,7 @@ class Poser
      * @param $style
      * @param $format
      */
-    public function generate(string $subject, string $status, string $color, string $style, string $format): Image
+    public function generate(string $subject, string $status, string $color, string $style, string $format = Badge::DEFAULT_FORMAT): Image
     {
         $badge = new Badge($subject, $status, $color, $style, $format);
 
