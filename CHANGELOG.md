@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+
+## [v2.0.0] - 2020-07-29
+
 ### Added
 * add CircleCI for build and tests
 * add changelog
@@ -35,8 +38,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 * fixup phpspec data provider
 * fix dev autoloader
 * remove var_dump from tests
-
-### Security
 
 
 ## [v1.4.1] - 2020-06-11
@@ -94,7 +95,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - stable release for poser
 
 
-[unreleased]: https://github.com/badges/poser/compare/v1.4.1...HEAD
+[Unreleased]: https://github.com/badges/poser/compare/v2.0.0...HEAD
+[v2.0.0]: https://github.com/badges/poser/tree/v2.0.0
 [v1.4.1]: https://github.com/badges/poser/tree/v1.4.1
 [v1.4.0]: https://github.com/badges/poser/tree/v1.4.0
 [v1.3.0]: https://github.com/badges/poser/tree/v1.3.0
