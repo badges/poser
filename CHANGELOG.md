@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 * configure and run php-cs-fixer with new code style roles
 * add setting custom badge style from query string
 * add psalm
+* added all the colors from the shields.io site
 
 ### Changed
 * upgrade docker-compose for dev environment with php7.4
