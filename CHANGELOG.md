@@ -30,6 +30,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Deprecated
 * this version works only with php version >= 7.4
 * rename SvgRender class to SvgPlasticRender to match the same naming pattern with other render classes
+* rename validFormats method to validStyles
 
 ### Removed
 * travis configuration for the CI
