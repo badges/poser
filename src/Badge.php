@@ -8,15 +8,21 @@ class Badge
     public const DEFAULT_FORMAT = 'svg';
 
     private static array $colorScheme = [
-        'brightgreen' => '44cc11',
-        'green'       => '97CA00',
-        'yellow'      => 'dfb317',
-        'yellowgreen' => 'a4a61d',
-        'orange'      => 'fe7d37',
-        'red'         => 'e05d44',
-        'blue'        => '007ec6',
-        'grey'        => '555555',
-        'lightgray'   => '9f9f9f',
+        'brightgreen'   => '44cc11',
+        'green'         => '97ca00',
+        'yellowgreen'   => 'a4a61d',
+        'yellow'        => 'dfb317',
+        'orange'        => 'fe7d37',
+        'red'           => 'e05d44',
+        'blue'          => '007ec6',
+        'lightgray'     => '9f9f9f',
+        'grey'          => '555555',
+        'blueviolet'    => '8a2be2',
+        'success'       => '97ca00',
+        'important'     => 'fe7d37',
+        'critical'      => 'e05d44',
+        'informational' => '007ec6',
+        'inactive'      => '9f9f9f',
     ];
 
     private string $subject;
