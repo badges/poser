@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+
+## [v2.0.2] - 2020-09-17
+
 ### Added
 * lightgrey color to color scheme
 * grey color to color scheme
@@ -103,7 +106,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - stable release for poser
 
 
-[Unreleased]: https://github.com/badges/poser/compare/v2.0.1...HEAD
+[Unreleased]: https://github.com/badges/poser/compare/v2.0.2...HEAD
+[v2.0.2]: https://github.com/badges/poser/tree/v2.0.2
 [v2.0.1]: https://github.com/badges/poser/tree/v2.0.1
 [v2.0.0]: https://github.com/badges/poser/tree/v2.0.0
 [v1.4.1]: https://github.com/badges/poser/tree/v1.4.1
