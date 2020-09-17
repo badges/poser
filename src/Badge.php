@@ -16,6 +16,8 @@ class Badge
         'red'           => 'e05d44',
         'blue'          => '007ec6',
         'lightgray'     => '9f9f9f',
+        'lightgrey'     => '9f9f9f',
+        'gray'          => '555555',
         'grey'          => '555555',
         'blueviolet'    => '8a2be2',
         'success'       => '97ca00',
