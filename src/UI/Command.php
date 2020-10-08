@@ -96,9 +96,9 @@ class Command extends BaseCommand
             $imageContent = $this->poser->generate($subject, $status, $color, $style, $format);
 
             if ($input->getOption('path')) {
-                $this->storeImage($output, $input->getOption('path'), $imageContent);
+                $this->storeImage($output, $input->getOption('path'), (string) $imageContent);
             } else {
-                $this->flushImage($output, $imageContent);
+                $this->flushImage($output, (string) $imageContent);
             }
         } catch (\Exception $e) {
             $this->printHeaderOnce($output);
