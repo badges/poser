@@ -63,6 +63,11 @@ class Badge
     public static function fromURI(string $URI): self
     {
         $parsedURI = \parse_url($URI);
+
+        if (!isset($parsedURI['path'])) {
+            throw new \InvalidArgumentException('The URI given is not a valid URI' . $URI);
+        }
+
         $path      = $parsedURI['path'];
         \parse_str($parsedURI['query'] ?? '', $query);
 
