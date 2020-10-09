@@ -7,6 +7,7 @@ use PUGX\Poser\Poser;
 use PUGX\Poser\Render\SvgFlatRender;
 use PUGX\Poser\Render\SvgFlatSquareRender;
 use PUGX\Poser\Render\SvgPlasticRender;
+use PUGX\Poser\ValueObject\InputRequest;
 use Symfony\Component\Console\Command\Command as BaseCommand;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -83,20 +84,24 @@ class Command extends BaseCommand
 
     /**
      * @throws \Exception
+     * @throws \InvalidArgumentException
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $subject = $input->getArgument('subject');
-        $status  = $input->getArgument('status');
-        $color   = $input->getArgument('color');
-        $style   = (string) $input->getOption('style');
-        $format  = (string) $input->getOption('format');
+        $inputRequest = InputRequest::createFromInput($input);
 
         try {
-            $imageContent = $this->poser->generate($subject, $status, $color, $style, $format);
+            $imageContent = $this->poser->generate(
+                $inputRequest->getSubject(),
+                $inputRequest->getStatus(),
+                $inputRequest->getColor(),
+                $inputRequest->getStyle(),
+                $inputRequest->getFormat()
+            );
 
-            if ($input->getOption('path')) {
-                $this->storeImage($output, $input->getOption('path'), (string) $imageContent);
+            $path = $input->getOption('path');
+            if ($path && \is_string($path)) {
+                $this->storeImage($output, $path, (string) $imageContent);
             } else {
                 $this->flushImage($output, (string) $imageContent);
             }

@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [v2.0.4] - 2020-10-09
+
+### Changed
+* upgrade psalm error level to 3
+
 ## [v2.0.3] - 2020-10-08
 
 ### Changed
@@ -110,7 +115,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - stable release for poser
 
 
-[Unreleased]: https://github.com/badges/poser/compare/v2.0.3...HEAD
+[Unreleased]: https://github.com/badges/poser/compare/v2.0.4...HEAD
+[v2.0.4]: https://github.com/badges/poser/tree/v2.0.3
 [v2.0.3]: https://github.com/badges/poser/tree/v2.0.3
 [v2.0.2]: https://github.com/badges/poser/tree/v2.0.2
 [v2.0.1]: https://github.com/badges/poser/tree/v2.0.1

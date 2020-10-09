@@ -37,14 +37,21 @@ class SingleCommandApplication extends Application
      *
      * @param Command $command The single (accessible) command for this application
      * @param string  $version The version of the application
+     *
+     * @throws \InvalidArgumentException
      */
     public function __construct(Command $command, string $version = 'UNKNOWN')
     {
-        parent::__construct($command->getName(), $version);
+        $commandName = $command->getName();
+        if (null === $commandName) {
+            throw new \InvalidArgumentException('command cannot be null');
+        }
+
+        parent::__construct($commandName, $version);
 
         // Add the given command as single (accessible) command.
         $this->add($command);
-        $this->commandName = (string) $command->getName();
+        $this->commandName = (string) $commandName;
 
         // Override the Application's definition so that it does not
         // require a command name as first argument.

@@ -59,6 +59,10 @@ abstract class LocalSvgRenderer implements RenderInterface
      */
     private function getTemplate(string $style): string
     {
+        if (null === $this->templatesDirectory) {
+            throw new \InvalidArgumentException('TemplateDirectory cannot be null');
+        }
+
         $filepath = \sprintf('%s/%s.svg', $this->templatesDirectory, $style);
 
         if (!\file_exists($filepath)) {
@@ -70,6 +74,10 @@ abstract class LocalSvgRenderer implements RenderInterface
 
     private function stringWidth(string $text): float
     {
+        if (null === $this->textSizeCalculator) {
+            throw new \InvalidArgumentException('TextSizeCalculator cannot be null');
+        }
+
         return $this->textSizeCalculator->calculateWidth($text);
     }
 
