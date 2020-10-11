@@ -38,15 +38,16 @@
         "symfony/console": "^4.0|^5.0"
     },
     "require-dev": {
-        "phpspec/phpspec": "^6.1",
         "behat/behat": "^3.7",
+        "phpspec/phpspec": "^6.1",
+        "friends-of-phpspec/phpspec-code-coverage": "^4.3",
         "friendsofphp/php-cs-fixer": "^2.16",
         "moave/phpspec-data-provider-extension": "dev-master",
-        "friends-of-phpspec/phpspec-code-coverage": "^4.3",
         "vimeo/psalm": "^3.12"
     },
     "config": {
-        "bin-dir": "bin"
+        "bin-dir": "bin",
+        "sort-packages": true
     },
     "bin": ["bin/poser"],
     "scripts": {
