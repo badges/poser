@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+* removed unnecessary composer symlinks from `bin` dir, removed them from `.gitignore` too
+
 ## [v2.0.4] - 2020-10-09
 
 ### Changed
