@@ -1,13 +1,5 @@
-/bin/behat
-/bin/php-cs-fixer
-/bin/phpspec
-/bin/yaml-lint
-/bin/php-parse
-/bin/psalm
-/bin/psalm-language-server
-/bin/psalm-plugin
-/bin/psalm-refactor
-/bin/psalter
+/bin/*
+!/bin/poser
 /coverage
 /vendor
 .php_cs.cache
