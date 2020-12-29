@@ -21,7 +21,7 @@ class Command extends BaseCommand
  <bg=black;options=reverse> |_)(_|(_|(_|(/_  </bg=black;options=reverse> |_)(_)_\(/_|   |
  <bg=black;options=reverse>           _|     </bg=black;options=reverse>_|______________|
 
- http://poser.pug.org
+ https://poser.pugx.org/
 ";
 
     private Poser $poser;
