@@ -15,7 +15,6 @@ class GDTextSizeCalculator implements TextSizeCalculatorInterface
 {
     public const TEXT_FONT = '/Font/DejaVuSans.ttf';
 
-    /** @var string */
     protected string $fontPath;
 
     public function __construct()
