@@ -55,5 +55,12 @@ $ composer phpspec
 $ composer behat
 ```
 
+## Update version of `phar`
+
+```bash
+docker-compose up --build -d
+docker-compose exec php74 composer box:validate
+docker-compose exec php74 composer box:compile
+```
 
 ## ENJOY
