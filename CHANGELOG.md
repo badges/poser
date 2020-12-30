@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+* add CircleCI jobs for build and tests with php 8.0
+
+### Changed
+* refactoring of docker-compose to develop with php74 and php80
+
 ### Fixed
 * removed unnecessary composer symlinks from `bin` dir, removed them from `.gitignore` too
 

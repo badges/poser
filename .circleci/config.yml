@@ -1,14 +1,23 @@
 version: 2.1
 
 executors:
-  poser_executor: # declares a reusable executor
+  # declares a reusable executor
+  poser_executor_php74:
     docker:
-      - image: pugx/poser:2.0
+      - image: pugx/poser:php74
+    working_directory: ~/app
+
+  poser_executor_php80:
+    docker:
+      - image: pugx/poser:php80
     working_directory: ~/app
 
 jobs:
   checkout_code:
-    executor: poser_executor
+    parameters:
+      poser_executor:
+        type: executor
+    executor: << parameters.poser_executor >>
     steps:
       - checkout
       - save_cache:
@@ -17,7 +26,10 @@ jobs:
             - ~/app
 
   php_dependencies:
-    executor: poser_executor
+    parameters:
+      poser_executor:
+        type: executor
+    executor: << parameters.poser_executor >>
     steps:
       - restore_cache:
           keys:
@@ -32,7 +44,10 @@ jobs:
           key: v1-php-dependencies-{{ .Environment.CIRCLE_SHA1 }}
 
   lint_checks:
-    executor: poser_executor
+    parameters:
+      poser_executor:
+        type: executor
+    executor: << parameters.poser_executor >>
     steps:
       - restore_cache:
           keys:
@@ -46,7 +61,10 @@ jobs:
           command: bin/php-cs-fixer fix --verbose --diff --dry-run
 
   phpspec_and_behat:
-    executor: poser_executor
+    parameters:
+      poser_executor:
+        type: executor
+    executor: << parameters.poser_executor >>
     steps:
       - restore_cache:
           keys:
@@ -68,16 +86,27 @@ jobs:
           command: bin/behat
 
 workflows:
-  version: 2
   build-and-test:
     jobs:
-      - checkout_code
+      - checkout_code:
+          matrix:
+            parameters:
+              poser_executor: [ "poser_executor_php74", "poser_executor_php80" ]
       - php_dependencies:
+          matrix:
+            parameters:
+              poser_executor: [ "poser_executor_php74", "poser_executor_php80" ]
           requires:
             - checkout_code
       - lint_checks:
+          matrix:
+            parameters:
+              poser_executor: [ "poser_executor_php74", "poser_executor_php80" ]
           requires:
             - php_dependencies
       - phpspec_and_behat:
+          matrix:
+            parameters:
+              poser_executor: [ "poser_executor_php74", "poser_executor_php80" ]
           requires:
             - php_dependencies

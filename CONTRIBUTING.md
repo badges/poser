@@ -36,10 +36,13 @@ composer behat
 
 ```bash
 docker-compose up --build -d
-docker-compose exec fpm composer install
-docker-compose exec fpm composer phpspec
-docker-compose exec fpm composer behat
+docker-compose exec php74 composer install
+docker-compose exec php74 composer phpspec
+docker-compose exec php74 composer behat
+docker-compose exec php74 composer php-cs-fixer
 ```
+
+or
 
 
 ## Pull Request

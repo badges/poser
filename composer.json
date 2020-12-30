@@ -28,7 +28,7 @@
     "repositories": [
         {
             "type": "vcs",
-            "url": "https://github.com/madisoft/phpspec-data-provider-extension"
+            "url": "https://github.com/JellyBellyDev/phpspec-data-provider-extension"
         }
     ],
     "require": {
@@ -38,12 +38,12 @@
         "symfony/console": "^4.0|^5.0"
     },
     "require-dev": {
-        "behat/behat": "^3.7",
-        "phpspec/phpspec": "^6.1",
-        "friends-of-phpspec/phpspec-code-coverage": "^4.3",
-        "friendsofphp/php-cs-fixer": "^2.16",
-        "moave/phpspec-data-provider-extension": "dev-master",
-        "vimeo/psalm": "^3.12"
+        "behat/behat": "^3.8",
+        "phpspec/phpspec": "^7.0",
+        "friends-of-phpspec/phpspec-code-coverage": "^6.0",
+        "friendsofphp/php-cs-fixer": "^2.17",
+        "moave/phpspec-data-provider-extension": "dev-feat/add-compatibility-to-php80",
+        "vimeo/psalm": "^4.3"
     },
     "config": {
         "bin-dir": "bin",
@@ -55,7 +55,11 @@
         "php-cs-fixer": "bin/php-cs-fixer fix -v --ansi",
         "phpspec": "bin/phpspec run --format=pretty --ansi",
         "phpspec-coverage": "bin/phpspec run -f progress -c phpspec-coverage.yml --ansi",
-        "behat": "bin/behat"
+        "behat": "bin/behat",
+        "docker:build:php74": "docker build -t pugx/poser:php74 -f .circleci/images/php74/Dockerfile .",
+        "docker:push:php74": "docker push pugx/poser:php74",
+        "docker:build:php80": "docker build -t pugx/poser:php80 -f .circleci/images/php80/Dockerfile .",
+        "docker:push:php80": "docker push pugx/poser:php80"
     },
     "extra": {
         "branch-alias": {

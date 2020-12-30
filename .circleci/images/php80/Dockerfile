@@ -1,4 +1,4 @@
-FROM circleci/php:7.4-fpm-browsers
+FROM circleci/php:8.0-fpm-browsers
 
 USER root
 
@@ -13,5 +13,4 @@ RUN docker-php-ext-install zip iconv gd
 
 USER circleci
 
-# install prestissimo
-RUN composer global require hirak/prestissimo
+COPY --from=composer:2 /usr/bin/composer /usr/local/bin/composer
