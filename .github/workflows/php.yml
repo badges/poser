@@ -1,0 +1,42 @@
+name: Poser
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container: pugx/poser:php80
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Validate composer.json
+        run: composer validate
+
+      - name: Cache Composer packages
+        id: composer-cache
+        uses: actions/cache@v2
+        with:
+          path: vendor
+          key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-php-
+
+      - name: Install dependencies
+        run: composer install -n --no-progress --no-suggest
+
+      - name: Coding Standard Checks
+        run: PHP_CS_FIXER_IGNORE_ENV=1 bin/php-cs-fixer fix --verbose --diff --dry-run
+
+      - name: phpspec
+        run: bin/phpspec run --format=pretty
+
+      - name: Run tests (phpspec)
+        run: ./bin/phpspec run --format=pretty
+
+      - name: Run coverage tests (phpspec)
+        run: XDEBUG_MODE=coverage bin/phpspec run -f progress -c phpspec-coverage.yml
+
+      - name: Run behat tests
+        run: ./bin/behat
