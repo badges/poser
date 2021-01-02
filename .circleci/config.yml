@@ -58,7 +58,7 @@ jobs:
             - v1-php-dependencies-{{ .Environment.CIRCLE_SHA1 }}
       - run:
           name: run php-cs-fixer checks
-          command: bin/php-cs-fixer fix --verbose --diff --dry-run
+          command: PHP_CS_FIXER_IGNORE_ENV=1 bin/php-cs-fixer fix --verbose --diff --dry-run
 
   phpspec_and_behat:
     parameters:
@@ -78,7 +78,7 @@ jobs:
           command: bin/phpspec run --format=pretty
       - run:
           name: run phpspec coverage tests
-          command: bin/phpspec run -f progress -c phpspec-coverage.yml
+          command: XDEBUG_MODE=coverage bin/phpspec run -f progress -c phpspec-coverage.yml
       - store_artifacts:
           path: coverage
       - run:
