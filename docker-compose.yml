@@ -1,10 +1,18 @@
 version: '3.7'
 services:
 
-  fpm:
+  php74:
     build:
-      context: docker/php-fpm
-      network: host
+      context: docker/php74
     working_dir: /application
+    stdin_open: true
+    volumes:
+      - .:/application:cached
+
+  php80:
+    build:
+      context: docker/php80
+    working_dir: /application
+    stdin_open: true
     volumes:
       - .:/application:cached

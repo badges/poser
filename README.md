@@ -19,26 +19,30 @@ to use the library with lower php version use the tag [v1.4](https://github.com/
 
 #### 1. Create a project
 
-``` bash
-$ composer create-project badges/poser
-$ ln -s poser/bin/poser /usr/local/bin/poser
+```bash
+composer create-project badges/poser
+ln -s poser/bin/poser /usr/local/bin/poser
 ```
 
 #### 2. Launch the command
 
 Create an image
-
-`$ poser license MIT blue -p "license.svg"`
+```bash
+poser license MIT blue -p "license.svg"
+```
 
 Flush an image
-
-`$ poser license MIT blue`
+```bash
+poser license MIT blue
+```
 
 ## Usage as library
 
 #### 1. Add to composer dependencies
 
-`$ composer require badges/poser`
+```bash
+composer require badges/poser
+```
 
 #### 2. Use in your project as lib
 
@@ -92,4 +96,3 @@ Please refer to [CONTRIBUTING](CONTRIBUTING.md)
 ## License
 
 [![License](https://poser.pugx.org/badges/poser/license.svg)](./LICENSE)
-
