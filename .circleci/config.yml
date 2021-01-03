@@ -4,12 +4,12 @@ executors:
   # declares a reusable executor
   poser_executor_php74:
     docker:
-      - image: pugx/poser:php74
+      - image: pugx/poser:php74-circleci
     working_directory: ~/app
 
   poser_executor_php80:
     docker:
-      - image: pugx/poser:php80
+      - image: pugx/poser:php80-circleci
     working_directory: ~/app
 
 jobs:
