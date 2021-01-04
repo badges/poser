@@ -1,4 +1,4 @@
-# PHP badges poser [![CircleCI](https://circleci.com/gh/badges/poser/tree/master.svg?style=svg)](https://app.circleci.com/pipelines/github/badges/poser?branch=master)
+# PHP badges poser [![Gitbub actions](https://github.com/badges/poser/workflows/Build/badge.svg)](https://github.com/badges/poser/actions)
 
 This is a php library that creates badges like ![Badge Poser](https://cdn.rawgit.com/badges/poser/master/badge-poser.svg) and ![I'm a badge](https://cdn.rawgit.com/badges/poser/master/i_m-badge.svg) and ![dark](https://cdn.rawgit.com/badges/poser/master/today-dark.svg),
 according to [Shields specification](https://github.com/badges/shields#specification).
@@ -6,7 +6,7 @@ according to [Shields specification](https://github.com/badges/shields#specifica
 This library is used by https://poser.pugx.org
 
 [![Latest Stable Version](https://poser.pugx.org/badges/poser/version.svg)](https://packagist.org/packages/badges/poser) [![Latest Unstable Version](https://poser.pugx.org/badges/poser/v/unstable.svg)](//packagist.org/packages/badges/poser) [![Total Downloads](https://poser.pugx.org/badges/poser/downloads.svg)](https://packagist.org/packages/badges/poser)
-[![CircleCI Build](https://poser.pugx.org/badges/poser/circleci)](//packagist.org/packages/badges/poser)
+[![Github actions Build](https://github.com/badges/poser/workflows/Build/badge.svg)](//packagist.org/packages/badges/poser)
 
 ## Dependencies
 
