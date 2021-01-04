@@ -59,11 +59,7 @@
         "docker:build:php74": "docker build -t pugx/poser:php74 -f .docker/base/php74/Dockerfile .",
         "docker:push:php74": "docker push pugx/poser:php74",
         "docker:build:php80": "docker build -t pugx/poser:php80 -f .docker/base/php80/Dockerfile .",
-        "docker:push:php80": "docker push pugx/poser:php80",
-        "docker:build:php74-circleci": "docker build -t pugx/poser:php74-circleci -f .docker/circleci/php74/Dockerfile .",
-        "docker:push:php74-circleci": "docker push pugx/poser:php74-circleci",
-        "docker:build:php80-circleci": "docker build -t pugx/poser:php80-circleci -f .docker/circleci/php80/Dockerfile .",
-        "docker:push:php80-circleci": "docker push pugx/poser:php80-circleci"
+        "docker:push:php80": "docker push pugx/poser:php80"
     },
     "extra": {
         "branch-alias": {
