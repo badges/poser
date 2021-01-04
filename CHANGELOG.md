@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 
 ### Added
+* add Github actions jobs for build and tests with php 7.4 and php 8.0
+
+### Added
 * add CircleCI jobs for build and tests with php 8.0
 
 ### Changed
