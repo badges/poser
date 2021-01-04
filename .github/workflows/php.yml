@@ -34,9 +34,6 @@ jobs:
       - name: Coding Standard Checks
         run: PHP_CS_FIXER_IGNORE_ENV=1 bin/php-cs-fixer fix --verbose --diff --dry-run
 
-      - name: phpspec
-        run: bin/phpspec run --format=pretty
-
       - name: Run tests (phpspec)
         run: ./bin/phpspec run --format=pretty
 
