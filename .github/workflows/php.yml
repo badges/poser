@@ -6,8 +6,13 @@ on:
 
 jobs:
   build:
+
+    strategy:
+      matrix:
+        container: [ "php74", "php80" ]
+
     runs-on: ubuntu-latest
-    container: pugx/poser:php80
+    container: pugx/poser:${{ matrix.container }}
     steps:
       - uses: actions/checkout@v2
 
@@ -19,9 +24,9 @@ jobs:
         uses: actions/cache@v2
         with:
           path: vendor
-          key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
+          key: ${{ runner.os }}-php-${{ matrix.container }}-${{ hashFiles('**/composer.lock') }}
           restore-keys: |
-            ${{ runner.os }}-php-
+            ${{ runner.os }}-php-${{ matrix.container }}
 
       - name: Install dependencies
         run: composer install -n --no-progress --no-suggest
