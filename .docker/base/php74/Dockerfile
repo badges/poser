@@ -14,6 +14,4 @@ RUN docker-php-ext-configure gd --with-freetype=/usr/include/ --with-jpeg=/usr/i
 # install php requirements
 RUN docker-php-ext-install zip iconv gd
 
-USER circleci
-
 COPY --from=composer:2 /usr/bin/composer /usr/local/bin/composer
