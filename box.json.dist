@@ -1,0 +1,4 @@
+{
+  "force-autodiscovery": true,
+  "output": "poser.phar"
+}
