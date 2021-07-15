@@ -51,7 +51,7 @@ class SingleCommandApplication extends Application
 
         // Add the given command as single (accessible) command.
         $this->add($command);
-        $this->commandName = (string) $commandName;
+        $this->commandName = $commandName;
 
         // Override the Application's definition so that it does not
         // require a command name as first argument.

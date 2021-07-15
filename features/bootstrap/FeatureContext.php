@@ -1,11 +1,11 @@
 <?php
 
-use Behat\Behat\Context\SnippetAcceptingContext;
+use Behat\Behat\Context\Context;
 
 /**
  * Behat context class.
  */
-class FeatureContext implements SnippetAcceptingContext
+class FeatureContext implements Context
 {
     private string $binFolder;
     private string $output;
@@ -80,7 +80,7 @@ class FeatureContext implements SnippetAcceptingContext
         \similar_text($expected, $given, $perc);
 
         if ($perc < 94) {
-            throw new \Exception('String similarity:' . $perc . '%. String expected:' . $expected . PHP_EOL . ' given:' . $given);
+            throw new \Exception('String similarity:' . $perc . '%. String expected:' . $expected . \PHP_EOL . ' given:' . $given);
         }
     }
 }

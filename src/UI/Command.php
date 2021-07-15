@@ -28,6 +28,18 @@ class Command extends BaseCommand
 
     protected string $header;
 
+    public function __construct(string $name = null)
+    {
+        parent::__construct($name);
+
+        $this->poser = new Poser([
+            new SvgPlasticRender(),
+            new SvgFlatRender(),
+            new SvgFlatSquareRender(),
+        ]);
+        $this->header = self::HEADER;
+    }
+
     private function init(): void
     {
         $this->poser = new Poser([
