@@ -45,7 +45,7 @@ class SvgPlasticRenderSpec extends ObjectBehavior
                 $regex = '/^<svg.*width="((.|\n)*)<\/svg>$/';
                 $matches = [];
 
-                return \preg_match($regex, (string) $subject, $matches, PREG_OFFSET_CAPTURE, 0);
+                return \preg_match($regex, (string) $subject, $matches, \PREG_OFFSET_CAPTURE, 0);
             },
         ];
     }

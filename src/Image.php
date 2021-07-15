@@ -34,7 +34,7 @@ class Image
      */
     public function __toString(): string
     {
-        return (string) $this->content;
+        return $this->content;
     }
 
     /**

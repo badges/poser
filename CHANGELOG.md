@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 
 ### Removed
+* upgrade psalm error level to 2
+
+### Removed
 * CircleCI configuration for CI
 
 ### Added

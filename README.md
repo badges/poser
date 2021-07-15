@@ -51,7 +51,7 @@ use PUGX\Poser\Render\SvgPlasticRender;
 use PUGX\Poser\Poser;
 
 $render = new SvgPlasticRender();
-$poser = new Poser($render);
+$poser = new Poser([$render]);
 
 echo $poser->generate('license', 'MIT', '428F7E', 'plastic');
 // or

@@ -13,12 +13,9 @@ class Poser
      *
      * @param $renders
      */
-    public function __construct($renders)
+    public function __construct(array $renders)
     {
         $this->renders = [];
-        if (!\is_array($renders)) {
-            $renders = [$renders];
-        }
 
         foreach ($renders as $render) {
             $this->addStyleRender($render);

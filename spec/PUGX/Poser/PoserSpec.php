@@ -89,7 +89,7 @@ class PoserSpec extends ObjectBehavior
                 $regex = '/^<svg.*width="((.|\n)*)' . $subject . '((.|\n)*)' . $status . '((.|\n)*)<\/svg>$/';
                 $matches = [];
 
-                return \preg_match($regex, $object, $matches, PREG_OFFSET_CAPTURE, 0);
+                return \preg_match($regex, $object, $matches, \PREG_OFFSET_CAPTURE, 0);
             },
         ];
     }

@@ -55,7 +55,7 @@
         "php-cs-fixer": "bin/php-cs-fixer fix -v --ansi",
         "phpspec": "bin/phpspec run --format=pretty --ansi",
         "phpspec-coverage": "bin/phpspec run -f progress -c phpspec-coverage.yml --ansi",
-        "behat": "bin/behat",
+        "behat": "bin/behat --snippets-for",
         "docker:build:php74": "docker build -t pugx/poser:php74 -f .docker/base/php74/Dockerfile .",
         "docker:push:php74": "docker push pugx/poser:php74",
         "docker:build:php80": "docker build -t pugx/poser:php80 -f .docker/base/php80/Dockerfile .",
