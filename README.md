@@ -7,6 +7,7 @@ This library is used by https://poser.pugx.org
 
 [![Latest Stable Version](https://poser.pugx.org/badges/poser/version.svg)](https://packagist.org/packages/badges/poser) [![Latest Unstable Version](https://poser.pugx.org/badges/poser/v/unstable.svg)](//packagist.org/packages/badges/poser) [![Total Downloads](https://poser.pugx.org/badges/poser/downloads.svg)](https://packagist.org/packages/badges/poser)
 [![Github actions Build](https://github.com/badges/poser/workflows/Build/badge.svg)](//packagist.org/packages/badges/poser)
+[![PHP Version Require](http://poser.pugx.org/badges/poser/require/php)](https://packagist.org/packages/badges/poser)
 
 ## Dependencies
 
