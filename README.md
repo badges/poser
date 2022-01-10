@@ -1,4 +1,4 @@
-# PHP badges poser [![Gitbub actions](https://github.com/badges/poser/workflows/Build/badge.svg)](https://github.com/badges/poser/actions)
+# PHP badges poser [![GitHub actions](https://github.com/badges/poser/workflows/Build/badge.svg)](https://github.com/badges/poser/actions)
 
 This is a php library that creates badges like ![Badge Poser](https://cdn.rawgit.com/badges/poser/master/badge-poser.svg) and ![I'm a badge](https://cdn.rawgit.com/badges/poser/master/i_m-badge.svg) and ![dark](https://cdn.rawgit.com/badges/poser/master/today-dark.svg),
 according to [Shields specification](https://github.com/badges/shields#specification).
