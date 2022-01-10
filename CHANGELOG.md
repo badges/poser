@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [v2.2.0] - 2022-01-10
+
+### Added
+* add compatibility to Symfony v6
 
 ## [v2.1.0] - 2021-07-15
 
