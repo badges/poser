@@ -41,7 +41,7 @@
         "behat/behat": "^3.8",
         "phpspec/phpspec": "^7.0",
         "friends-of-phpspec/phpspec-code-coverage": "^6.0",
-        "friendsofphp/php-cs-fixer": "^2.17",
+        "friendsofphp/php-cs-fixer": "^3.5",
         "moave/phpspec-data-provider-extension": "dev-feat/add-compatibility-to-php80",
         "vimeo/psalm": "^4.3"
     },
