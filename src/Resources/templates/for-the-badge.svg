@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="{{ totalWidth }}" height="30">
+	<rect x="0" y="0" width="{{ vendorWidth }}" height="30" fill="{{ vendorColor }}"/>
+	<rect x="{{ vendorWidth }}" y="0" width="{{ valueWidth }}" height="30" fill="{{ valueColor }}"/>
+	{{ vendorTextPath }}
+	{{ valueTextPath }}
+</svg>

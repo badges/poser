@@ -27,21 +27,13 @@ abstract class LocalSvgRenderer implements RenderInterface
 {
     public const VENDOR_COLOR = '#555';
 
-    private ?TextSizeCalculatorInterface $textSizeCalculator = null;
-
-    private ?string $templatesDirectory = null;
+    private TextSizeCalculatorInterface $textSizeCalculator;
+    private string $templatesDirectory;
 
     public function __construct(?TextSizeCalculatorInterface $textSizeCalculator = null, ?string $templatesDirectory = null)
     {
-        $this->textSizeCalculator = $textSizeCalculator;
-        if (null === $this->textSizeCalculator) {
-            $this->textSizeCalculator = new GDTextSizeCalculator();
-        }
-
-        $this->templatesDirectory = $templatesDirectory;
-        if (null === $this->templatesDirectory) {
-            $this->templatesDirectory = __DIR__ . '/../Resources/templates';
-        }
+        $this->textSizeCalculator = $textSizeCalculator ?? new GDTextSizeCalculator();
+        $this->templatesDirectory = $templatesDirectory ?? (__DIR__ . '/../Resources/templates');
     }
 
     public function render(Badge $badge): Image
@@ -99,7 +91,7 @@ abstract class LocalSvgRenderer implements RenderInterface
         return Image::createFromString($render, $style);
     }
 
-    private function buildParameters(Badge $badge): array
+    protected function buildParameters(Badge $badge): array
     {
         $parameters = [];
 

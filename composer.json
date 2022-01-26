@@ -35,6 +35,7 @@
         "php": ">=7.4",
         "ext-gd": "*",
         "ext-simplexml": "*",
+        "kartsims/easysvg": "^1.0",
         "symfony/console": "^4.0|^5.0|^6.0"
     },
     "require-dev": {
@@ -47,7 +48,10 @@
     },
     "config": {
         "bin-dir": "bin",
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "composer/package-versions-deprecated": true
+        }
     },
     "bin": ["bin/poser"],
     "scripts": {

@@ -6,6 +6,7 @@ use PUGX\Poser\Badge;
 use PUGX\Poser\Poser;
 use PUGX\Poser\Render\SvgFlatRender;
 use PUGX\Poser\Render\SvgFlatSquareRender;
+use PUGX\Poser\Render\SvgForTheBadgeRenderer;
 use PUGX\Poser\Render\SvgPlasticRender;
 use PUGX\Poser\ValueObject\InputRequest;
 use Symfony\Component\Console\Command\Command as BaseCommand;
@@ -36,6 +37,7 @@ class Command extends BaseCommand
             new SvgPlasticRender(),
             new SvgFlatRender(),
             new SvgFlatSquareRender(),
+            new SvgForTheBadgeRenderer(),
         ]);
         $this->header = self::HEADER;
     }
@@ -46,6 +48,7 @@ class Command extends BaseCommand
             new SvgPlasticRender(),
             new SvgFlatRender(),
             new SvgFlatSquareRender(),
+            new SvgForTheBadgeRenderer(),
         ]);
         $this->header = self::HEADER;
     }
