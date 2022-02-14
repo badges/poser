@@ -37,6 +37,11 @@ Flush an image
 poser license MIT blue
 ```
 
+Choose a different style
+```bash
+poser license MIT blue -s "for-the-badge"
+```
+
 ## Usage as library
 
 #### 1. Add to composer dependencies
@@ -65,7 +70,7 @@ $image = $poser->generate('license', 'MIT', '428F7E', 'plastic');
 echo $image->getStyle();
 ```
 
-The allowed styles are: `plastic`, `flat` and `flat-square`.
+The allowed styles are: `plastic`, `flat`, `flat-square` and `for-the-badge`.
 
 
 ## Encoding
