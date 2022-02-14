@@ -70,7 +70,7 @@ $image = $poser->generate('license', 'MIT', '428F7E', 'plastic');
 echo $image->getStyle();
 ```
 
-The allowed styles are: `plastic`, `flat`, `flat-square` and `for-the-badge`.
+The allowed styles are: `plastic`, `flat`, `flat-square`, and `for-the-badge`.
 
 
 ## Encoding
