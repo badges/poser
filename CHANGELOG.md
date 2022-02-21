@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [v2.3.1] - 2022-02-21
+
+### Fixed
+* override kartsims/easysvg fork to official package with version 2.4
+
 ## [v2.3.0] - 2022-02-18
 
 ### Added
