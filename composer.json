@@ -29,17 +29,13 @@
         {
             "type": "vcs",
             "url": "https://github.com/JellyBellyDev/phpspec-data-provider-extension"
-        },
-        {
-            "type": "vcs",
-            "url": "https://github.com/ricardoboss/easysvg"
         }
     ],
     "require": {
         "php": ">=7.4",
         "ext-gd": "*",
         "ext-simplexml": "*",
-        "kartsims/easysvg": "^2.0",
+        "kartsims/easysvg": "^2.4",
         "symfony/console": "^4.0|^5.0|^6.0"
     },
     "require-dev": {
