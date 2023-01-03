@@ -15,7 +15,6 @@ use PUGX\Poser\Badge;
 use PUGX\Poser\Calculator\GDTextSizeCalculator;
 use PUGX\Poser\Calculator\TextSizeCalculatorInterface;
 use PUGX\Poser\Image;
-use SimpleXMLElement;
 
 /**
  * Local SVG renderer.
@@ -80,7 +79,7 @@ abstract class LocalSvgRenderer implements RenderInterface
         }
 
         try {
-            $xml = new SimpleXMLElement($render);
+            $xml = new \SimpleXMLElement($render);
         } catch (\Exception $e) {
             throw new \RuntimeException('Generated string is not a valid XML');
         }
