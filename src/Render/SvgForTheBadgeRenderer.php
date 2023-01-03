@@ -11,7 +11,6 @@
 
 namespace PUGX\Poser\Render;
 
-use EasySVG;
 use PUGX\Poser\Badge;
 use PUGX\Poser\Calculator\TextSizeCalculatorInterface;
 
@@ -24,17 +23,17 @@ class SvgForTheBadgeRenderer extends LocalSvgRenderer
     public const TEXT_LETTER_SPACING = 0.1;
     public const PADDING_X           = 10;
 
-    private EasySVG $easy;
+    private \EasySVG $easy;
 
     public function __construct(
-        ?EasySVG $easySVG = null,
+        ?\EasySVG $easySVG = null,
         ?TextSizeCalculatorInterface $textSizeCalculator = null,
         ?string $templatesDirectory = null
     ) {
         parent::__construct($textSizeCalculator, $templatesDirectory);
 
         if (null === $easySVG) {
-            $easySVG = new EasySVG();
+            $easySVG = new \EasySVG();
         }
 
         $this->easy = $easySVG;

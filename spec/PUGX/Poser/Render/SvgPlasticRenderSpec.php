@@ -42,7 +42,7 @@ class SvgPlasticRenderSpec extends ObjectBehavior
     {
         return [
             'beAValidSVGImage' => function ($subject) {
-                $regex = '/^<svg.*width="((.|\n)*)<\/svg>$/';
+                $regex   = '/^<svg.*width="((.|\n)*)<\/svg>$/';
                 $matches = [];
 
                 return \preg_match($regex, (string) $subject, $matches, \PREG_OFFSET_CAPTURE, 0);

@@ -10,8 +10,6 @@ class Poser
 
     /**
      * Constructor.
-     *
-     * @param $renders
      */
     public function __construct(array $renders)
     {
@@ -24,12 +22,6 @@ class Poser
 
     /**
      * Generate and Render a badge according to the style.
-     *
-     * @param $subject
-     * @param $status
-     * @param $color
-     * @param $style
-     * @param $format
      */
     public function generate(string $subject, string $status, string $color, string $style, string $format = Badge::DEFAULT_FORMAT): Image
     {
@@ -41,8 +33,6 @@ class Poser
     /**
      * Generate and Render a badge according to the format from an URI,
      * eg license-MIT-blue.svg or I_m-liuggio-yellow.svg.
-     *
-     * @param $string
      */
     public function generateFromURI(string $string): Image
     {

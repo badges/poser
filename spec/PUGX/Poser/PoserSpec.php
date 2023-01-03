@@ -86,7 +86,7 @@ class PoserSpec extends ObjectBehavior
     {
         return [
             'beAValidSVGImageContaining' => function ($object, $subject, $status) {
-                $regex = '/^<svg.*width="((.|\n)*)' . $subject . '((.|\n)*)' . $status . '((.|\n)*)<\/svg>$/';
+                $regex   = '/^<svg.*width="((.|\n)*)' . $subject . '((.|\n)*)' . $status . '((.|\n)*)<\/svg>$/';
                 $matches = [];
 
                 return \preg_match($regex, $object, $matches, \PREG_OFFSET_CAPTURE, 0);
