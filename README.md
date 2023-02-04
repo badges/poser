@@ -16,16 +16,37 @@ This library is used by https://poser.pugx.org
 
 to use the library with lower php version use the tag [v1.4](https://github.com/badges/poser/tree/v1.4.0)
 
-## Use as command
+## Use as `phar` command
 
-#### 1. Create a project
+### 1. Download the phar
+```bash
+wget -q -O /usr/local/bin/poser https://github.com/.../poser.phar 
+chmod +x /usr/local/bin/poser
+```
+
+### 2. Launch the command
+
+Create an image
+```bash
+poser license MIT blue -p "license.svg"
+```
+
+Flush an image
+```bash
+poser license MIT blue
+```
+
+
+## Use as `bin` command
+
+### 1. Create a project
 
 ```bash
 composer create-project badges/poser
 ln -s poser/bin/poser /usr/local/bin/poser
 ```
 
-#### 2. Launch the command
+### 2. Launch the command
 
 Create an image
 ```bash
@@ -44,13 +65,13 @@ poser license MIT blue -s "for-the-badge"
 
 ## Usage as library
 
-#### 1. Add to composer dependencies
+### 1. Add to composer dependencies
 
 ```bash
 composer require badges/poser
 ```
 
-#### 2. Use in your project as lib
+### 2. Use in your project as lib
 
 ```php
 use PUGX\Poser\Render\SvgPlasticRender;

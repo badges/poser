@@ -63,7 +63,9 @@
         "docker:build:php74": "docker build -t pugx/poser:php74 -f .docker/base/php74/Dockerfile .",
         "docker:push:php74": "docker push pugx/poser:php74",
         "docker:build:php80": "docker build -t pugx/poser:php80 -f .docker/base/php80/Dockerfile .",
-        "docker:push:php80": "docker push pugx/poser:php80"
+        "docker:push:php80": "docker push pugx/poser:php80",
+        "box:compile": "box compile",
+        "box:validate": "box validate"
     },
     "extra": {
         "branch-alias": {

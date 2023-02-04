@@ -155,7 +155,9 @@ class Command extends BaseCommand
         }
         @\fclose($fp);
 
-        $output->write(\sprintf('Image created at %s', $path));
+        $output->writeln('');
+        $output->writeln(\sprintf('Image created at %s', $path));
+        $output->writeln('');
     }
 
     protected function printHeaderOnce(OutputInterface $output): void

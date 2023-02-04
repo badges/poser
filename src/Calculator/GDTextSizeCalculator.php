@@ -19,7 +19,14 @@ class GDTextSizeCalculator implements TextSizeCalculatorInterface
 
     public function __construct()
     {
-        $this->fontPath = __DIR__ . self::TEXT_FONT;
+        if (0 === \strpos(__DIR__, 'phar://')) {
+            //Hack to work with phar virtual environment
+            $prefixFontPath = './src/Calculator';
+        } else {
+            $prefixFontPath = __DIR__;
+        }
+
+        $this->fontPath = $prefixFontPath . self::TEXT_FONT;
     }
 
     /**
@@ -28,6 +35,7 @@ class GDTextSizeCalculator implements TextSizeCalculatorInterface
     public function calculateWidth(string $text, int $size = self::TEXT_SIZE): float
     {
         $size = $this->convertToPt($size);
+
         $box  = \imagettfbbox($size, 0, $this->fontPath, $text);
 
         return \round(\abs($box[2] - $box[0]) + self::SHIELD_PADDING_EXTERNAL + self::SHIELD_PADDING_INTERNAL, 1);
