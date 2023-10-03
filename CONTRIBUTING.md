@@ -55,5 +55,18 @@ $ composer phpspec
 $ composer behat
 ```
 
+## How build new images on M1
+```shell
+$ docker run --privileged --rm tonistiigi/binfmt --install all
+$ docker buildx create --name mybuilder
+$ docker buildx use mybuilder
+$ docker buildx build \
+  --platform linux/amd64,linux/arm64 \
+  --build-arg BUILDKIT_INLINE_CACHE=1 \
+  --push \
+  -t pugx/poser:php81 \
+  -f .docker/base/php81/Dockerfile \
+  .
+```
 
 ## ENJOY

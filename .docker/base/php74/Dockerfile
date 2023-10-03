@@ -1,4 +1,4 @@
-FROM circleci/php:7.4-fpm-browsers
+FROM php:7.4-fpm
 
 USER root
 
@@ -13,5 +13,9 @@ RUN docker-php-ext-configure gd --with-freetype=/usr/include/ --with-jpeg=/usr/i
 
 # install php requirements
 RUN docker-php-ext-install zip iconv gd
+
+# install xdebug
+RUN pecl install xdebug-3.1.5 \
+    && docker-php-ext-enable xdebug
 
 COPY --from=composer:2 /usr/bin/composer /usr/local/bin/composer
