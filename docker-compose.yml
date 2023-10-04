@@ -16,3 +16,19 @@ services:
     stdin_open: true
     volumes:
       - .:/application:cached
+
+  php81:
+    build:
+      context: .docker/development/php81
+    working_dir: /application
+    stdin_open: true
+    volumes:
+      - .:/application:cached
+
+  php82:
+    build:
+      context: .docker/development/php82
+    working_dir: /application
+    stdin_open: true
+    volumes:
+      - .:/application:cached

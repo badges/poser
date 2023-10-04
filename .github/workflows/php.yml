@@ -2,7 +2,9 @@ name: Build
 
 on:
   push:
+    branches: [ "master" ]
   pull_request:
+    branches: [ "master" ]
 
 jobs:
   cs-fix:
@@ -10,7 +12,7 @@ jobs:
     name: PHP-CS-Fixer
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Fix CS
         uses: docker://oskarstark/php-cs-fixer-ga
 
@@ -18,19 +20,19 @@ jobs:
 
     strategy:
       matrix:
-        container: [ "php74", "php80" ]
+        container: [ "php74", "php80", "php81", "php82" ]
 
     runs-on: ubuntu-latest
     container: pugx/poser:${{ matrix.container }}
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: Validate composer.json
         run: composer validate
 
       - name: Cache Composer packages
         id: composer-cache
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: vendor
           key: ${{ runner.os }}-php-${{ matrix.container }}-${{ hashFiles('**/composer.lock') }}
@@ -38,7 +40,7 @@ jobs:
             ${{ runner.os }}-php-${{ matrix.container }}
 
       - name: Install dependencies
-        run: composer install -n --no-progress --no-suggest
+        run: composer install --prefer-dist --no-progress
 
       - name: Coding Standard Checks
         run: PHP_CS_FIXER_IGNORE_ENV=1 bin/php-cs-fixer fix --verbose --diff --dry-run

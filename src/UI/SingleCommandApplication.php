@@ -58,9 +58,6 @@ class SingleCommandApplication extends Application
         $this->getDefinition()->setArguments();
     }
 
-    /**
-     * {@inheritdoc}
-     */
     protected function getCommandName(InputInterface $input): ?string
     {
         return $this->commandName;
