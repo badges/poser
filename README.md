@@ -11,10 +11,10 @@ This library is used by https://poser.pugx.org
 
 ## Dependencies
 
-* PHP 7.4 or higher
+* PHP 8.1 or higher
 * GD extension
 
-to use the library with lower php version use the tag [v1.4](https://github.com/badges/poser/tree/v1.4.0)
+you can still use the library with lower PHP versions, using the old releases
 
 ## Use as command
 

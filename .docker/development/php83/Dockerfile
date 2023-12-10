@@ -1,4 +1,4 @@
-FROM pugx/poser:php80
+FROM pugx/poser:php83
 
 USER root
 
