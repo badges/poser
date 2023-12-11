@@ -1,22 +1,6 @@
 version: '3.7'
 services:
 
-  php74:
-    build:
-      context: .docker/development/php74
-    working_dir: /application
-    stdin_open: true
-    volumes:
-      - .:/application:cached
-
-  php80:
-    build:
-      context: .docker/development/php80
-    working_dir: /application
-    stdin_open: true
-    volumes:
-      - .:/application:cached
-
   php81:
     build:
       context: .docker/development/php81
@@ -28,6 +12,14 @@ services:
   php82:
     build:
       context: .docker/development/php82
+    working_dir: /application
+    stdin_open: true
+    volumes:
+      - .:/application:cached
+
+  php83:
+    build:
+      context: .docker/development/php83
     working_dir: /application
     stdin_open: true
     volumes:

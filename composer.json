@@ -32,19 +32,19 @@
         }
     ],
     "require": {
-        "php": ">=7.4",
+        "php": "^8.1",
         "ext-gd": "*",
         "ext-simplexml": "*",
-        "kartsims/easysvg": "^2.4",
-        "symfony/console": "^4.0|^5.0|^6.0"
+        "kartsims/easysvg": "^2.5",
+        "symfony/console": "^5.0 || ^6.0 || ^7.0"
     },
     "require-dev": {
-        "behat/behat": "^3.8",
-        "phpspec/phpspec": "^7.0",
-        "friends-of-phpspec/phpspec-code-coverage": "^6.0",
-        "friendsofphp/php-cs-fixer": "^3.5",
+        "behat/behat": "^3.13",
+        "phpspec/phpspec": "^7.4",
+        "friends-of-phpspec/phpspec-code-coverage": "^6.3",
+        "friendsofphp/php-cs-fixer": "^3.41",
         "moave/phpspec-data-provider-extension": "dev-feat/add-compatibility-to-php80",
-        "vimeo/psalm": "^4.3"
+        "vimeo/psalm": "^4.30"
     },
     "config": {
         "bin-dir": "bin",
@@ -60,10 +60,12 @@
         "phpspec": "bin/phpspec run --format=pretty --ansi",
         "phpspec-coverage": "bin/phpspec run -f progress -c phpspec-coverage.yml --ansi",
         "behat": "bin/behat --snippets-for",
-        "docker:build:php74": "docker build -t pugx/poser:php74 -f .docker/base/php74/Dockerfile .",
-        "docker:push:php74": "docker push pugx/poser:php74",
-        "docker:build:php80": "docker build -t pugx/poser:php80 -f .docker/base/php80/Dockerfile .",
-        "docker:push:php80": "docker push pugx/poser:php80"
+        "docker:build:php81": "docker build -t pugx/poser:php81 -f .docker/base/php81/Dockerfile .",
+        "docker:push:php81": "docker push pugx/poser:php81",
+        "docker:build:php82": "docker build -t pugx/poser:php82 -f .docker/base/php82/Dockerfile .",
+        "docker:push:php82": "docker push pugx/poser:php82",
+        "docker:build:php83": "docker build -t pugx/poser:php83 -f .docker/base/php83/Dockerfile .",
+        "docker:push:php83": "docker push pugx/poser:php83"
     },
     "extra": {
         "branch-alias": {

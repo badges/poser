@@ -36,10 +36,10 @@ composer behat
 
 ```bash
 docker-compose up --build -d
-docker-compose exec php74 composer install
-docker-compose exec php74 composer phpspec
-docker-compose exec php74 composer behat
-docker-compose exec php74 composer php-cs-fixer
+docker-compose exec php83 composer install
+docker-compose exec php83 composer phpspec
+docker-compose exec php83 composer behat
+docker-compose exec php83 composer php-cs-fixer
 ```
 
 or
