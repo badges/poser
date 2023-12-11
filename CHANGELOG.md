@@ -7,9 +7,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [v3.0.0] - 2023-12-11
+
 ### Added
 * add compatibility to Symfony v7 and PHP 8.3
+
+### Deprecated
 * drop compatibility to Symfony v4 and PHP 7.4
+
+### Changed
+* update php-cs-fixer deps
+* add workflows pipeline for php 8.1, 8.2 and 8.3
 
 ## [v2.3.1] - 2022-02-21
 
@@ -152,7 +160,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - stable release for poser
 
 
-[Unreleased]: https://github.com/badges/poser/compare/v2.1.0...HEAD
+[Unreleased]: https://github.com/badges/poser/compare/v3.0.0...HEAD
+[v3.0.0]: https://github.com/badges/poser/tree/v3.0.0
+[v2.3.1]: https://github.com/badges/poser/tree/v2.3.1
+[v2.3.0]: https://github.com/badges/poser/tree/v2.3.0
+[v2.2.0]: https://github.com/badges/poser/tree/v2.2.0
 [v2.1.0]: https://github.com/badges/poser/tree/v2.1.0
 [v2.0.4]: https://github.com/badges/poser/tree/v2.0.4
 [v2.0.3]: https://github.com/badges/poser/tree/v2.0.3
