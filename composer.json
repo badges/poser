@@ -62,9 +62,9 @@
         "behat": "bin/behat --snippets-for",
         "docker:build:php81": "docker build -t pugx/poser:php81 -f .docker/base/php81/Dockerfile .",
         "docker:push:php81": "docker push pugx/poser:php81",
-        "docker:build:php82": "docker build -t pugx/poser:php82 -f .docker/base/php80/Dockerfile .",
+        "docker:build:php82": "docker build -t pugx/poser:php82 -f .docker/base/php82/Dockerfile .",
         "docker:push:php82": "docker push pugx/poser:php82",
-        "docker:build:php83": "docker build -t pugx/poser:php83 -f .docker/base/php80/Dockerfile .",
+        "docker:build:php83": "docker build -t pugx/poser:php83 -f .docker/base/php83/Dockerfile .",
         "docker:push:php83": "docker push pugx/poser:php83"
     },
     "extra": {
