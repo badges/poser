@@ -52,7 +52,7 @@ class FeatureContext implements Context
     public function itShouldPass(): void
     {
         if (0 != $this->return) {
-            throw new \Exception('Error executing ' . $this->return);
+            throw new Exception('Error executing ' . $this->return);
         }
     }
 
@@ -80,7 +80,7 @@ class FeatureContext implements Context
         \similar_text($expected, $given, $perc);
 
         if ($perc < 94) {
-            throw new \Exception('String similarity:' . $perc . '%. String expected:' . $expected . \PHP_EOL . ' given:' . $given);
+            throw new Exception('String similarity:' . $perc . '%. String expected:' . $expected . \PHP_EOL . ' given:' . $given);
         }
     }
 }
