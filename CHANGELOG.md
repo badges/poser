@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [v3.1.0] - 2024-01-07
+
+### Added
+* Implement SvgTextSizeCalculator
+
+### Fixed
+* php-cs-fixer run
+
+
 ## [v3.0.0] - 2023-12-11
 
 ### Added
