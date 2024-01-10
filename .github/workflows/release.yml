@@ -1,0 +1,35 @@
+name: Create release
+
+on:
+  workflow_dispatch:
+
+jobs:
+  changelog:
+    name: Create changelog
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Conventional Changelog Action
+        id: changelog
+        uses: TriPSs/conventional-changelog-action@v5
+        with:
+          preset: conventionalcommits
+          github-token: ${{ secrets.GH_TOKEN }}
+          git-user-name: ${{ github.actor }}
+          git-user-email: ${{ github.actor }}@users.noreply.github.com
+          tag-prefix: 'v'
+          input-file: 'CHANGELOG.md'
+          output-file: 'CHANGELOG.md'
+          skip-on-empty: false
+          skip-version-file: true
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        if: ${{ steps.changelog.outputs.skipped == 'false' }}
+        with:
+          token: ${{ secrets.GH_TOKEN }}
+          tag_name: ${{ steps.changelog.outputs.tag }}
+          body: ${{ steps.changelog.outputs.clean_changelog }}

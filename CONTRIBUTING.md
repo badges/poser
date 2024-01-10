@@ -55,6 +55,11 @@ $ composer phpspec
 $ composer behat
 ```
 
+## Commit guidelines
+
+Please see the [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+
 ## How build new images on M1
 ```shell
 $ docker run --privileged --rm tonistiigi/binfmt --install all
