@@ -53,7 +53,7 @@ class InputRequest
         }
 
         if (!\is_string($format)) {
-            $format = BADGE::DEFAULT_FORMAT;
+            $format = Badge::DEFAULT_FORMAT;
         }
 
         return new self($subject, $status, $color, $style, $format);
