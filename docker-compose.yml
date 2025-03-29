@@ -1,4 +1,3 @@
-version: '3.7'
 services:
 
   php81:
@@ -20,6 +19,14 @@ services:
   php83:
     build:
       context: .docker/development/php83
+    working_dir: /application
+    stdin_open: true
+    volumes:
+      - .:/application:cached
+
+  php84:
+    build:
+      context: .docker/development/php84
     working_dir: /application
     stdin_open: true
     volumes:

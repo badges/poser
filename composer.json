@@ -28,7 +28,7 @@
     "repositories": [
         {
             "type": "vcs",
-            "url": "https://github.com/JellyBellyDev/phpspec-data-provider-extension"
+            "url": "https://github.com/madisoft/phpspec-data-provider-extension"
         }
     ],
     "require": {
@@ -41,10 +41,10 @@
     },
     "require-dev": {
         "behat/behat": "^3.13",
-        "phpspec/phpspec": "^7.4",
         "friends-of-phpspec/phpspec-code-coverage": "^6.3",
         "friendsofphp/php-cs-fixer": "^3.41",
-        "moave/phpspec-data-provider-extension": "dev-feat/add-compatibility-to-php80",
+        "moave/phpspec-data-provider-extension": "dev-master",
+        "phpspec/phpspec": "^7.4 || ^8.0",
         "vimeo/psalm": "^4.30"
     },
     "config": {

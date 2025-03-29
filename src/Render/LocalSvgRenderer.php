@@ -29,7 +29,7 @@ abstract class LocalSvgRenderer implements RenderInterface
     private TextSizeCalculatorInterface $textSizeCalculator;
     private string $templatesDirectory;
 
-    public function __construct(TextSizeCalculatorInterface $textSizeCalculator = null, string $templatesDirectory = null)
+    public function __construct(?TextSizeCalculatorInterface $textSizeCalculator = null, ?string $templatesDirectory = null)
     {
         $this->textSizeCalculator = $textSizeCalculator ?? new GDTextSizeCalculator();
         $this->templatesDirectory = $templatesDirectory ?? (__DIR__ . '/../Resources/templates');

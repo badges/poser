@@ -29,7 +29,7 @@ class Command extends BaseCommand
 
     protected string $header;
 
-    public function __construct(string $name = null)
+    public function __construct(?string $name = null)
     {
         parent::__construct($name);
 

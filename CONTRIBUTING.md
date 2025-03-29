@@ -74,4 +74,13 @@ $ docker buildx build \
   .
 ```
 
+## Build a new PHP image on Linux
+
+* create a new PHP conf, e.g. `.docker/base/php84/Dockerfile` and `.docker/development/php84/Dockerfile `
+* `docker build -t poser-php84 --pull=false .docker/base/php84`
+* `docker login`
+* `docker tag poser-php84 pugx/poser:php84`
+* `docker push pugx/poser:php84`
+
+
 ## ENJOY

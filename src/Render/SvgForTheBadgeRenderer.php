@@ -26,9 +26,9 @@ class SvgForTheBadgeRenderer extends LocalSvgRenderer
     private \EasySVG $easy;
 
     public function __construct(
-        \EasySVG $easySVG = null,
-        TextSizeCalculatorInterface $textSizeCalculator = null,
-        string $templatesDirectory = null
+        ?\EasySVG $easySVG = null,
+        ?TextSizeCalculatorInterface $textSizeCalculator = null,
+        ?string $templatesDirectory = null
     ) {
         parent::__construct($textSizeCalculator, $templatesDirectory);
 
