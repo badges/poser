@@ -22,15 +22,6 @@
     "autoload": {
         "psr-4": { "PUGX\\Poser\\": "src/" }
     },
-    "autoload-dev": {
-        "psr-4": { "spec\\PUGX\\": "spec/PUGX/" }
-    },
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/madisoft/phpspec-data-provider-extension"
-        }
-    ],
     "require": {
         "php": "^8.1",
         "ext-gd": "*",
@@ -41,10 +32,7 @@
     },
     "require-dev": {
         "behat/behat": "^3.13",
-        "friends-of-phpspec/phpspec-code-coverage": "^6.3",
         "friendsofphp/php-cs-fixer": "^3.41",
-        "moave/phpspec-data-provider-extension": "dev-master",
-        "phpspec/phpspec": "^7.4 || ^8.0",
         "phpunit/phpunit": "@stable",
         "vimeo/psalm": "^4.30"
     },
@@ -59,8 +47,6 @@
     "scripts": {
         "php-cs-fixer-dry-run": "bin/php-cs-fixer fix --verbose --diff --dry-run --ansi",
         "php-cs-fixer": "bin/php-cs-fixer fix -v --ansi",
-        "phpspec": "bin/phpspec run --format=pretty --ansi",
-        "phpspec-coverage": "bin/phpspec run -f progress -c phpspec-coverage.yml --ansi",
         "behat": "bin/behat --snippets-for",
         "docker:build:php81": "docker build -t pugx/poser:php81 -f .docker/base/php81/Dockerfile .",
         "docker:push:php81": "docker push pugx/poser:php81",
