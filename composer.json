@@ -45,6 +45,7 @@
         "friendsofphp/php-cs-fixer": "^3.41",
         "moave/phpspec-data-provider-extension": "dev-master",
         "phpspec/phpspec": "^7.4 || ^8.0",
+        "phpunit/phpunit": "@stable",
         "vimeo/psalm": "^4.30"
     },
     "config": {
