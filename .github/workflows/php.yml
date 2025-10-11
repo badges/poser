@@ -25,9 +25,11 @@ jobs:
         container: [ "php81", "php82", "php83", "php84" ]
 
     runs-on: ubuntu-24.04
-    container: pugx/poser:${{ matrix.container }}
     steps:
       - uses: actions/checkout@v4
+
+      - name: Build container
+        run: docker build -t poser:${{ matrix.container }} -f .docker/base/${{ matrix.container }}/Dockerfile .
 
       - name: Validate composer.json
         run: composer validate
