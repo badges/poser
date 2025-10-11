@@ -28,7 +28,6 @@
         "ext-gd": "*",
         "ext-simplexml": "*",
         "cybercog/php-svg-font": "^1.0",
-        "kartsims/easysvg": "^2.5",
         "symfony/console": "^5.0 || ^6.0 || ^7.0"
     },
     "require-dev": {

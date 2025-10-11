@@ -16,27 +16,20 @@ use PUGX\Poser\Calculator\TextSizeCalculatorInterface;
 
 class SvgForTheBadgeRenderer extends LocalSvgRenderer
 {
-    public const VENDOR_TEXT_FONT    = __DIR__ . '/../Calculator/Font/Verdana.svg';
-    public const VALUE_TEXT_FONT     = __DIR__ . '/../Calculator/Font/Verdana-Bold.svg';
+    public const TEXT_FONT           = __DIR__ . '/../Calculator/Font/DejaVuSans.ttf';
     public const TEXT_FONT_SIZE      = 10;
     public const TEXT_FONT_COLOR     = '#FFFFFF';
     public const TEXT_LETTER_SPACING = 0.1;
     public const PADDING_X           = 10;
 
-    private \EasySVG $easy;
+    private string $fontPath;
 
     public function __construct(
-        ?\EasySVG $easySVG = null,
         ?TextSizeCalculatorInterface $textSizeCalculator = null,
         ?string $templatesDirectory = null
     ) {
         parent::__construct($textSizeCalculator, $templatesDirectory);
-
-        if (null === $easySVG) {
-            $easySVG = new \EasySVG();
-        }
-
-        $this->easy = $easySVG;
+        $this->fontPath = self::TEXT_FONT;
     }
 
     public function getBadgeStyle(): string
@@ -56,22 +49,28 @@ class SvgForTheBadgeRenderer extends LocalSvgRenderer
         $parameters['vendor'] = \mb_strtoupper($parameters['vendor']);
         $parameters['value']  = \mb_strtoupper($parameters['value']);
 
-        $this->easy->clearSVG();
-        $this->easy->setLetterSpacing(self::TEXT_LETTER_SPACING);
-        $this->easy->setFont(self::VENDOR_TEXT_FONT, self::TEXT_FONT_SIZE, self::TEXT_FONT_COLOR);
-        $vendorDimensions                      = $this->easy->textDimensions($parameters['vendor']);
-        $parameters['vendorWidth']             = $vendorDimensions[0] + 2 * self::PADDING_X;
-        $parameters['vendorStartPosition']     = \round($parameters['vendorWidth'] / 2, 1) + 1;
+        $vendorWidth                       = $this->calculateTextWidth($parameters['vendor']);
+        $parameters['vendorWidth']         = $vendorWidth + 2 * self::PADDING_X;
+        $parameters['vendorStartPosition'] = \round($parameters['vendorWidth'] / 2, 1) + 1;
 
-        $this->easy->clearSVG();
-        $this->easy->setLetterSpacing(self::TEXT_LETTER_SPACING);
-        $this->easy->setFont(self::VALUE_TEXT_FONT, self::TEXT_FONT_SIZE, self::TEXT_FONT_COLOR);
-        $valueDimensions                      = $this->easy->textDimensions($parameters['value']);
-        $parameters['valueWidth']             = $valueDimensions[0] + 2 * self::PADDING_X;
-        $parameters['valueStartPosition']     = $parameters['vendorWidth'] + \round($parameters['valueWidth'] / 2, 1) - 1;
+        $valueWidth                       = $this->calculateTextWidth($parameters['value']);
+        $parameters['valueWidth']         = $valueWidth + 2 * self::PADDING_X;
+        $parameters['valueStartPosition'] = $parameters['vendorWidth'] + \round($parameters['valueWidth'] / 2, 1) - 1;
 
         $parameters['totalWidth'] = $parameters['valueWidth'] + $parameters['vendorWidth'];
 
         return $parameters;
+    }
+
+    /**
+     * Calculate text width using GD with letter spacing.
+     */
+    private function calculateTextWidth(string $text): float
+    {
+        $box           = \imagettfbbox(self::TEXT_FONT_SIZE, 0, $this->fontPath, $text);
+        $baseWidth     = \abs($box[2] - $box[0]);
+        $letterSpacing = \mb_strlen($text) * self::TEXT_LETTER_SPACING;
+
+        return \round($baseWidth + $letterSpacing, 1);
     }
 }
