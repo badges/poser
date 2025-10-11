@@ -28,11 +28,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Check PHP version
-        run: docker compose run --rm ${{ matrix.container }} php -v
-
       - name: Build container
         run: docker build -t poser:${{ matrix.container }} -f .docker/base/${{ matrix.container }}/Dockerfile .
+
+      - name: Check PHP version
+        run: docker compose run --rm ${{ matrix.container }} php -v
 
       - name: Validate composer.json
         run: docker compose run --rm ${{ matrix.container }} composer validate
@@ -49,11 +49,11 @@ jobs:
       - name: Install dependencies
         run: docker compose run --rm ${{ matrix.container }} composer install --prefer-dist --no-progress
 
-      - name: Coding Standard Checks
-        run: PHP_CS_FIXER_IGNORE_ENV=1 bin/php-cs-fixer fix --verbose --diff --dry-run
-
       - name: Unit tests
         run: docker compose run --rm ${{ matrix.container }} bin/phpunit
 
       - name: Run behat tests
         run: docker compose run --rm ${{ matrix.container }} bin/behat --snippets-for
+
+      - name: Coding Standard Checks
+        run: PHP_CS_FIXER_IGNORE_ENV=1 bin/php-cs-fixer fix --verbose --diff --dry-run
