@@ -33,7 +33,7 @@
     "require-dev": {
         "behat/behat": "^3.13",
         "friendsofphp/php-cs-fixer": "^3.41",
-        "phpunit/phpunit": "@stable",
+        "phpunit/phpunit": "^9.6 || ^12.0",
         "vimeo/psalm": "^4.30"
     },
     "config": {
