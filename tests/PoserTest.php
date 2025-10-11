@@ -29,10 +29,10 @@ class PoserTest extends TestCase
     public function testShouldBeAbleToGenerateAnSvgImage(): void
     {
         $subject = 'stable';
-        $status = 'v2.0';
-        $color = '97CA00';
-        $style = 'flat';
-        $format = 'svg';
+        $status  = 'v2.0';
+        $color   = '97CA00';
+        $style   = 'flat';
+        $format  = 'svg';
 
         $image = $this->poser->generate($subject, $status, $color, $style, $format);
 

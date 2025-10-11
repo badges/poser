@@ -31,10 +31,10 @@ class SvgFlatSquareRenderTest extends TestCase
 
     public function testShouldRenderALicenseMitExactlyLikeThisSvg(): void
     {
-        $fixture = __DIR__ . '/../Fixtures/flat-square.svg';
+        $fixture  = __DIR__ . '/../Fixtures/flat-square.svg';
         $template = \file_get_contents($fixture);
-        $badge = Badge::fromURI('license-MIT-blue.svg?style=flat-square');
-        $image = $this->render->render($badge);
+        $badge    = Badge::fromURI('license-MIT-blue.svg?style=flat-square');
+        $image    = $this->render->render($badge);
 
         $this->assertEquals($template, (string) $image);
     }

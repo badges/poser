@@ -37,8 +37,8 @@ class SvgPlasticRenderTest extends TestCase
     public function testShouldNotRenderAnInvalidSvg(): void
     {
         $templatesDir = __DIR__ . '/../Fixtures/invalid_template';
-        $render = new SvgPlasticRender($this->calculator, $templatesDir);
-        $badge = Badge::fromURI('version-stable-97CA00.svg?style=plastic');
+        $render       = new SvgPlasticRender($this->calculator, $templatesDir);
+        $badge        = Badge::fromURI('version-stable-97CA00.svg?style=plastic');
 
         $this->expectException(\RuntimeException::class);
         $this->expectExceptionMessage('Generated string is not a valid XML');
@@ -49,8 +49,8 @@ class SvgPlasticRenderTest extends TestCase
     public function testShouldNotRenderNonSvgXml(): void
     {
         $templatesDir = __DIR__ . '/../Fixtures/xml_template';
-        $render = new SvgPlasticRender($this->calculator, $templatesDir);
-        $badge = Badge::fromURI('version-stable-97CA00.svg?style=plastic');
+        $render       = new SvgPlasticRender($this->calculator, $templatesDir);
+        $badge        = Badge::fromURI('version-stable-97CA00.svg?style=plastic');
 
         $this->expectException(\RuntimeException::class);
         $this->expectExceptionMessage('Generated xml is not a SVG');
