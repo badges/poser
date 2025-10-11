@@ -56,4 +56,4 @@ jobs:
         run: docker compose run --rm ${{ matrix.container }} bin/behat --snippets-for
 
       - name: Coding Standard Checks
-        run: PHP_CS_FIXER_IGNORE_ENV=1 bin/php-cs-fixer fix --verbose --diff --dry-run
+        run: docker compose run --rm ${{ matrix.container }} bin/php-cs-fixer fix --verbose --diff --dry-run
