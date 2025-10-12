@@ -4,8 +4,10 @@ on: [pull_request]
 
 jobs:
   commit-lint:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     steps:
+      - name: Check PHP version
+        run: php -v && php -r "if (PHP_MAJOR_VERSION != 8 || PHP_MINOR_VERSION != 2) exit(1);"
       - uses: actions/checkout@v4
         with:
           fetch-depth: ${{ github.event.pull_request.commits }}
