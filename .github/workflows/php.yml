@@ -11,6 +11,8 @@ jobs:
     runs-on: ubuntu-24.04
     name: PHP-CS-Fixer
     steps:
+      - name: Check PHP version
+        run: php -v && php -r "if (PHP_MAJOR_VERSION != 8 || PHP_MINOR_VERSION != 3) exit(1);"
       - name: Checkout
         uses: actions/checkout@v4
       - name: Fix CS
@@ -19,7 +21,6 @@ jobs:
             args: --diff --dry-run
 
   build:
-
     strategy:
       matrix:
         container: [ "php82", "php83", "php84" ]
