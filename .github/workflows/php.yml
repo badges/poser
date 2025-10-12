@@ -26,6 +26,7 @@ jobs:
         container: [ "php82", "php83", "php84" ]
 
     runs-on: ubuntu-24.04
+
     steps:
       - uses: actions/checkout@v4
 
@@ -33,10 +34,10 @@ jobs:
         run: docker build -t poser:${{ matrix.container }} -f .docker/base/${{ matrix.container }}/Dockerfile .
 
       - name: Check PHP version
-        run: docker compose run --rm ${{ matrix.container }} php -v
+        run: docker run --rm poser:${{ matrix.container }} php -v
 
       - name: Validate composer.json
-        run: docker compose run --rm ${{ matrix.container }} composer validate
+        run: docker run --rm -v ${{ github.workspace }}:/application -w /application poser:${{ matrix.container }} composer validate
 
       - name: Cache Composer packages
         id: composer-cache
@@ -48,13 +49,13 @@ jobs:
             ${{ runner.os }}-php-${{ matrix.container }}
 
       - name: Install dependencies
-        run: docker compose run --rm ${{ matrix.container }} composer install --prefer-dist --no-progress
+        run: docker run --rm -v ${{ github.workspace }}:/application -w /application poser:${{ matrix.container }} composer install --prefer-dist --no-progress
 
       - name: Unit tests
-        run: docker compose run --rm ${{ matrix.container }} bin/phpunit
+        run: docker run --rm -v ${{ github.workspace }}:/application -w /application poser:${{ matrix.container }} bin/phpunit
 
       - name: Run behat tests
-        run: docker compose run --rm ${{ matrix.container }} bin/behat --snippets-for
+        run: docker run --rm -v ${{ github.workspace }}:/application -w /application poser:${{ matrix.container }} bin/behat --snippets-for
 
       - name: Coding Standard Checks
-        run: docker compose run --rm ${{ matrix.container }} bin/php-cs-fixer fix --verbose --diff --dry-run
+        run: docker run --rm -v ${{ github.workspace }}:/application -w /application poser:${{ matrix.container }} bin/php-cs-fixer fix --verbose --diff --dry-run
