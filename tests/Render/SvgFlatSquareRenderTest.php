@@ -21,7 +21,10 @@ class SvgFlatSquareRenderTest extends TestCase
         $this->render = new SvgFlatSquareRender($this->calculator);
     }
 
-    public function testShouldRenderASvg(): void
+    /**
+     * @test
+     */
+    public function itShouldRenderASvg(): void
     {
         $badge = Badge::fromURI('version-stable-97CA00.svg?style=flat-square');
         $image = $this->render->render($badge);
@@ -29,7 +32,10 @@ class SvgFlatSquareRenderTest extends TestCase
         $this->assertValidSVGImage((string) $image);
     }
 
-    public function testShouldRenderALicenseMitExactlyLikeThisSvg(): void
+    /**
+     * @test
+     */
+    public function itShouldRenderALicenseMitExactlyLikeExpectedSvg(): void
     {
         $fixture  = __DIR__ . '/../Fixtures/flat-square.svg';
         $template = \file_get_contents($fixture);
@@ -39,7 +45,10 @@ class SvgFlatSquareRenderTest extends TestCase
         $this->assertEquals($template, (string) $image);
     }
 
-    public function testGetBadgeStyle(): void
+    /**
+     * @test
+     */
+    public function itShouldReturnCorrectBadgeStyle(): void
     {
         $this->assertEquals('flat-square', $this->render->getBadgeStyle());
     }

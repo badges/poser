@@ -21,7 +21,10 @@ class SvgPlasticRenderTest extends TestCase
         $this->render = new SvgPlasticRender($this->calculator);
     }
 
-    public function testShouldRenderASvg(): void
+    /**
+     * @test
+     */
+    public function itShouldRenderASvg(): void
     {
         $badge = Badge::fromURI('version-stable-97CA00.svg?style=plastic');
         $image = $this->render->render($badge);
@@ -29,12 +32,18 @@ class SvgPlasticRenderTest extends TestCase
         $this->assertValidSVGImage((string) $image);
     }
 
-    public function testGetBadgeStyle(): void
+    /**
+     * @test
+     */
+    public function itShouldReturnCorrectBadgeStyle(): void
     {
         $this->assertEquals('plastic', $this->render->getBadgeStyle());
     }
 
-    public function testShouldNotRenderAnInvalidSvg(): void
+    /**
+     * @test
+     */
+    public function itThrowsExceptionWhenRenderingInvalidSvg(): void
     {
         $templatesDir = __DIR__ . '/../Fixtures/invalid_template';
         $render       = new SvgPlasticRender($this->calculator, $templatesDir);
@@ -46,7 +55,10 @@ class SvgPlasticRenderTest extends TestCase
         $render->render($badge);
     }
 
-    public function testShouldNotRenderNonSvgXml(): void
+    /**
+     * @test
+     */
+    public function itThrowsExceptionWhenRenderingNonSvgXml(): void
     {
         $templatesDir = __DIR__ . '/../Fixtures/xml_template';
         $render       = new SvgPlasticRender($this->calculator, $templatesDir);

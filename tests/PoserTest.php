@@ -21,12 +21,18 @@ class PoserTest extends TestCase
         ]);
     }
 
-    public function testIsInitializable(): void
+    /**
+     * @test
+     */
+    public function itIsInitializable(): void
     {
         $this->assertInstanceOf(Poser::class, $this->poser);
     }
 
-    public function testShouldBeAbleToGenerateAnSvgImage(): void
+    /**
+     * @test
+     */
+    public function itShouldGenerateAnSvgImage(): void
     {
         $subject = 'stable';
         $status  = 'v2.0';
@@ -39,7 +45,10 @@ class PoserTest extends TestCase
         $this->assertValidSVGImageContaining((string) $image, $subject, $status);
     }
 
-    public function testShouldBeAbleToGenerateAnSvgImageFromURI(): void
+    /**
+     * @test
+     */
+    public function itShouldGenerateAnSvgImageFromURI(): void
     {
         $subject = 'stable-v2.0-97CA00.svg';
 
@@ -48,7 +57,10 @@ class PoserTest extends TestCase
         $this->assertValidSVGImageContaining((string) $image, 'stable', 'v2.0');
     }
 
-    public function testShouldBeAbleToGenerateAnSvgImageFromURIWithoutFileExtension(): void
+    /**
+     * @test
+     */
+    public function itShouldGenerateAnSvgImageFromURIWithoutFileExtension(): void
     {
         $subject = 'stable-v2.0-97CA00';
 
@@ -57,7 +69,10 @@ class PoserTest extends TestCase
         $this->assertValidSVGImageContaining((string) $image, 'stable', 'v2.0');
     }
 
-    public function testShouldBeAbleToGenerateAnSvgImageFromURIWithStyle(): void
+    /**
+     * @test
+     */
+    public function itShouldGenerateAnSvgImageFromURIWithStyle(): void
     {
         $subject = 'stable-v2.0-97CA00.svg?style=flat-square';
 
@@ -66,7 +81,10 @@ class PoserTest extends TestCase
         $this->assertValidSVGImageContaining((string) $image, 'stable', 'v2.0');
     }
 
-    public function testShouldThrowExceptionOnGenerateAnSvgImageWithBadURI(): void
+    /**
+     * @test
+     */
+    public function itThrowsExceptionWhenGeneratingWithBadURI(): void
     {
         $subject = 'stable-v2.0-';
 

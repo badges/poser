@@ -23,6 +23,9 @@
     "autoload": {
         "psr-4": { "PUGX\\Poser\\": "src/" }
     },
+    "autoload-dev": {
+        "psr-4": { "PUGX\\Poser\\Tests\\": "tests/" }
+    },
     "require": {
         "php": "^8.2",
         "ext-gd": "*",
