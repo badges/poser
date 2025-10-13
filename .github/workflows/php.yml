@@ -22,47 +22,47 @@ jobs:
 
     strategy:
       matrix:
-        php: [ "php83" ]
+        container: [ "php81", "php82", "php83" ]
 
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
 
       - name: Build Docker image
-        run: docker compose build ${{ matrix.php }}
+        run: docker compose build ${{ matrix.container }}
 
       - name: Check PHP version
         run: |
-          VERSION=$(echo "${{ matrix.php }}" | sed 's/php//')
+          VERSION=$(echo "${{ matrix.container }}" | sed 's/php//')
           MAJOR=${VERSION:0:1}
           MINOR=${VERSION:1:1}
           MIN_VERSION=$((MAJOR * 10000 + MINOR * 100))
           MAX_VERSION=$(((MAJOR * 10000 + (MINOR + 1) * 100)))
-          docker compose run --rm ${{ matrix.php }} php -r "if (PHP_VERSION_ID < $MIN_VERSION || PHP_VERSION_ID >= $MAX_VERSION) { echo 'Expected PHP $MAJOR.$MINOR but got ' . PHP_VERSION . PHP_EOL; exit(1); }"
+          docker compose run --rm ${{ matrix.container }} php -r "if (PHP_VERSION_ID < $MIN_VERSION || PHP_VERSION_ID >= $MAX_VERSION) { echo 'Expected PHP $MAJOR.$MINOR but got ' . PHP_VERSION . PHP_EOL; exit(1); }"
 
       - name: Validate composer.json
-        run: docker compose run -u $(id -u):$(id -g) --rm ${{ matrix.php }} composer validate
+        run: docker compose run -u $(id -u):$(id -g) --rm ${{ matrix.container }} composer validate
 
       - name: Cache Composer packages
         id: composer-cache
         uses: actions/cache@v4
         with:
           path: vendor
-          key: ${{ runner.os }}-${{ matrix.php }}-${{ hashFiles('**/composer.lock') }}
+          key: ${{ runner.os }}-${{ matrix.container }}-${{ hashFiles('**/composer.lock') }}
           restore-keys: |
-            ${{ runner.os }}-${{ matrix.php }}
+            ${{ runner.os }}-${{ matrix.container }}
 
       - name: Install dependencies
-        run: docker compose run -u $(id -u):$(id -g) --rm ${{ matrix.php }} composer install --prefer-dist --no-progress
+        run: docker compose run -u $(id -u):$(id -g) --rm ${{ matrix.container }} composer install --prefer-dist --no-progress
 
       - name: Coding Standard Checks
-        run: docker compose run --rm ${{ matrix.php }} bin/php-cs-fixer fix --verbose --diff --dry-run
+        run: docker compose run --rm ${{ matrix.container }} bin/php-cs-fixer fix --verbose --diff --dry-run
 
       - name: Run tests (phpspec)
-        run: docker compose run --rm ${{ matrix.php }} ./bin/phpspec run --format=pretty
+        run: docker compose run --rm ${{ matrix.container }} ./bin/phpspec run --format=pretty
 
       - name: Run coverage tests (phpspec)
-        run: docker compose run --rm ${{ matrix.php }} bash -c "XDEBUG_MODE=coverage bin/phpspec run -f progress -c phpspec-coverage.yml"
+        run: docker compose run --rm ${{ matrix.container }} bash -c "XDEBUG_MODE=coverage bin/phpspec run -f progress -c phpspec-coverage.yml"
 
       - name: Run behat tests
-        run: docker compose run --rm ${{ matrix.php }} ./bin/behat --snippets-for
+        run: docker compose run --rm ${{ matrix.container }} ./bin/behat --snippets-for
