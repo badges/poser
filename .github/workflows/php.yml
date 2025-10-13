@@ -35,7 +35,7 @@ jobs:
         run: docker compose run --rm ${{ matrix.php }} php -v
 
       - name: Validate composer.json
-        run: docker compose run --rm ${{ matrix.php }} composer validate
+        run: docker compose run -u $(id -u):$(id -g) --rm ${{ matrix.php }} composer validate
 
       - name: Cache Composer packages
         id: composer-cache
@@ -47,7 +47,7 @@ jobs:
             ${{ runner.os }}-${{ matrix.php }}
 
       - name: Install dependencies
-        run: docker compose run --rm ${{ matrix.php }} composer install --prefer-dist --no-progress
+        run: docker compose run -u $(id -u):$(id -g) --rm ${{ matrix.php }} composer install --prefer-dist --no-progress
 
       - name: Coding Standard Checks
         run: docker compose run --rm ${{ matrix.php }} bin/php-cs-fixer fix --verbose --diff --dry-run
