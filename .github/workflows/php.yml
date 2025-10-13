@@ -32,7 +32,13 @@ jobs:
         run: docker compose build ${{ matrix.php }}
 
       - name: Check PHP version
-        run: docker compose run --rm ${{ matrix.php }} php -v
+        run: |
+          VERSION=$(echo "${{ matrix.php }}" | sed 's/php//')
+          MAJOR=${VERSION:0:1}
+          MINOR=${VERSION:1:1}
+          MIN_VERSION=$((MAJOR * 10000 + MINOR * 100))
+          MAX_VERSION=$(((MAJOR * 10000 + (MINOR + 1) * 100)))
+          docker compose run --rm ${{ matrix.php }} php -r "if (PHP_VERSION_ID < $MIN_VERSION || PHP_VERSION_ID >= $MAX_VERSION) { echo 'Expected PHP $MAJOR.$MINOR but got ' . PHP_VERSION . PHP_EOL; exit(1); }"
 
       - name: Validate composer.json
         run: docker compose run -u $(id -u):$(id -g) --rm ${{ matrix.php }} composer validate
