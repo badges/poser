@@ -9,13 +9,19 @@ use PUGX\Poser\Badge;
 
 class BadgeTest extends TestCase
 {
-    public function testIsInitializable(): void
+    /**
+     * @test
+     */
+    public function itIsInitializable(): void
     {
         $badge = new Badge('a', 'b', '97CA00', 'flat');
         $this->assertInstanceOf(Badge::class, $badge);
     }
 
-    public function testShouldBeConstructedByFromURIFactoryMethod(): void
+    /**
+     * @test
+     */
+    public function itShouldBeConstructedByFromURIFactoryMethod(): void
     {
         $assert = 'version-stable-97CA00.svg';
         $badge  = Badge::fromURI($assert);
@@ -23,7 +29,10 @@ class BadgeTest extends TestCase
         $this->assertEquals($assert, (string) $badge);
     }
 
-    public function testShouldBeConstructedByFromURIFactoryMethodEscapingCorrectlyUnderscores(): void
+    /**
+     * @test
+     */
+    public function itShouldBeConstructedByFromURIFactoryMethodEscapingCorrectlyUnderscores(): void
     {
         $input       = 'I__m__liugg__io-b-97CA00.svg';
         $assertInput = 'I_m_liugg_io-b-97CA00.svg';
@@ -32,7 +41,10 @@ class BadgeTest extends TestCase
         $this->assertEquals($assertInput, (string) $badge);
     }
 
-    public function testShouldBeConstructedByFromURIFactoryMethodEscapingCorrectlyWithSingleUnderscore(): void
+    /**
+     * @test
+     */
+    public function itShouldBeConstructedByFromURIFactoryMethodEscapingCorrectlyWithSingleUnderscore(): void
     {
         $input       = 'I_m_liuggio-b-97CA00.svg';
         $assertInput = 'I m liuggio-b-97CA00.svg';
@@ -41,7 +53,10 @@ class BadgeTest extends TestCase
         $this->assertEquals($assertInput, (string) $badge);
     }
 
-    public function testShouldBeConstructedByFromURIFactoryMethodEscapingCorrectlyWithDashes(): void
+    /**
+     * @test
+     */
+    public function itShouldBeConstructedByFromURIFactoryMethodEscapingCorrectlyWithDashes(): void
     {
         $input       = 'I--m--liuggio-b-97CA00.svg';
         $assertInput = 'I-m-liuggio-b-97CA00.svg';
@@ -51,9 +66,11 @@ class BadgeTest extends TestCase
     }
 
     /**
+     * @test
+     *
      * @dataProvider positiveConversionExamples
      */
-    public function testShouldValidateAvailableColorSchemes(string $colorName): void
+    public function itShouldValidateAvailableColorSchemes(string $colorName): void
     {
         $badge = new Badge('a', 'b', $colorName, 'flat');
         $this->assertIsString($badge->getHexColor());

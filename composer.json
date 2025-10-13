@@ -22,6 +22,9 @@
     "autoload": {
         "psr-4": { "PUGX\\Poser\\": "src/" }
     },
+    "autoload-dev": {
+        "psr-4": { "PUGX\\Poser\\Tests\\": "tests/" }
+    },
     "require": {
         "php": "^8.1",
         "ext-gd": "*",
@@ -33,7 +36,7 @@
     "require-dev": {
         "behat/behat": "^3.13",
         "friendsofphp/php-cs-fixer": "^3.41",
-        "phpunit/phpunit": "@stable",
+        "phpunit/phpunit": "^9.6",
         "vimeo/psalm": "^4.30"
     },
     "config": {
