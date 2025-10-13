@@ -1,5 +1,4 @@
 services:
-
   php81:
     build:
       context: .docker/development/php81
