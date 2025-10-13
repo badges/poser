@@ -17,7 +17,7 @@ services:
 
   php83:
     build:
-      context: .docker/development/php83
+      context: .docker/php83
     working_dir: /application
     stdin_open: true
     volumes:
