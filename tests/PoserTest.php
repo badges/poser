@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace PUGX\Poser\Tests;
 
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use PUGX\Poser\Poser;
 use PUGX\Poser\Render\SvgFlatRender;
@@ -21,17 +22,13 @@ class PoserTest extends TestCase
         ]);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function itIsInitializable(): void
     {
         $this->assertInstanceOf(Poser::class, $this->poser);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function itShouldBeAbleToGenerateAnSvgImage(): void
     {
         $subject = 'stable';
@@ -45,9 +42,7 @@ class PoserTest extends TestCase
         $this->assertValidSVGImageContaining((string) $image, $subject, $status);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function itShouldBeAbleToGenerateAnSvgImageFromURI(): void
     {
         $subject = 'stable-v2.0-97CA00.svg';
@@ -57,9 +52,7 @@ class PoserTest extends TestCase
         $this->assertValidSVGImageContaining((string) $image, 'stable', 'v2.0');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function itShouldBeAbleToGenerateAnSvgImageFromURIWithoutFileExtension(): void
     {
         $subject = 'stable-v2.0-97CA00';
@@ -69,9 +62,7 @@ class PoserTest extends TestCase
         $this->assertValidSVGImageContaining((string) $image, 'stable', 'v2.0');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function itShouldBeAbleToGenerateAnSvgImageFromURIWithStyle(): void
     {
         $subject = 'stable-v2.0-97CA00.svg?style=flat-square';
@@ -81,9 +72,7 @@ class PoserTest extends TestCase
         $this->assertValidSVGImageContaining((string) $image, 'stable', 'v2.0');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function itThrowsExceptionWhenGeneratingAnSvgImageWithBadURI(): void
     {
         $subject = 'stable-v2.0-';

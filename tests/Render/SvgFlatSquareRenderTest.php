@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace PUGX\Poser\Tests\Render;
 
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use PUGX\Poser\Badge;
 use PUGX\Poser\Calculator\TextSizeCalculatorInterface;
@@ -21,9 +22,7 @@ class SvgFlatSquareRenderTest extends TestCase
         $this->render = new SvgFlatSquareRender($this->calculator);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function itShouldRenderASvg(): void
     {
         $badge = Badge::fromURI('version-stable-97CA00.svg?style=flat-square');
@@ -32,9 +31,7 @@ class SvgFlatSquareRenderTest extends TestCase
         $this->assertValidSVGImage((string) $image);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function itShouldRenderALicenseMitExactlyLikeThisSvg(): void
     {
         $fixture  = __DIR__ . '/../Fixtures/flat-square.svg';
@@ -45,9 +42,7 @@ class SvgFlatSquareRenderTest extends TestCase
         $this->assertEquals($template, (string) $image);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function itShouldReturnCorrectBadgeStyle(): void
     {
         $this->assertEquals('flat-square', $this->render->getBadgeStyle());

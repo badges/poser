@@ -4,23 +4,21 @@ declare(strict_types=1);
 
 namespace PUGX\Poser\Tests;
 
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use PUGX\Poser\Badge;
 
 class BadgeTest extends TestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function itIsInitializable(): void
     {
         $badge = new Badge('a', 'b', '97CA00', 'flat');
         $this->assertInstanceOf(Badge::class, $badge);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function itShouldBeConstructedByFromURIFactoryMethod(): void
     {
         $assert = 'version-stable-97CA00.svg';
@@ -29,9 +27,7 @@ class BadgeTest extends TestCase
         $this->assertEquals($assert, (string) $badge);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function itShouldBeConstructedByFromURIFactoryMethodEscapingCorrectlyUnderscores(): void
     {
         $input       = 'I__m__liugg__io-b-97CA00.svg';
@@ -41,9 +37,7 @@ class BadgeTest extends TestCase
         $this->assertEquals($assertInput, (string) $badge);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function itShouldBeConstructedByFromURIFactoryMethodEscapingCorrectlyWithSingleUnderscore(): void
     {
         $input       = 'I_m_liuggio-b-97CA00.svg';
@@ -53,9 +47,7 @@ class BadgeTest extends TestCase
         $this->assertEquals($assertInput, (string) $badge);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function itShouldBeConstructedByFromURIFactoryMethodEscapingCorrectlyWithDashes(): void
     {
         $input       = 'I--m--liuggio-b-97CA00.svg';
@@ -65,11 +57,8 @@ class BadgeTest extends TestCase
         $this->assertEquals($assertInput, (string) $badge);
     }
 
-    /**
-     * @test
-     *
-     * @dataProvider positiveConversionExamples
-     */
+    #[Test]
+    #[DataProvider('positiveConversionExamples')]
     public function itShouldValidateAvailableColorSchemes(string $colorName): void
     {
         $badge = new Badge('a', 'b', $colorName, 'flat');

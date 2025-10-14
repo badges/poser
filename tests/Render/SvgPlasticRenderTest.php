@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace PUGX\Poser\Tests\Render;
 
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use PUGX\Poser\Badge;
 use PUGX\Poser\Calculator\TextSizeCalculatorInterface;
@@ -21,9 +22,7 @@ class SvgPlasticRenderTest extends TestCase
         $this->render = new SvgPlasticRender($this->calculator);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function itShouldRenderASvg(): void
     {
         $badge = Badge::fromURI('version-stable-97CA00.svg?style=plastic');
@@ -32,17 +31,13 @@ class SvgPlasticRenderTest extends TestCase
         $this->assertValidSVGImage((string) $image);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function itShouldReturnCorrectBadgeStyle(): void
     {
         $this->assertEquals('plastic', $this->render->getBadgeStyle());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function itThrowsExceptionWhenRenderingInvalidSvg(): void
     {
         $templatesDir = __DIR__ . '/../Fixtures/invalid_template';
@@ -55,9 +50,7 @@ class SvgPlasticRenderTest extends TestCase
         $render->render($badge);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function itThrowsExceptionWhenRenderingNonSvgXml(): void
     {
         $templatesDir = __DIR__ . '/../Fixtures/xml_template';
