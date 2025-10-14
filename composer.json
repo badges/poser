@@ -47,17 +47,6 @@
         }
     },
     "bin": ["bin/poser"],
-    "scripts": {
-        "php-cs-fixer-dry-run": "bin/php-cs-fixer fix --verbose --diff --dry-run --ansi",
-        "php-cs-fixer": "bin/php-cs-fixer fix -v --ansi",
-        "behat": "bin/behat --snippets-for",
-        "docker:build:php81": "docker build -t pugx/poser:php81 -f .docker/base/php81/Dockerfile .",
-        "docker:push:php81": "docker push pugx/poser:php81",
-        "docker:build:php82": "docker build -t pugx/poser:php82 -f .docker/base/php82/Dockerfile .",
-        "docker:push:php82": "docker push pugx/poser:php82",
-        "docker:build:php83": "docker build -t pugx/poser:php83 -f .docker/base/php83/Dockerfile .",
-        "docker:push:php83": "docker push pugx/poser:php83"
-    },
     "extra": {
         "branch-alias": {
             "dev-master": "2.x-dev"
