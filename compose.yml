@@ -1,8 +1,7 @@
 services:
-
   php81:
     build:
-      context: .docker/development/php81
+      context: .docker/php81
     working_dir: /application
     stdin_open: true
     volumes:
@@ -10,7 +9,7 @@ services:
 
   php82:
     build:
-      context: .docker/development/php82
+      context: .docker/php82
     working_dir: /application
     stdin_open: true
     volumes:
@@ -18,7 +17,7 @@ services:
 
   php83:
     build:
-      context: .docker/development/php83
+      context: .docker/php83
     working_dir: /application
     stdin_open: true
     volumes:
@@ -26,7 +25,7 @@ services:
 
   php84:
     build:
-      context: .docker/development/php84
+      context: .docker/php84
     working_dir: /application
     stdin_open: true
     volumes:
