@@ -1,9 +1,0 @@
-extensions:
-  Coduo\PhpSpec\DataProvider\DataProviderExtension: ~
-  FriendsOfPhpSpec\PhpSpec\CodeCoverage\CodeCoverageExtension:
-    format:
-      - html
-      - php
-    output:
-      html: coverage/phpspec-html
-      php: coverage/phpspec-php/phpspec.cov

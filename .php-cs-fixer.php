@@ -18,6 +18,7 @@ return (new PhpCsFixer\Config())
         'binary_operator_spaces' => ['operators' => ['=>' => 'align', '=' => 'align']],
         'phpdoc_align' => ['align' => 'vertical'],
         'phpdoc_summary' => false,
+        'php_unit_test_annotation' => ['style' => 'annotation'],
     ])
     ->setFinder($finder)
 ;

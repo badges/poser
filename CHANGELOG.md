@@ -1,3 +1,15 @@
+## [v3.2.0] - 2025-10-13
+
+### Added
+* add phpunit/phpunit composer dependency
+
+### Removed
+* remove PhpSpec
+
+### Changed
+* convert specs to PhpUnit tests
+
+
 ## [v3.1.0] - 2024-01-07
 
 ### Added
