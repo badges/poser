@@ -61,8 +61,5 @@ jobs:
       - name: Unit tests
         run: docker compose run --rm ${{ matrix.container }} ./bin/phpunit
 
-      - name: Unit tests with coverage
-        run:  docker compose run -e XDEBUG_MODE=coverage --rm ${{ matrix.container }} ./bin/phpunit --coverage-clover coverage.xml
-
       - name: Run behat tests
         run: docker compose run --rm ${{ matrix.container }} ./bin/behat --snippets-for
