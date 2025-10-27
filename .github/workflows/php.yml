@@ -58,11 +58,8 @@ jobs:
       - name: Coding Standard Checks
         run: docker compose run --rm ${{ matrix.container }} bin/php-cs-fixer fix --verbose --diff --dry-run
 
-      - name: Run tests (phpspec)
-        run: docker compose run --rm ${{ matrix.container }} ./bin/phpspec run --format=pretty
-
-      - name: Run coverage tests (phpspec)
-        run: docker compose run --rm ${{ matrix.container }} bash -c "XDEBUG_MODE=coverage bin/phpspec run -f progress -c phpspec-coverage.yml"
+      - name: Unit tests
+        run: docker compose run --rm ${{ matrix.container }} ./bin/phpunit
 
       - name: Run behat tests
         run: docker compose run --rm ${{ matrix.container }} ./bin/behat --snippets-for
