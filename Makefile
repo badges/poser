@@ -1,4 +1,4 @@
-CONTAINER ?= php83
+CONTAINER ?= php84
 DOCKER_RUN=docker compose run --rm $(CONTAINER)
 
 setup:
