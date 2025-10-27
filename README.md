@@ -42,6 +42,15 @@ Choose a different style
 poser license MIT blue -s "for-the-badge"
 ```
 
+You can also use the provided Docker Compose services:
+
+```bash
+docker compose run --rm php82 bin/poser license MIT blue
+docker compose run --rm php83 bin/poser license MIT blue -p "license.svg"
+docker compose run --rm php83 bin/poser license MIT blue -s "plastic" -p "license-plastic.svg"
+```
+
+
 ## Usage as library
 
 #### 1. Add to composer dependencies
@@ -72,6 +81,16 @@ echo $image->getStyle();
 
 The allowed styles are: `plastic`, `flat`, `flat-square`, and `for-the-badge`.
 
+### Examples (generated with `make doc-images`)
+
+![Flat style](doc/flat.svg)
+
+![Flat square style](doc/flat-square.svg)
+
+![Plastic style](doc/plastic.svg)
+
+![For the badge style](doc/for-the-badge.svg)
+
 
 ## Encoding
 
@@ -97,6 +116,30 @@ Not only because all the other languages already have it, but having the latest 
 
 Active contribution and patches are very welcome.  
 Please refer to [CONTRIBUTING](CONTRIBUTING.md)
+
+
+## Docker development
+
+You can use the env var CONTAINER to run the tests in a specific PHP version.
+The default version if CONTAINER is omitted is php83.
+
+#### 1. Setup your Docker environment
+
+```bash
+CONTAINER=php83 make setup
+```
+
+#### 2. Run the tests
+
+```bash
+CONTAINER=php83 make tests
+```
+
+#### 3. Run the tests for all PHP versions
+
+```bash
+make matrix-tests
+```
 
 
 ## License
