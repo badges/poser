@@ -1,13 +1,16 @@
 CONTAINER ?= php84
 DOCKER_RUN=docker compose run --rm $(CONTAINER)
 
+.PHONY: setup tests matrix-tests doc-images
+
 setup:
 	docker compose build $(CONTAINER)
 	$(DOCKER_RUN) composer update
 
+
 tests:
 	 docker compose run --rm $(CONTAINER) bin/php-cs-fixer fix --verbose --diff --dry-run
-	 docker compose run --rm $(CONTAINER) bin/phpspec run --format=pretty
+	 docker compose run --rm $(CONTAINER) bin/phpunit
 	 docker compose run --rm $(CONTAINER) bin/behat --snippets-for
 
 matrix-tests:

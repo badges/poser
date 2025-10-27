@@ -55,11 +55,5 @@ jobs:
       - name: Install dependencies
         run: docker compose run -u $(id -u):$(id -g) --rm ${{ matrix.container }} composer install --prefer-dist --no-progress
 
-      - name: Coding Standard Checks
-        run: docker compose run --rm ${{ matrix.container }} bin/php-cs-fixer fix --verbose --diff --dry-run
-
-      - name: Unit tests
-        run: docker compose run --rm ${{ matrix.container }} ./bin/phpunit
-
-      - name: Run behat tests
-        run: docker compose run --rm ${{ matrix.container }} ./bin/behat --snippets-for
+      - name: Run tests
+        run: CONTAINER=${{ matrix.container }} make tests
