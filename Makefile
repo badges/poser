@@ -11,7 +11,7 @@ setup:
 tests:
 	 docker compose run --rm $(CONTAINER) bin/php-cs-fixer fix --verbose --diff --dry-run
 	 docker compose run --rm $(CONTAINER) bin/phpunit
-	 docker compose run --rm $(CONTAINER) bin/behat --snippets-for
+	 docker compose run --rm $(CONTAINER) php -d error_reporting='E_ALL & ~E_DEPRECATED' bin/behat --snippets-for
 
 matrix-tests:
 	CONTAINER=php81 $(MAKE) setup
