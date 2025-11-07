@@ -81,4 +81,8 @@ jobs:
         run: docker compose run -u $(id -u):$(id -g) --rm php84 composer install --prefer-dist --no-progress
 
       - name: Run tests
-        run: make tests
+        run: |
+            docker compose run --rm php84 bin/php-cs-fixer fix --verbose --diff --dry-run
+            docker compose run --rm php84 bin/phpunit
+            docker compose run --rm php84 php -d error_reporting='E_ALL & ~E_DEPRECATED' bin/behat --snippets-for
+
