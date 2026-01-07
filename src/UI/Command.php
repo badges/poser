@@ -8,6 +8,7 @@ use PUGX\Poser\Render\SvgFlatRender;
 use PUGX\Poser\Render\SvgFlatSquareRender;
 use PUGX\Poser\Render\SvgForTheBadgeRenderer;
 use PUGX\Poser\Render\SvgPlasticRender;
+use PUGX\Poser\Render\SvgSocialRender;
 use PUGX\Poser\ValueObject\InputRequest;
 use Symfony\Component\Console\Command\Command as BaseCommand;
 use Symfony\Component\Console\Input\InputArgument;
@@ -38,6 +39,7 @@ class Command extends BaseCommand
             new SvgFlatRender(),
             new SvgFlatSquareRender(),
             new SvgForTheBadgeRenderer(),
+            new SvgSocialRender(),
         ]);
         $this->header = self::HEADER;
     }
@@ -49,6 +51,7 @@ class Command extends BaseCommand
             new SvgFlatRender(),
             new SvgFlatSquareRender(),
             new SvgForTheBadgeRenderer(),
+            new SvgSocialRender(),
         ]);
         $this->header = self::HEADER;
     }
@@ -155,7 +158,7 @@ class Command extends BaseCommand
         }
         @\fclose($fp);
 
-        $output->write(\sprintf('Image created at %s', $path));
+        $output->write(\sprintf('Image created at %s', $path) . \PHP_EOL);
     }
 
     protected function printHeaderOnce(OutputInterface $output): void
