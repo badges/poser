@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="182.93994140625" height="28" role="img" aria-label="POSER: FOR THE BADGE">
+	<title>POSER: FOR THE BADGE</title>
+	<g shape-rendering="crispEdges">
+		<rect width="58.876953125" height="28" fill="#555"/>
+		<rect x="58.876953125" width="124.06298828125" height="28" fill="#007ec6"/>
+	</g>
+	<g fill="#fff" text-anchor="middle" text-rendering="geometricPrecision" font-family="Verdana,Geneva,DejaVu Sans,sans-serif" font-size="10" letter-spacing="1.1">
+		<text x="30.4" y="17.5" fill="#fff">POSER</text>
+		<text x="119.876953125" y="17.5" fill="#fff" font-weight="bold">FOR THE BADGE</text>
+	</g>
+</svg>

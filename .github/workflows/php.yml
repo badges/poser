@@ -18,8 +18,7 @@ jobs:
         with:
             args: --diff --dry-run
 
-  build:
-
+  tests:
     strategy:
       matrix:
         container: [ "php81", "php82", "php83" ]
@@ -55,11 +54,31 @@ jobs:
       - name: Install dependencies
         run: docker compose run -u $(id -u):$(id -g) --rm ${{ matrix.container }} composer install --prefer-dist --no-progress
 
-      - name: Coding Standard Checks
-        run: docker compose run --rm ${{ matrix.container }} bin/php-cs-fixer fix --verbose --diff --dry-run
+      - name: Run tests
+        run: CONTAINER=${{ matrix.container }} make tests
 
-      - name: Unit tests
-        run: docker compose run --rm ${{ matrix.container }} ./bin/phpunit
+  tests-php84:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
 
-      - name: Run behat tests
-        run: docker compose run --rm ${{ matrix.container }} ./bin/behat --snippets-for
+      - name: Build Docker image
+        run: docker compose build php84
+
+      - name: Validate composer.json
+        run: docker compose run -u $(id -u):$(id -g) --rm php84 composer validate
+
+      - name: Cache Composer packages
+        id: composer-cache
+        uses: actions/cache@v4
+        with:
+          path: vendor
+          key: ${{ runner.os }}-php84-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-php84
+
+      - name: Install dependencies
+        run: docker compose run -u $(id -u):$(id -g) --rm php84 composer install --prefer-dist --no-progress
+
+      - name: Run tests
+        run: make tests

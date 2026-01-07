@@ -1,32 +1,28 @@
+x-php-service: &php-service
+  working_dir: /application
+  stdin_open: true
+  volumes:
+    - .:/application:cached
+  environment:
+    - COMPOSER_HOME=/tmp/.composer
+
 services:
   php81:
+    <<: *php-service
     build:
       context: .docker/php81
-    working_dir: /application
-    stdin_open: true
-    volumes:
-      - .:/application:cached
 
   php82:
+    <<: *php-service
     build:
       context: .docker/php82
-    working_dir: /application
-    stdin_open: true
-    volumes:
-      - .:/application:cached
 
   php83:
+    <<: *php-service
     build:
       context: .docker/php83
-    working_dir: /application
-    stdin_open: true
-    volumes:
-      - .:/application:cached
 
   php84:
+    <<: *php-service
     build:
       context: .docker/php84
-    working_dir: /application
-    stdin_open: true
-    volumes:
-      - .:/application:cached
