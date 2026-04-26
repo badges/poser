@@ -1,11 +1,12 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="{{ totalWidth }}" height="28" role="img" aria-label="{{ vendor }}: {{ value }}">
-	<title>{{ vendor }}: {{ value }}</title>
-	<g shape-rendering="crispEdges">
-		<rect width="{{ vendorWidth }}" height="28" fill="{{ vendorColor }}"/>
-		<rect x="{{ vendorWidth }}" width="{{ valueWidth }}" height="28" fill="{{ valueColor }}"/>
-	</g>
-	<g fill="#fff" text-anchor="middle" text-rendering="geometricPrecision" font-family="Verdana,Geneva,DejaVu Sans,sans-serif" font-size="10" letter-spacing="1.1">
-		<text x="{{ vendorStartPosition }}" y="17.5" fill="#fff">{{ vendor }}</text>
-		<text x="{{ valueStartPosition }}" y="17.5" fill="#fff" font-weight="bold">{{ value }}</text>
-	</g>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="{{ totalWidth }}" height="28" role="img" aria-label="{{ vendorUpper }}: {{ valueUpper }}">
+    <title>{{ vendorUpper }}: {{ valueUpper }}</title>
+    <g shape-rendering="crispEdges">
+        <rect width="{{ vendorWidth }}" height="28" fill="{{ vendorColor }}"/>
+        <rect x="{{ vendorWidth }}" width="{{ valueWidth }}" height="28" fill="{{ valueColor }}"/>
+    </g>
+    {{ logoElement }}
+    <g fill="#fff" text-anchor="middle" font-family="Verdana,Geneva,DejaVu Sans,sans-serif" text-rendering="geometricPrecision" font-size="100">
+        <text transform="scale(.1)" x="{{ vendorStartX }}" y="175" fill="#fff">{{ vendorUpper }}</text>
+        <text transform="scale(.1)" x="{{ valueStartX }}" y="175" fill="#fff" font-weight="bold">{{ valueUpper }}</text>
+    </g>
 </svg>

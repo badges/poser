@@ -17,15 +17,10 @@ namespace PUGX\Poser\Render;
  * @author Claudio D'Alicandro <claudio.dalicandro@gmail.com>
  * @author Giulio De Donato <liuggio@gmail.com>
  */
-class SvgPlasticRender extends LocalSvgRenderer
+class SvgPlasticRender extends SvgBaseRenderer
 {
     public function getBadgeStyle(): string
     {
         return 'plastic';
-    }
-
-    protected function getTemplateName(): string
-    {
-        return $this->getBadgeStyle();
     }
 }
