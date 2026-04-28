@@ -32,8 +32,6 @@ class Command extends BaseCommand
 
     public function __construct(?string $name = null)
     {
-        parent::__construct($name);
-
         $this->poser = new Poser([
             new SvgPlasticRender(),
             new SvgFlatRender(),
@@ -42,11 +40,12 @@ class Command extends BaseCommand
             new SvgSocialRender(),
         ]);
         $this->header = self::HEADER;
+
+        parent::__construct($name);
     }
 
     protected function configure(): void
     {
-
         $this
             ->setName('generate')
             ->setDescription('Create a badge you are a Poser.')

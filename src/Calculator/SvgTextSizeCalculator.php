@@ -16,30 +16,27 @@ use Cog\Unicode\UnicodeString;
 
 /**
  * SVG-based text size calculator using SVG fonts.
- * 
+ *
  * This calculator provides more accurate text measurements using SVG fonts
  * but requires additional dependencies (cog/svg-font and cog/unicode).
- * 
+ *
  * @author Anton Komarev <anton@komarev.com>
  */
 class SvgTextSizeCalculator implements TextSizeCalculatorInterface
 {
     /**
      * Calculate the width of the text box using SVG fonts.
-     * 
+     *
      * @throws \RuntimeException If SVG font dependencies are not available
      */
     public function calculateWidth(string $text, int $size = self::TEXT_SIZE): float
     {
-        if (!class_exists(FontList::class)) {
-            throw new \RuntimeException(
-                'SVG font dependencies not available. Please install cog/svg-font and cog/unicode packages, ' .
-                'or use GDTextSizeCalculator instead.'
-            );
+        if (!\class_exists(FontList::class)) {
+            throw new \RuntimeException('SVG font dependencies not available. Please install cog/svg-font and cog/unicode packages, or use GDTextSizeCalculator instead.');
         }
 
         try {
-            $font = FontList::ofFile(__DIR__ . '/Font/DejaVuSans.svg')->getById('DejaVuSansBook');
+            $font          = FontList::ofFile(__DIR__ . '/Font/DejaVuSans.svg')->getById('DejaVuSansBook');
             $letterSpacing = 0.0;
 
             $width = $font->computeStringWidth(

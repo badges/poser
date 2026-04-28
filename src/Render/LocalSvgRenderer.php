@@ -27,7 +27,8 @@ abstract class LocalSvgRenderer implements RenderInterface
     public const VENDOR_COLOR = '#555';
 
     /**
-     * Horizontal padding on each side of the text (px).
+     * Horizontal padding on each side of a text section (px).
+     * Shields.io uses 5 px per side; we match that for visual parity.
      */
     protected const PADDING_H = 2;
 
@@ -42,7 +43,7 @@ abstract class LocalSvgRenderer implements RenderInterface
     protected const LOGO_WIDTH = 14;
 
     /**
-     * Logo vertical offset for 20px-tall badges.
+     * Logo vertical offset for 20 px-tall badges.
      * Override in subclasses for different badge heights.
      */
     protected function logoY(): int
@@ -97,8 +98,8 @@ abstract class LocalSvgRenderer implements RenderInterface
             $render = \str_replace(\sprintf('{{ %s }}', $key), (string) $variable, $render);
         }
 
-        $render = preg_replace('/\s+/', ' ', $render);
-        $render = str_replace('> <', '><', $render);
+        $render = \preg_replace('/\s+/', ' ', $render);
+        $render = \str_replace('> <', '><', $render);
 
         try {
             $xml = new \SimpleXMLElement($render);
@@ -115,21 +116,19 @@ abstract class LocalSvgRenderer implements RenderInterface
 
     protected function buildParameters(Badge $badge): array
     {
-        $hasLogo    = (bool) $badge->getLogo();
-        $logoOffset = $hasLogo ? (self::LOGO_WIDTH + self::LOGO_TEXT_GAP) : 0;
-
-        $subject = $badge->getSubject();
-        $status  = $badge->getStatus();
-
-        $subjectW = (int) round($this->stringWidth($subject));
-        $statusW  = (int) round($this->stringWidth($status));
-        $vendorWidth = self::PADDING_H + $logoOffset + $subjectW + self::PADDING_H;
-        $valueWidth  = self::PADDING_H + $statusW + self::PADDING_H;
-        $totalWidth = $vendorWidth + $valueWidth;
-        $vendorCenter = $logoOffset + ($subjectW / 2) + self::PADDING_H;
-        $valueCenter = ($statusW / 2) + self::PADDING_H;
-        $vendorStartX = (int) round($vendorCenter * 10);
-        $valueStartX  = (int) round(($vendorWidth + $valueCenter) * 10);
+        $hasLogo       = (bool) $badge->getLogo();
+        $logoOffset    = $hasLogo ? (self::LOGO_WIDTH + self::LOGO_TEXT_GAP) : 0;
+        $subject       = $badge->getSubject();
+        $status        = $badge->getStatus();
+        $subjectW      = (int) \round($this->stringWidth($subject));
+        $statusW       = (int) \round($this->stringWidth($status));
+        $vendorWidth   = self::PADDING_H + $logoOffset + $subjectW + self::PADDING_H;
+        $valueWidth    = self::PADDING_H + $statusW + self::PADDING_H;
+        $totalWidth    = $vendorWidth + $valueWidth;
+        $vendorCenter  = self::PADDING_H + $logoOffset + ($subjectW / 2);
+        $valueCenter   = self::PADDING_H + ($statusW / 2);
+        $vendorStartX  = (int) \round($vendorCenter * 10);
+        $valueStartX   = (int) \round(($vendorWidth + $valueCenter) * 10);
         $vendorTextLen = $subjectW * 10;
         $valueTextLen  = $statusW * 10;
 
@@ -141,15 +140,15 @@ abstract class LocalSvgRenderer implements RenderInterface
             'valueColor'        => $badge->getHexColor(),
             'vendor'            => $subject,
             'value'             => $status,
-            'vendorUpper'       => strtoupper($subject),
-            'valueUpper'        => strtoupper($status),
+            'vendorUpper'       => \strtoupper($subject),
+            'valueUpper'        => \strtoupper($status),
             'vendorStartX'      => $vendorStartX,
             'valueStartX'       => $valueStartX,
             'vendorTextLength'  => $vendorTextLen,
             'valueTextLength'   => $valueTextLen,
             'vendorWidthMinus1' => $vendorWidth - 1,
             'valueWidthMinus1'  => $valueWidth - 1,
-            'valueRectX'        => $vendorWidth + 6 + 0.5,
+            'valueRectX'        => $vendorWidth + 0.5,
             'separatorX'        => $vendorWidth + 0.5,
             'logoElement'       => $hasLogo ? $this->buildLogoElement($badge) : '',
         ];
@@ -160,30 +159,32 @@ abstract class LocalSvgRenderer implements RenderInterface
         $y         = $this->logoY();
         $logoColor = $badge->getLogoColor() ?: '#fff';
         $logo      = $badge->getLogo();
- 
-        if (strpos($logo, 'data:image/svg+xml;base64,') === 0) {
-            $b64  = preg_replace('/\s+/', '', substr($logo, strlen('data:image/svg+xml;base64,')));
+
+        if (\str_starts_with($logo, 'data:image/svg+xml;base64,')) {
+            $b64  = \preg_replace('/\s+/', '', \substr($logo, \strlen('data:image/svg+xml;base64,')));
             $href = 'data:image/svg+xml;base64,' . $b64;
-            return sprintf('<image x="5" y="%d" width="14" height="14" href="%s"/>', $y, $href);
-        }
- 
-        if (strpos($logo, 'data:image/') === 0) {
-            $href = str_replace(' ', '+', $logo);
-            return sprintf('<image x="5" y="%d" width="14" height="14" href="%s"/>', $y, htmlspecialchars($href));
-        }
- 
-        if (strpos($logo, 'http') === 0) {
-            return sprintf('<image x="5" y="%d" width="14" height="14" href="%s"/>', $y, htmlspecialchars($logo));
+
+            return \sprintf('<image x="5" y="%d" width="14" height="14" href="%s"/>', $y, $href);
         }
 
-        $svg  = sprintf(
+        if (\str_starts_with($logo, 'data:image/')) {
+            $href = \str_replace(' ', '+', $logo);
+
+            return \sprintf('<image x="5" y="%d" width="14" height="14" href="%s"/>', $y, \htmlspecialchars($href));
+        }
+
+        if (\str_starts_with($logo, 'http')) {
+            return \sprintf('<image x="5" y="%d" width="14" height="14" href="%s"/>', $y, \htmlspecialchars($logo));
+        }
+
+        $svg = \sprintf(
             '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="%s" d="%s"/></svg>',
             $logoColor,
             $logo
         );
 
-        $href = 'data:image/svg+xml;base64,' . base64_encode($svg);
-        
-        return sprintf('<image x="5" y="%d" width="14" height="14" href="%s"/>', $y, $href);
+        $href = 'data:image/svg+xml;base64,' . \base64_encode($svg);
+
+        return \sprintf('<image x="5" y="%d" width="14" height="14" href="%s"/>', $y, $href);
     }
 }
