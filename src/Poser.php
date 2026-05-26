@@ -54,7 +54,7 @@ class Poser
         $this->renders[$render->getBadgeStyle()] = $render;
     }
 
-    private function getRenderFor(string $style): RenderInterface
+    public function getRenderFor(string $style): RenderInterface
     {
         if (!isset($this->renders[$style])) {
             throw new \InvalidArgumentException(\sprintf('No render founds for this style [%s]', $style));

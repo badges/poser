@@ -14,29 +14,28 @@ namespace PUGX\Poser\Render;
 use PUGX\Poser\Badge;
 use PUGX\Poser\Calculator\TextSizeCalculatorInterface;
 
+/**
+ * Renderer for the "for-the-badge" style.
+ *
+ * Differences vs. base:
+ *   • Badge height = 28 px  →  logo sits at y = 7 (vertically centred).
+ *   • Both labels are upper-cased before measuring and rendering.
+ *   • Uses wider per-section padding (10 px each side) to match the
+ *     reference Shields.io implementation for this style.
+ */
 class SvgForTheBadgeRenderer extends LocalSvgRenderer
 {
-    public const VENDOR_TEXT_FONT    = __DIR__ . '/../Calculator/Font/Verdana.svg';
-    public const VALUE_TEXT_FONT     = __DIR__ . '/../Calculator/Font/Verdana-Bold.svg';
-    public const TEXT_FONT_SIZE      = 10;
-    public const TEXT_FONT_COLOR     = '#FFFFFF';
-    public const TEXT_LETTER_SPACING = 0.1;
-    public const PADDING_X           = 10;
-
-    private \EasySVG $easy;
+    /**
+     * Padding per side for the for-the-badge style.
+     * Shields.io uses 10 px to give the uppercased text more breathing room.
+     */
+    private const FTB_PADDING = 3;
 
     public function __construct(
-        ?\EasySVG $easySVG = null,
         ?TextSizeCalculatorInterface $textSizeCalculator = null,
         ?string $templatesDirectory = null
     ) {
         parent::__construct($textSizeCalculator, $templatesDirectory);
-
-        if (null === $easySVG) {
-            $easySVG = new \EasySVG();
-        }
-
-        $this->easy = $easySVG;
     }
 
     public function getBadgeStyle(): string
@@ -49,28 +48,45 @@ class SvgForTheBadgeRenderer extends LocalSvgRenderer
         return $this->getBadgeStyle();
     }
 
+    protected function logoY(): int
+    {
+        return 7;
+    }
+
     protected function buildParameters(Badge $badge): array
     {
-        $parameters = parent::buildParameters($badge);
+        $parameters    = parent::buildParameters($badge);
+        $hasLogo       = (bool) $badge->getLogo();
+        $logoOffset    = $hasLogo ? (self::LOGO_WIDTH + self::LOGO_TEXT_GAP) : 0;
+        $vendorText    = \mb_strtoupper($badge->getSubject());
+        $valueText     = \mb_strtoupper($badge->getStatus());
+        $subjectW      = (int) \round($this->stringWidth($vendorText));
+        $statusW       = (int) \round($this->stringWidth($valueText));
+        $vendorWidth   = self::FTB_PADDING + $logoOffset + $subjectW + self::FTB_PADDING;
+        $valueWidth    = self::FTB_PADDING + $statusW + self::FTB_PADDING;
+        $totalWidth    = $vendorWidth + $valueWidth;
+        $vendorCenter  = self::FTB_PADDING + $logoOffset + ($subjectW / 2);
+        $valueCenter   = self::FTB_PADDING + ($statusW / 2);
+        $vendorStartX  = (int) \round($vendorCenter * 10);
+        $valueStartX   = (int) \round(($vendorWidth + $valueCenter) * 10);
+        $vendorTextLen = $subjectW * 10;
+        $valueTextLen  = $statusW * 10;
 
-        $parameters['vendor'] = \mb_strtoupper($parameters['vendor']);
-        $parameters['value']  = \mb_strtoupper($parameters['value']);
-
-        $this->easy->clearSVG();
-        $this->easy->setLetterSpacing(self::TEXT_LETTER_SPACING);
-        $this->easy->setFont(self::VENDOR_TEXT_FONT, self::TEXT_FONT_SIZE, self::TEXT_FONT_COLOR);
-        $vendorDimensions                      = $this->easy->textDimensions($parameters['vendor']);
-        $parameters['vendorWidth']             = $vendorDimensions[0] + 2 * self::PADDING_X;
-        $parameters['vendorStartPosition']     = \round($parameters['vendorWidth'] / 2, 1) + 1;
-
-        $this->easy->clearSVG();
-        $this->easy->setLetterSpacing(self::TEXT_LETTER_SPACING);
-        $this->easy->setFont(self::VALUE_TEXT_FONT, self::TEXT_FONT_SIZE, self::TEXT_FONT_COLOR);
-        $valueDimensions                      = $this->easy->textDimensions($parameters['value']);
-        $parameters['valueWidth']             = $valueDimensions[0] + 2 * self::PADDING_X;
-        $parameters['valueStartPosition']     = $parameters['vendorWidth'] + \round($parameters['valueWidth'] / 2, 1) - 1;
-
-        $parameters['totalWidth'] = $parameters['valueWidth'] + $parameters['vendorWidth'];
+        $parameters['vendor']            = $vendorText;
+        $parameters['value']             = $valueText;
+        $parameters['vendorUpper']       = $vendorText;
+        $parameters['valueUpper']        = $valueText;
+        $parameters['vendorWidth']       = $vendorWidth;
+        $parameters['valueWidth']        = $valueWidth;
+        $parameters['totalWidth']        = $totalWidth;
+        $parameters['vendorStartX']      = $vendorStartX;
+        $parameters['valueStartX']       = $valueStartX;
+        $parameters['vendorTextLength']  = $vendorTextLen;
+        $parameters['valueTextLength']   = $valueTextLen;
+        $parameters['vendorWidthMinus1'] = $vendorWidth - 1;
+        $parameters['valueWidthMinus1']  = $valueWidth - 1;
+        $parameters['valueRectX']        = $vendorWidth + 0.5;
+        $parameters['separatorX']        = $vendorWidth + 0.5;
 
         return $parameters;
     }

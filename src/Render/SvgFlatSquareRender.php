@@ -16,15 +16,10 @@ namespace PUGX\Poser\Render;
  *
  * @author Giulio De Donato <liuggio@gmail.com>
  */
-class SvgFlatSquareRender extends LocalSvgRenderer
+class SvgFlatSquareRender extends SvgBaseRenderer
 {
     public function getBadgeStyle(): string
     {
         return 'flat-square';
-    }
-
-    protected function getTemplateName(): string
-    {
-        return $this->getBadgeStyle();
     }
 }

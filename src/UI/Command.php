@@ -8,6 +8,7 @@ use PUGX\Poser\Render\SvgFlatRender;
 use PUGX\Poser\Render\SvgFlatSquareRender;
 use PUGX\Poser\Render\SvgForTheBadgeRenderer;
 use PUGX\Poser\Render\SvgPlasticRender;
+use PUGX\Poser\Render\SvgSocialRender;
 use PUGX\Poser\ValueObject\InputRequest;
 use Symfony\Component\Console\Command\Command as BaseCommand;
 use Symfony\Component\Console\Input\InputArgument;
@@ -31,32 +32,20 @@ class Command extends BaseCommand
 
     public function __construct(?string $name = null)
     {
+        $this->poser = new Poser([
+            new SvgPlasticRender(),
+            new SvgFlatRender(),
+            new SvgFlatSquareRender(),
+            new SvgForTheBadgeRenderer(),
+            new SvgSocialRender(),
+        ]);
+        $this->header = self::HEADER;
+
         parent::__construct($name);
-
-        $this->poser = new Poser([
-            new SvgPlasticRender(),
-            new SvgFlatRender(),
-            new SvgFlatSquareRender(),
-            new SvgForTheBadgeRenderer(),
-        ]);
-        $this->header = self::HEADER;
-    }
-
-    private function init(): void
-    {
-        $this->poser = new Poser([
-            new SvgPlasticRender(),
-            new SvgFlatRender(),
-            new SvgFlatSquareRender(),
-            new SvgForTheBadgeRenderer(),
-        ]);
-        $this->header = self::HEADER;
     }
 
     protected function configure(): void
     {
-        $this->init();
-
         $this
             ->setName('generate')
             ->setDescription('Create a badge you are a Poser.')
