@@ -1,3 +1,20 @@
+## [v3.4.0] - 2026-05-26
+
+### Added
+* add `labelColor`, `logo`, and `logoColor` URI options for generated badges
+* add the `social` badge style
+* add support for 3-digit hex colors
+* update Docker documentation
+
+### Changed
+* SVG template placeholders `vendorStartPosition` and `valueStartPosition` were replaced by `vendorStartX` and `valueStartX`; custom templates must be updated accordingly
+* SVG rendering now exposes additional template placeholders for logo-aware layout and social badge geometry
+
+## [v3.3.0] - 2025-12-09
+
+### Added
+* add support for Symfony 8.x
+
 ## [v3.2.0] - 2025-10-13
 
 ### Added
@@ -172,6 +189,9 @@
 - stable release for poser
 
 
+[v3.4.0]: https://github.com/badges/poser/tree/v3.4.0
+[v3.3.0]: https://github.com/badges/poser/tree/v3.3.0
+[v3.2.0]: https://github.com/badges/poser/tree/v3.2.0
 [v3.1.0]: https://github.com/badges/poser/tree/v3.1.0
 [v3.0.0]: https://github.com/badges/poser/tree/v3.0.0
 [v2.3.1]: https://github.com/badges/poser/tree/v2.3.1
