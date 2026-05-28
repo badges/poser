@@ -42,6 +42,8 @@ Choose a different style
 poser license MIT blue -s "for-the-badge"
 ```
 
+The available styles are `plastic`, `flat`, `flat-square`, `for-the-badge`, and `social`.
+
 You can also use the provided Docker Compose services:
 
 ```bash
@@ -79,7 +81,46 @@ $image = $poser->generate('license', 'MIT', '428F7E', 'plastic');
 echo $image->getStyle();
 ```
 
-The allowed styles are: `plastic`, `flat`, `flat-square`, and `for-the-badge`.
+The allowed styles are: `plastic`, `flat`, `flat-square`, `for-the-badge`, and `social`.
+
+## Badge customization
+
+Badges generated from an URI support query-string options:
+
+| Option | Description |
+| --- | --- |
+| `style` | Badge style: `plastic`, `flat`, `flat-square`, `for-the-badge`, or `social`. |
+| `labelColor` | Color for the left side of the badge. Accepts named colors, 6-digit hex, or 3-digit hex. |
+| `logo` | Optional logo as an image URL, `data:image/...` URI, or SVG path data. |
+| `logoColor` | Color used when `logo` is SVG path data. Defaults to white. Accepts named colors, 6-digit hex, or 3-digit hex. |
+
+Examples:
+
+```php
+echo $poser->generateFromURI('license-MIT-blue.svg?style=social');
+echo $poser->generateFromURI('build-passing-brightgreen.svg?labelColor=555');
+echo $poser->generateFromURI('github-stars-333.svg?style=social&logo=https%3A%2F%2Fexample.com%2Fgithub.svg');
+echo $poser->generateFromURI('php-8.4-777.svg?logoColor=blueviolet&logo=M12 2L2 22h20L12 2z');
+```
+
+When these options are used in a URL, encode reserved characters. In particular, encode `#` as `%23`, and encode full image/data URLs passed as `logo`.
+
+The CLI currently exposes style selection with `--style`; `labelColor`, `logo`, and `logoColor` are available through URI-based generation.
+
+## Custom SVG templates
+
+Since `v3.4.0`, SVG templates use `vendorStartX` and `valueStartX` instead of the old `vendorStartPosition` and `valueStartPosition` placeholders. If you maintain custom templates, update them before upgrading:
+
+```diff
+- {{ vendorStartPosition }}
+- {{ valueStartPosition }}
++ {{ vendorStartX }}
++ {{ valueStartX }}
+```
+
+These values are the text center positions multiplied by 10 and are intended to be used with `transform="scale(.1)"`, as the bundled templates do.
+
+The renderer also provides these optional template placeholders: `vendorUpper`, `valueUpper`, `vendorTextLength`, `valueTextLength`, `vendorWidthMinus1`, `valueWidthMinus1`, `valueRectX`, `separatorX`, and `logoElement`.
 
 ### Examples (generated with `make doc-images`)
 
