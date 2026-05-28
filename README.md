@@ -85,7 +85,7 @@ The allowed styles are: `plastic`, `flat`, `flat-square`, `for-the-badge`, and `
 
 ## Badge customization
 
-Badges generated from an URI support query-string options:
+Badges generated from a URI support these query string options:
 
 | Option | Description |
 | --- | --- |
@@ -100,7 +100,9 @@ Examples:
 echo $poser->generateFromURI('license-MIT-blue.svg?style=social');
 echo $poser->generateFromURI('build-passing-brightgreen.svg?labelColor=555');
 echo $poser->generateFromURI('github-stars-333.svg?style=social&logo=https%3A%2F%2Fexample.com%2Fgithub.svg');
-echo $poser->generateFromURI('php-8.4-777.svg?logoColor=blueviolet&logo=M12 2L2 22h20L12 2z');
+
+$logo = rawurlencode('M12 2L2 22h20L12 2z');
+echo $poser->generateFromURI('php-8.4-777.svg?logoColor=blueviolet&logo=' . $logo);
 ```
 
 When these options are used in a URL, encode reserved characters. In particular, encode `#` as `%23`, and encode full image/data URLs passed as `logo`.

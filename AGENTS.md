@@ -107,7 +107,7 @@ Before a PR, run the most relevant local tests plus CS checks. For broad changes
 
 - `LocalSvgRenderer::render()` loads a style template, builds replacement parameters, replaces `{{ name }}` placeholders, normalizes whitespace, validates XML, and returns an `Image`.
 - Templates live in `src/Resources/templates/{style}.svg`.
-- Supported styles currently include `flat`, `flat-square`, `plastic`, `for-the-badge`, and `social` in code/tests/templates, even though README examples list fewer styles.
+- Supported styles currently include `flat`, `flat-square`, `plastic`, `for-the-badge`, and `social` in code, tests, templates, and README examples.
 - Badge color names are mapped in `Badge::$colorScheme`; arbitrary 3- or 6-digit hex values are also accepted.
 - Logo handling supports SVG path data, `data:image/...`, base64 SVG data URLs, and HTTP URLs.
 
