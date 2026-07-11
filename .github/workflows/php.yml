@@ -10,101 +10,50 @@ jobs:
   cs-fix:
     runs-on: ubuntu-24.04
     name: PHP-CS-Fixer
-    container:
-      image: php:8.1-cli
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.1'
+          extensions: gd, simplexml, zip
+          tools: composer:v2
+          coverage: none
 
       - name: Install dependencies
-        run: |
-          apt-get update && apt-get install -y \
-            git unzip zip \
-            libzip-dev libpng-dev libjpeg-dev libfreetype6-dev
-
-          docker-php-ext-configure gd --with-freetype --with-jpeg
-          docker-php-ext-install gd zip
-
-          curl -sS https://getcomposer.org/installer | php \
-            -- --install-dir=/usr/local/bin --filename=composer
-
-          composer install --prefer-dist --no-progress
+        uses: ramsey/composer-install@v4
 
       - name: Run PHP CS Fixer
         run: bin/php-cs-fixer fix --diff --dry-run
-
 
   tests:
     runs-on: ubuntu-24.04
 
     strategy:
+      fail-fast: false
       matrix:
-        php-version: ['8.1', '8.2', '8.3']
-
-    container:
-      image: php:${{ matrix.php-version }}-cli
+        php-version: ['8.1', '8.2', '8.3', '8.4', '8.5']
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
-      - name: Install system dependencies
-        run: |
-          apt-get update && apt-get install -y \
-            git unzip zip \
-            libpng-dev libjpeg-dev libfreetype6-dev libzip-dev
-
-      - name: Install PHP extensions
-        run: |
-          docker-php-ext-configure gd --with-freetype --with-jpeg
-          docker-php-ext-install gd zip
-
-      - name: Install Composer
-        run: |
-          curl -sS https://getcomposer.org/installer | php \
-            -- --install-dir=/usr/local/bin --filename=composer
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-version }}
+          extensions: gd, simplexml, zip
+          tools: composer:v2
+          coverage: none
 
       - name: Validate composer.json
         run: composer validate
 
       - name: Install dependencies
-        run: composer install --prefer-dist --no-progress
-
-      - name: Run tests
-        run: bin/phpunit --display-warnings --do-not-fail-on-warning
-
-
-  tests-php84:
-    runs-on: ubuntu-24.04
-    container:
-      image: php:8.4-cli
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Install system dependencies
-        run: |
-          apt-get update && apt-get install -y \
-            git unzip zip \
-            libpng-dev libjpeg-dev libfreetype6-dev libzip-dev
-
-      - name: Install PHP extensions
-        run: |
-          docker-php-ext-configure gd --with-freetype --with-jpeg
-          docker-php-ext-install gd zip
-
-      - name: Install Composer
-        run: |
-          curl -sS https://getcomposer.org/installer | php \
-            -- --install-dir=/usr/local/bin --filename=composer
-
-      - name: Validate composer.json
-        run: composer validate
-
-      - name: Install dependencies
-        run: composer install --prefer-dist --no-progress
+        uses: ramsey/composer-install@v4
 
       - name: Run tests
         run: bin/phpunit --display-warnings --do-not-fail-on-warning

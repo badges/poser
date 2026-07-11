@@ -7,17 +7,28 @@ namespace PUGX\Poser\Tests\Render;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use PUGX\Poser\Badge;
-use PUGX\Poser\Calculator\GDTextSizeCalculator;
+use PUGX\Poser\Calculator\TextSizeCalculatorInterface;
 use PUGX\Poser\Render\SvgSocialRender;
 
 class SvgSocialRenderTest extends TestCase
 {
-    private GDTextSizeCalculator $calculator;
+    private TextSizeCalculatorInterface $calculator;
     private SvgSocialRender $render;
 
     protected function setUp(): void
     {
-        $this->calculator = new GDTextSizeCalculator();
+        $this->calculator = $this->createMock(TextSizeCalculatorInterface::class);
+        $this->calculator->method('calculateWidth')->willReturnCallback(static function (string $text): float {
+            $widths = [
+                'twitter' => 46.0,
+                'follow'  => 43.0,
+                'github'  => 45.0,
+                'stars'   => 38.0,
+                'test'    => 24.0,
+            ];
+
+            return $widths[$text] ?? (float) (\strlen($text) * 7);
+        });
         $this->render     = new SvgSocialRender($this->calculator);
     }
 

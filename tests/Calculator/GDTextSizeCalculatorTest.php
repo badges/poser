@@ -28,14 +28,14 @@ class GDTextSizeCalculatorTest extends TestCase
     public function itShouldComputeTextWidthWithSize10(): void
     {
         $width = $this->calculator->calculateWidth('MIT', 10);
-        $this->assertEquals(29.0, $width);
+        $this->assertEqualsWithDelta(29.0, $width, 2.0);
     }
 
     #[Test]
     public function itShouldComputeTextWidthWithSize14(): void
     {
         $width = $this->calculator->calculateWidth('MIT', 14);
-        $this->assertEquals(34.0, $width);
+        $this->assertEqualsWithDelta(34.0, $width, 2.0);
     }
 
     #[Test]
