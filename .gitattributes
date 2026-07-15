@@ -1,12 +1,11 @@
 /.docker            export-ignore
 /.git*              export-ignore
 /.php-cs-fixer.php  export-ignore
+/*.md               export-ignore
 /*.svg              export-ignore
-/CHANGELOG.md       export-ignore
-/CONTRIBUTING.md    export-ignore
-/docker-compose.yml export-ignore
+/compose.yml        export-ignore
+/doc                export-ignore
 /features           export-ignore
-/phpspec*.yml       export-ignore
+/Makefile           export-ignore
+/phpunit.xml        export-ignore
 /psalm.xml          export-ignore
-/README.md          export-ignore
-/spec               export-ignore
