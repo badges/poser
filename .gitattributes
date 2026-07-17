@@ -4,7 +4,7 @@
 /*.md               export-ignore
 /*.svg              export-ignore
 /compose.yml        export-ignore
-/doc                export-ignore
+/docs               export-ignore
 /features           export-ignore
 /Makefile           export-ignore
 /phpunit.xml        export-ignore
