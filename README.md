@@ -14,9 +14,9 @@ This library is used by https://poser.pugx.org
 * PHP 8.1 or higher
 * GD extension
 
-you can still use the library with lower PHP versions, using the old releases
+You can still use the library with lower PHP versions by using the old releases
 
-## Use as command
+## Use as a command
 
 #### 1. Create a project
 
@@ -61,7 +61,7 @@ docker compose run --rm php83 bin/poser license MIT blue -s "plastic" -p "licens
 composer require badges/poser
 ```
 
-#### 2. Use in your project as lib
+#### 2. Use in your project as a lib
 
 ```php
 use PUGX\Poser\Render\SvgPlasticRender;
@@ -126,13 +126,13 @@ The renderer also provides these optional template placeholders: `vendorUpper`, 
 
 ### Examples (generated with `make doc-images`)
 
-![Flat style](doc/flat.svg)
+![Flat style](docs/flat.svg)
 
-![Flat square style](doc/flat-square.svg)
+![Flat square style](docs/flat-square.svg)
 
-![Plastic style](doc/plastic.svg)
+![Plastic style](docs/plastic.svg)
 
-![For the badge style](doc/for-the-badge.svg)
+![For the badge style](docs/for-the-badge.svg)
 
 
 ## Encoding
@@ -147,7 +147,6 @@ Underscores `__` → `_` Underscore
 ## More
 
 For *more info* please see the [behat features](./features/)
-and the examples in the [php-spec folder](./spec/)
 
 
 ## Why a composer badge?
@@ -166,16 +165,16 @@ Please refer to [CONTRIBUTING](CONTRIBUTING.md)
 You can use the env var CONTAINER to run the tests in a specific PHP version.
 The default version if CONTAINER is omitted is php83.
 
-#### 1. Setup your Docker environment
+#### 1. Set up your Docker environment
 
 ```bash
-CONTAINER=php83 make setup
+CONTAINER=php84 make setup
 ```
 
 #### 2. Run the tests
 
 ```bash
-CONTAINER=php83 make tests
+CONTAINER=php84 make tests
 ```
 
 #### 3. Run the tests for all PHP versions
