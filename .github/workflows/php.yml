@@ -56,4 +56,9 @@ jobs:
         uses: ramsey/composer-install@v4
 
       - name: Run tests
-        run: bin/phpunit --display-warnings --do-not-fail-on-warning
+        run: bin/phpunit --display-warnings
+
+      - name: Run Behat
+        if: matrix.php-version == '8.4'
+        run: php -d error_reporting='E_ALL & ~E_DEPRECATED' bin/behat --snippets-for
+

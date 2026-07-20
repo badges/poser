@@ -101,11 +101,18 @@ abstract class LocalSvgRenderer implements RenderInterface
         $render = \preg_replace('/\s+/', ' ', $render);
         $render = \str_replace('> <', '><', $render);
 
+        $useInternalErrors = \libxml_use_internal_errors(true);
+
         try {
             $xml = new \SimpleXMLElement($render);
         } catch (\Exception $e) {
+            \libxml_clear_errors();
+            \libxml_use_internal_errors($useInternalErrors);
             throw new \RuntimeException('Generated string is not a valid XML: ' . $e->getMessage());
         }
+
+        \libxml_clear_errors();
+        \libxml_use_internal_errors($useInternalErrors);
 
         if ('svg' !== $xml->getName()) {
             throw new \RuntimeException('Generated xml is not a SVG');
