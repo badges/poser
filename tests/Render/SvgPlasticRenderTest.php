@@ -17,7 +17,7 @@ class SvgPlasticRenderTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->calculator = $this->createMock(TextSizeCalculatorInterface::class);
+        $this->calculator = $this->createStub(TextSizeCalculatorInterface::class);
         $this->calculator->method('calculateWidth')->willReturn(20.0);
         $this->render = new SvgPlasticRender($this->calculator);
     }

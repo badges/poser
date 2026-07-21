@@ -17,7 +17,7 @@ class SvgForTheBadgeRendererTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->calculator = $this->createMock(TextSizeCalculatorInterface::class);
+        $this->calculator = $this->createStub(TextSizeCalculatorInterface::class);
         $this->calculator->method('calculateWidth')->willReturnCallback(static function (string $text): float {
             $widths = [
                 'VERSION'   => 53.0,
