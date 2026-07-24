@@ -26,3 +26,8 @@ services:
     <<: *php-service
     build:
       context: .docker/php84
+
+  php85:
+    <<: *php-service
+    build:
+      context: .docker/php85

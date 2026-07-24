@@ -1,4 +1,4 @@
-CONTAINER ?= php84
+CONTAINER ?= php85
 DOCKER_RUN=docker compose run --rm $(CONTAINER)
 
 .PHONY: setup tests matrix-tests doc-images

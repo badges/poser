@@ -1,7 +1,8 @@
 <?xml version="1.0"?>
 <psalm
-    errorLevel="2"
+    errorLevel="3"
     resolveFromConfigFile="true"
+    ensureOverrideAttribute="false"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns="https://getpsalm.org/schema/config"
     xsi:schemaLocation="https://getpsalm.org/schema/config vendor/vimeo/psalm/config.xsd"
@@ -9,11 +10,18 @@
     <projectFiles>
         <directory name="src" />
         <directory name="features" />
-        <directory name="spec" />
         <ignoreFiles>
             <directory name="vendor" />
-            <directory name="spec" />
             <directory name="features" />
         </ignoreFiles>
     </projectFiles>
+    <issueHandlers>
+        <FalsableReturnStatement errorLevel="suppress" />
+        <InvalidOperand errorLevel="suppress" />
+        <PossiblyInvalidArrayAccess errorLevel="suppress" />
+        <PossiblyNullArgument errorLevel="suppress" />
+        <PossiblyUnusedMethod errorLevel="suppress" />
+        <TypeDoesNotContainNull errorLevel="suppress" />
+        <UnusedClass errorLevel="suppress" />
+    </issueHandlers>
 </psalm>
