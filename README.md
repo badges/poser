@@ -163,7 +163,7 @@ Please refer to [CONTRIBUTING](CONTRIBUTING.md)
 ## Docker development
 
 You can use the env var CONTAINER to run the tests in a specific PHP version.
-The default version if CONTAINER is omitted is php83.
+The default version if CONTAINER is omitted is php85.
 
 #### 1. Set up your Docker environment
 
