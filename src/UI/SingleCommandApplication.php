@@ -50,7 +50,7 @@ class SingleCommandApplication extends Application
         parent::__construct($commandName, $version);
 
         // Add the given command as single (accessible) command.
-        $this->add($command);
+        $this->addCommand($command);
         $this->commandName = $commandName;
 
         // Override the Application's definition so that it does not
@@ -66,23 +66,38 @@ class SingleCommandApplication extends Application
     /**
      * Adds a command object.
      *
-     * This function overrides (public) Application::add()
-     * but should should only be used internally.
-     * Will raise \LogicException when called
-     * after the single accessible command is set up
-     * (from the constructor).
-     *
-     * @param Command $command A Command object
-     *
-     * @return Command The registered command
+     * Kept for Symfony < 7.4, where Application::add() is the public API.
      *
      * @throws \LogicException
      */
     public function add(Command $command): ?Command
     {
+        return $this->addCommand($command);
+    }
+
+    /**
+     * Adds a command object.
+     *
+     * This function overrides (public) Application::addCommand()
+     * but should should only be used internally.
+     * Will raise \LogicException when called
+     * after the single accessible command is set up
+     * (from the constructor).
+     *
+     * @throws \LogicException
+     *
+     * @psalm-suppress UndefinedMethod,PossiblyInvalidArgument parent::add() is only reached on Symfony < 7.4
+     */
+    public function addCommand(callable|Command $command): ?Command
+    {
         // Fail if we already set up the single accessible command.
         if ($this->commandName) {
             throw new \LogicException('You should not add additional commands to a SingleCommandApplication instance.');
+        }
+
+        // Application::addCommand() exists since Symfony 7.4, Application::add() is gone in 8.0.
+        if (\method_exists(Application::class, 'addCommand')) {
+            return parent::addCommand($command);
         }
 
         return parent::add($command);

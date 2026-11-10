@@ -34,10 +34,10 @@
         "symfony/console": "^5.0 || ^6.0 || ^7.0 || ^8.0"
     },
     "require-dev": {
-        "behat/behat": "^3.13",
-        "friendsofphp/php-cs-fixer": "^3.41",
-        "phpunit/phpunit": "^10.5 | ^11.5 | ^12.0",
-        "vimeo/psalm": "^6.13"
+        "behat/behat": "^3.29 || ^4.0",
+        "friendsofphp/php-cs-fixer": "^3.95",
+        "phpunit/phpunit": "^10.5 || ^11.5 || ^12.5 || ^13.4",
+        "vimeo/psalm": "^6.20 || ^7.0"
     },
     "config": {
         "bin-dir": "bin",

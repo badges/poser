@@ -11,7 +11,7 @@ return (new PhpCsFixer\Config())
     ->setRules([
         '@Symfony' => true,
         '@Symfony:risky' => true,
-        '@PHP81Migration' => true,
+        '@PHP8x1Migration' => true,
         'declare_strict_types' => false,
         'native_function_invocation' => ['include' => ['@all']],
         'concat_space' => ['spacing' => 'one'],

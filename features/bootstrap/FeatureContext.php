@@ -1,6 +1,8 @@
 <?php
 
 use Behat\Behat\Context\Context;
+use Behat\Step\Then;
+use Behat\Step\When;
 
 /**
  * Behat context class.
@@ -23,9 +25,7 @@ class FeatureContext implements Context
         $this->output    = '';
     }
 
-    /**
-     * @When I run :command
-     */
+    #[When('I run :command')]
     public function iRun($command): void
     {
         $poser        = $this->binFolder . $command;
@@ -35,9 +35,7 @@ class FeatureContext implements Context
         $this->output = \ob_get_clean();
     }
 
-    /**
-     * @Then the same output should be like the content of :filePath
-     */
+    #[Then('the same output should be like the content of :filePath')]
     public function theSameOutputShouldBeLikeTheContentOf($filePath): void
     {
         $filePath = __DIR__ . '/../' . $filePath;
@@ -46,9 +44,7 @@ class FeatureContext implements Context
         $this->assertEquals($content, $this->output);
     }
 
-    /**
-     * @Then it should pass
-     */
+    #[Then('it should pass')]
     public function itShouldPass(): void
     {
         if (0 != $this->return) {
@@ -56,9 +52,7 @@ class FeatureContext implements Context
         }
     }
 
-    /**
-     * @Then the content of :given should be equal to :expected
-     */
+    #[Then('the content of :given should be equal to :expected')]
     public function theContentOfShouldBeEqualTo($given, $expected): void
     {
         $givenPath = $given;
