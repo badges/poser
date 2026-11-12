@@ -22,12 +22,12 @@ The package is PSR-4 autoloaded under `PUGX\Poser\`.
 
 ## Requirements
 
-- PHP `^8.1`
+- PHP `^8.2`
 - Composer
 - PHP extensions: `gd`, `simplexml`
 - Docker Compose is the preferred reproducible development path.
 
-The current Makefile defaults to `CONTAINER=php84`. The README still mentions `php83` in a few places, so treat `Makefile`, `composer.json`, and CI workflows as the more current sources of truth.
+The current Makefile defaults to `CONTAINER=php85`. The README still mentions `php83` in a few places, so treat `Makefile`, `composer.json`, and CI workflows as the more current sources of truth.
 
 ## Common Commands
 
@@ -79,8 +79,8 @@ make doc-images
 
 GitHub Actions runs:
 
-- PHP-CS-Fixer on PHP 8.1
-- PHPUnit on PHP 8.1, 8.2, 8.3, and 8.4
+- PHP-CS-Fixer on PHP 8.2
+- PHPUnit on PHP 8.2, 8.3, 8.4, and 8.5
 - `composer validate`
 - Commit linting on pull requests
 
@@ -90,7 +90,7 @@ Before a PR, run the most relevant local tests plus CS checks. For broad changes
 
 - Follow the existing PHP style and namespace layout.
 - PHP-CS-Fixer config is in `.php-cs-fixer.php`.
-- The rule set is Symfony-based with PHP 8.1 migration rules and risky rules enabled.
+- The rule set is Symfony-based with PHP 8.2 migration rules and risky rules enabled.
 - Source files generally do not declare strict types, while newer tests do. Match the surrounding file style.
 - Prefer constructor injection already used by renderers, especially for text calculators and template paths.
 - Keep renderer classes small; shared behavior belongs in `LocalSvgRenderer` or `SvgBaseRenderer` when it applies to multiple styles.

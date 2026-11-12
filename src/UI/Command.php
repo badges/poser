@@ -26,7 +26,7 @@ class Command extends BaseCommand
  https://poser.pugx.org/
 ";
 
-    private Poser $poser;
+    private readonly Poser $poser;
 
     protected string $header;
 

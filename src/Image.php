@@ -17,16 +17,10 @@ namespace PUGX\Poser;
  * @author Claudio D'Alicandro <claudio.dalicandro@gmail.com>
  * @author Giulio De Donato <liuggio@gmail.com>
  */
-class Image
+readonly class Image
 {
-    private string $content;
-
-    private string $style;
-
-    private function __construct(string $content, string $style)
+    private function __construct(private string $content, private string $style)
     {
-        $this->content = $content;
-        $this->style   = $style;
     }
 
     /**

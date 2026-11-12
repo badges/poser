@@ -7,11 +7,6 @@ x-php-service: &php-service
     - COMPOSER_HOME=/tmp/.composer
 
 services:
-  php81:
-    <<: *php-service
-    build:
-      context: .docker/php81
-
   php82:
     <<: *php-service
     build:

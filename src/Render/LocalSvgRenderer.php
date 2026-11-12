@@ -51,8 +51,8 @@ abstract class LocalSvgRenderer implements RenderInterface
         return 3;
     }
 
-    private TextSizeCalculatorInterface $textSizeCalculator;
-    private string $templatesDirectory;
+    private readonly TextSizeCalculatorInterface $textSizeCalculator;
+    private readonly string $templatesDirectory;
 
     public function __construct(
         ?TextSizeCalculatorInterface $textSizeCalculator = null,
@@ -74,10 +74,6 @@ abstract class LocalSvgRenderer implements RenderInterface
 
     private function getTemplate(string $style): string
     {
-        if (null === $this->templatesDirectory) {
-            throw new \InvalidArgumentException('TemplateDirectory cannot be null');
-        }
-
         $filepath = \sprintf('%s/%s.svg', $this->templatesDirectory, $style);
 
         if (!\file_exists($filepath)) {

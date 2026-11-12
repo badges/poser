@@ -7,25 +7,15 @@ namespace PUGX\Poser\ValueObject;
 use PUGX\Poser\Badge;
 use Symfony\Component\Console\Input\InputInterface;
 
-class InputRequest
+readonly class InputRequest
 {
-    private string $subject;
-
-    private string $status;
-
-    private string $color;
-
-    private string $style;
-
-    private string $format;
-
-    private function __construct(string $subject, string $status, string $color, string $style, string $format)
-    {
-        $this->subject = $subject;
-        $this->status  = $status;
-        $this->color   = $color;
-        $this->style   = $style;
-        $this->format  = $format;
+    private function __construct(
+        private string $subject,
+        private string $status,
+        private string $color,
+        private string $style,
+        private string $format,
+    ) {
     }
 
     public static function createFromInput(InputInterface $input): self
