@@ -14,14 +14,17 @@ tests:
 	 docker compose run --rm $(CONTAINER) php -d error_reporting='E_ALL & ~E_DEPRECATED' bin/behat --snippets-for
 
 matrix-tests:
-	CONTAINER=php81 $(MAKE) setup
-	CONTAINER=php81 $(MAKE) tests
-
 	CONTAINER=php82 $(MAKE) setup
 	CONTAINER=php82 $(MAKE) tests
 
 	CONTAINER=php83 $(MAKE) setup
 	CONTAINER=php83 $(MAKE) tests
+
+	CONTAINER=php84 $(MAKE) setup
+	CONTAINER=php84 $(MAKE) tests
+
+	CONTAINER=php85 $(MAKE) setup
+	CONTAINER=php85 $(MAKE) tests
 
 doc-images:
 	docker compose run --rm php83 rm -f doc/flat.svg doc/flat-square.svg doc/plastic.svg doc/for-the-badge.svg

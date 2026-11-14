@@ -11,7 +11,7 @@ This library is used by https://poser.pugx.org
 
 ## Dependencies
 
-* PHP 8.1 or higher
+* PHP 8.2 or higher
 * GD extension
 
 You can still use the library with lower PHP versions by using the old releases

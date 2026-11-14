@@ -7,7 +7,7 @@ class Badge
     public const DEFAULT_STYLE  = 'flat';
     public const DEFAULT_FORMAT = 'svg';
 
-    private static array $colorScheme = [
+    private const COLOR_SCHEME = [
         'brightgreen'   => '44cc11',
         'green'         => '97ca00',
         'yellowgreen'   => 'a4a61d',
@@ -27,14 +27,14 @@ class Badge
         'inactive'      => '9f9f9f',
     ];
 
-    private string $subject;
-    private string $status;
-    private string $color;
-    private string $style;
-    private string $format;
-    private ?string $labelColor;
-    private ?string $logo;
-    private ?string $logoColor;
+    private readonly string $subject;
+    private readonly string $status;
+    private readonly string $color;
+    private readonly string $style;
+    private readonly string $format;
+    private readonly ?string $labelColor;
+    private readonly ?string $logo;
+    private readonly ?string $logoColor;
 
     public function __construct(string $subject, string $status, string $color, string $style = self::DEFAULT_STYLE, string $format = self::DEFAULT_FORMAT, ?string $labelColor = null, ?string $logo = null, ?string $logoColor = null)
     {
@@ -63,7 +63,7 @@ class Badge
      */
     public static function getColorNamesAvailable(): array
     {
-        return \array_keys(self::$colorScheme);
+        return \array_keys(self::COLOR_SCHEME);
     }
 
     /**
@@ -186,7 +186,7 @@ class Badge
 
     private function getColorHex(string $color): string
     {
-        $color = \array_key_exists($color, self::$colorScheme) ? self::$colorScheme[$color] : $color;
+        $color = \array_key_exists($color, self::COLOR_SCHEME) ? self::COLOR_SCHEME[$color] : $color;
         $color = \ltrim($color, '#');
 
         // Convert 3-digit hex to 6-digit hex
@@ -200,14 +200,11 @@ class Badge
         return $color;
     }
 
-    /**
-     * @return false|int
-     */
-    private function isValidColorHex(string $color)
+    private function isValidColorHex(string $color): bool
     {
         $color = \ltrim($color, '#');
         $regex = '/^[0-9a-fA-F]{3}$|^[0-9a-fA-F]{6}$/';
 
-        return \preg_match($regex, $color);
+        return 1 === \preg_match($regex, $color);
     }
 }
