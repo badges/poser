@@ -11,14 +11,15 @@ return (new PhpCsFixer\Config())
     ->setRules([
         '@Symfony' => true,
         '@Symfony:risky' => true,
-        '@PHP8x1Migration' => true,
+        '@PHP8x2Migration' => true,
+        '@PHP8x2Migration:risky' => true,
+        '@PHPUnit11x0Migration:risky' => true,
         'declare_strict_types' => false,
         'native_function_invocation' => ['include' => ['@all']],
         'concat_space' => ['spacing' => 'one'],
         'binary_operator_spaces' => ['operators' => ['=>' => 'align', '=' => 'align']],
         'phpdoc_align' => ['align' => 'vertical'],
         'phpdoc_summary' => false,
-        'php_unit_test_annotation' => ['style' => 'annotation'],
     ])
     ->setFinder($finder)
 ;

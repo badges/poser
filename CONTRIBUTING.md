@@ -69,8 +69,8 @@ $ docker buildx build \
   --platform linux/amd64,linux/arm64 \
   --build-arg BUILDKIT_INLINE_CACHE=1 \
   --push \
-  -t pugx/poser:php81 \
-  -f .docker/base/php81/Dockerfile \
+  -t pugx/poser:php82 \
+  -f .docker/base/php82/Dockerfile \
   .
 ```
 
